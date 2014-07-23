@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.tgs.mitra.bean.User;
 import com.tgs.mitra.ui.BaseActionBarActivity;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.UtilMethod;
@@ -45,17 +46,24 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 		  mConneDetect =new ConnectionDetector(getApplicationContext());
 		  
-		 /* DoBackground doBackground=new DoBackground();
-		  doBackground.execute();*/
+		  User user=User.getInstance();
+		  user.setUser("Balaji");
+		  user.setPassword("9balaji@");
 		  
-		  new Thread(){
+		  DoBackground doBackground=new DoBackground();
+		  doBackground.execute();
+		  
+		 /* new Thread(){
 			  public void run() {
 				  UtilMethod method=new UtilMethod();
+				  User user=User.getInstance();
+				  user.setUser("Balaji");
+				  user.setPassword("9balaji@");
 					
-				 boolean state=method.getLoginState("Balaji", "9balaji@");
+				 boolean state=method.getLoginState(user);
 				System.out.println("TEST LOGIN State "+state);
 			  }
-		  }.start();
+		  }.start();*/
 
 	}
 
@@ -75,9 +83,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				
-				  state=method.getLoginState("Balaji", "9balaji@");
-				System.out.println("TEST LOGIN State "+state);
+				method.getDepartmentList(User.getInstance());
 			}
 			else{
 				System.out.println("TEST Connection Error ");
