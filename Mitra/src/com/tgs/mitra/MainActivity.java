@@ -1,5 +1,9 @@
 package com.tgs.mitra;
 
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.ui.BaseActionBarActivity;
 import com.tgs.mitra.util.ConnectionDetector;
@@ -30,10 +35,13 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 	private CharSequence mTitle;
 	ConnectionDetector mConneDetect=null;
 
+	private Activity _activity;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		_activity=this;
 
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
@@ -71,10 +79,17 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 	class DoBackground extends AsyncTask<Void, Void, Void>
 	{
 		boolean state=false;
+		ProgressDialog dialog=null;
+		
+		ArrayList<MQTicketing> tickeinglist=null;
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			System.out.println("TEST LOGIN start..... ");
+			
+			dialog=new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
 			super.onPreExecute();
 		}
 		@Override
@@ -83,7 +98,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				method.getDepartmentList(User.getInstance());
+				tickeinglist=	method.getTicketsList(User.getInstance(),"ticketStatus","lastchange","ticketStatus");
 			}
 			else{
 				System.out.println("TEST Connection Error ");
@@ -96,7 +111,9 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			Toast.makeText(getApplicationContext(), "Login :"+state, Toast.LENGTH_LONG).show();
+			dialog.dismiss();
+			if(tickeinglist!=null)
+			Toast.makeText(getApplicationContext(), "Total size"+tickeinglist.size(), Toast.LENGTH_LONG).show();
 		}
 	}
 	@Override
