@@ -32,6 +32,15 @@ public class UtilMethod {
 	//MQTicketing
 	public final String METHOD_NAME_MQTICKETING="MQTicketing";
 	public final String SOAP_ACTION_MQTICKETING="http://tempuri.org/IMitraQSRService/MQTicketing";
+	
+	//ReplyTicket
+	public final String METHOD_NAME_REPLYTICKET="ReplyTicket";
+	public final String SOAP_ACTION_REPLYTICKET="http://tempuri.org/IMitraQSRService/ReplyTicket";
+	
+	
+	/**
+	 * Crate object for Methods calss.
+	 */
 	public UtilMethod() {
 		// TODO Auto-generated constructor stub
 	}
@@ -189,15 +198,18 @@ public class UtilMethod {
 		return departments;
 	}
 	
-	
-	
-	
+	/**
+	 * 
+	 * @param user
+	 * @param fieldsToPopulate
+	 * @param sortOrder
+	 * @param filter
+	 * @return
+	 */
 	public ArrayList<MQTicketing> getTicketsList(User user,String fieldsToPopulate,String sortOrder,String filter)
 	{
 		ArrayList<MQTicketing> MQTticketsList=new ArrayList<MQTicketing>();
 		try{
-
-			System.out.println("TEST in DPART"+user.getPassword());
 
 			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_MQTICKETING);
 
@@ -248,32 +260,32 @@ public class UtilMethod {
 			SoapObject recordObjecct=(SoapObject)object.getProperty("records");
 
 			//Department date getting
-			MQTicketing department=null;
+			MQTicketing ticketing=null;
 			SoapObject departObject=null;
 			for (int i = 0; i < recordObjecct.getPropertyCount(); i++) {
 
-				 department=new MQTicketing();
+				 ticketing=new MQTicketing();
 				departObject=(SoapObject)(recordObjecct).getProperty(i);
-				department.setAssignedOwner(departObject.getProperty("assignedOwner"));
-				department.setCopyToEmail(departObject.getProperty("copyToEmail"));
-				department.setCreatedDate(departObject.getProperty("createdDate"));
-				department.setCreatedUser(departObject.getProperty("createdUser"));
-				department.setDepartment(departObject.getProperty("department"));
-				department.setDetails(departObject.getProperty("details"));
-				department.setDueDate(departObject.getProperty("dueDate"));
-				department.setGuidfield(departObject.getProperty("guidfield"));
-				department.setLastChange(departObject.getProperty("lastChange"));
-				department.setLastChangeUser(departObject.getProperty("lastChangeUser"));
-				department.setPriority(departObject.getProperty("priority"));
-				department.setReplyId(departObject.getProperty("replyId"));
-				department.setStoreId(departObject.getProperty("storeId"));
-				department.setTicketId(departObject.getProperty("ticketId"));
-				department.setTicketStatus(departObject.getProperty("ticketStatus"));
-				department.setTitle(departObject.getProperty("title"));
+				ticketing.setAssignedOwner(departObject.getProperty("assignedOwner"));
+				ticketing.setCopyToEmail(departObject.getProperty("copyToEmail"));
+				ticketing.setCreatedDate(departObject.getProperty("createdDate"));
+				ticketing.setCreatedUser(departObject.getProperty("createdUser"));
+				ticketing.setDepartment(departObject.getProperty("department"));
+				ticketing.setDetails(departObject.getProperty("details"));
+				ticketing.setDueDate(departObject.getProperty("dueDate"));
+				ticketing.setGuidfield(departObject.getProperty("guidfield"));
+				ticketing.setLastChange(departObject.getProperty("lastChange"));
+				ticketing.setLastChangeUser(departObject.getProperty("lastChangeUser"));
+				ticketing.setPriority(departObject.getProperty("priority"));
+				ticketing.setReplyId(departObject.getProperty("replyId"));
+				ticketing.setStoreId(departObject.getProperty("storeId"));
+				ticketing.setTicketId(departObject.getProperty("ticketId"));
+				ticketing.setTicketStatus(departObject.getProperty("ticketStatus"));
+				ticketing.setTitle(departObject.getProperty("title"));
 				
 			 
 				
-				MQTticketsList.add(department);
+				MQTticketsList.add(ticketing);
 			}
 
 			
@@ -286,5 +298,208 @@ public class UtilMethod {
 			Log.e(getClass().getName(), e.getMessage());
 		}
 		return MQTticketsList;
+	}
+	
+	/**
+	 * 
+	 * @param curentUser Current user information 
+	 * @param replayTicket Replay for ticket.
+	 * @return
+	 */
+	public boolean replayTicket(User curentUser,MQTicketing replayTicket )
+	{
+		boolean result=false;
+		try{
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_REPLYTICKET);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(curentUser.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(curentUser.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+			
+			 String MOBSERVICE="http://schemas.datacontract.org/2004/07/MitraBO";
+			
+			
+			SoapObject ticket=new SoapObject(NAMESPACE, "Ticket");
+
+			PropertyInfo assignedOwner = new PropertyInfo();
+			assignedOwner.setName("assignedOwner");
+			assignedOwner.setNamespace(MOBSERVICE);
+			assignedOwner.setValue(replayTicket.getAssignedOwner());
+			assignedOwner.setType(null);
+			ticket.addProperty(assignedOwner);
+			
+			//ticket.addPropertyIfValue("assignedOwner",replayTicket.getAssignedOwner());
+			
+			PropertyInfo copyToEmail = new PropertyInfo();
+			copyToEmail.setName("copyToEmail");
+			copyToEmail.setNamespace(MOBSERVICE);
+			copyToEmail.setValue(replayTicket.getCopyToEmail());
+			copyToEmail.setType(null);
+			
+			ticket.addProperty(copyToEmail);
+			
+			//ticket.addPropertyIfValue("copyToEmail", replayTicket.getCopyToEmail());
+			
+			PropertyInfo createdDate = new PropertyInfo();
+			createdDate.setName("createdDate");
+			createdDate.setNamespace(MOBSERVICE);
+			createdDate.setValue(replayTicket.getCreatedDate());
+			createdDate.setType(null);
+			
+			ticket.addProperty(createdDate);
+			//ticket.addPropertyIfValue("createdDate", replayTicket.getCreatedDate());
+			
+			PropertyInfo createdUser = new PropertyInfo();
+			createdUser.setName("createdUser");
+			createdUser.setNamespace(MOBSERVICE);
+			createdUser.setValue(replayTicket.getCreatedUser());
+			createdUser.setType(null);
+			
+			ticket.addProperty(createdUser);
+			//ticket.addPropertyIfValue("createdUser", replayTicket.getCreatedUser());
+			
+
+			PropertyInfo department = new PropertyInfo();
+			department.setName("department");
+			department.setNamespace(MOBSERVICE);
+			department.setValue(replayTicket.getDepartment());
+			department.setType(null);
+			
+			ticket.addProperty(department);
+			//ticket.addPropertyIfValue("department", replayTicket.getDepartment());
+			PropertyInfo details = new PropertyInfo();
+			details.setName("details");
+			details.setNamespace(MOBSERVICE);
+			details.setValue( replayTicket.getDetails());
+			details.setType(null);
+			ticket.addProperty(details);
+			//ticket.addPropertyIfValue("details", replayTicket.getDetails());
+			
+			PropertyInfo dueDate = new PropertyInfo();
+			dueDate.setName("dueDate");
+			dueDate.setNamespace(MOBSERVICE);
+			dueDate.setValue( replayTicket.getDueDate());
+			dueDate.setType(null);
+			ticket.addProperty(dueDate);
+			//ticket.addPropertyIfValue("dueDate", replayTicket.getDueDate());
+			PropertyInfo guidfield = new PropertyInfo();
+			guidfield.setName("guidfield");
+			guidfield.setNamespace(MOBSERVICE);
+			guidfield.setValue(replayTicket.getGuidfield());
+			guidfield.setType(null);
+			ticket.addProperty(guidfield);
+			
+			//ticket.addPropertyIfValue("guidfield", replayTicket.getGuidfield());
+			PropertyInfo lastChange = new PropertyInfo();
+			lastChange.setName("lastChange");
+			lastChange.setNamespace(MOBSERVICE);
+			lastChange.setValue(replayTicket.getLastChange());
+			lastChange.setType(null);
+			ticket.addProperty(lastChange);
+			//ticket.addPropertyIfValue("lastChange", replayTicket.getLastChange());
+			
+			PropertyInfo lastChangeUser = new PropertyInfo();
+			lastChangeUser.setName("lastChangeUser");
+			lastChangeUser.setNamespace(MOBSERVICE);
+			lastChangeUser.setValue(replayTicket.getLastChangeUser());
+			lastChangeUser.setType(null);
+			ticket.addProperty(lastChangeUser);
+			//ticket.addPropertyIfValue("lastChangeUser", replayTicket.getLastChangeUser());
+			
+			PropertyInfo priority = new PropertyInfo();
+			priority.setName("priority");
+			priority.setNamespace(MOBSERVICE);
+			priority.setValue(replayTicket.getPriority());
+			priority.setType(null);
+			ticket.addProperty(priority);
+			//ticket.addPropertyIfValue("priority", replayTicket.getPriority());
+			
+			PropertyInfo replyId = new PropertyInfo();
+			replyId.setName("replyId");
+			replyId.setNamespace(MOBSERVICE);
+			replyId.setValue(replayTicket.getReplyId());
+			replyId.setType(null);
+			ticket.addProperty(replyId);
+			//ticket.addPropertyIfValue("replyId", replayTicket.getReplyId());
+			
+			PropertyInfo storeId = new PropertyInfo();
+			storeId.setName("storeId");
+			storeId.setNamespace(MOBSERVICE);
+			storeId.setValue(replayTicket.getStoreId());
+			storeId.setType(null);
+			ticket.addProperty(storeId);
+			//ticket.addPropertyIfValue("storeId", replayTicket.getStoreId());
+			
+			PropertyInfo ticketId = new PropertyInfo();
+			ticketId.setName("ticketId");
+			ticketId.setNamespace(MOBSERVICE);
+			ticketId.setValue(replayTicket.getTicketId());
+			ticketId.setType(null);
+			ticket.addProperty(ticketId);
+			//ticket.addPropertyIfValue("ticketId", replayTicket.getTicketId());
+			
+			PropertyInfo ticketStatus = new PropertyInfo();
+			ticketStatus.setName("ticketStatus");
+			ticketStatus.setNamespace(MOBSERVICE);
+			ticketStatus.setValue(replayTicket.getTicketStatus());
+			ticketStatus.setType(null);
+			ticket.addProperty(ticketStatus);
+			//ticket.addPropertyIfValue("ticketStatus", replayTicket.getTicketStatus());
+			
+			PropertyInfo title = new PropertyInfo();
+			title.setName("title");
+			title.setNamespace(MOBSERVICE);
+			title.setValue(replayTicket.getTitle());
+			title.setType(null);
+			ticket.addProperty(title);
+			//ticket.addPropertyIfValue("title", replayTicket.getTitle());
+
+			request.addProperty("Ticket",ticket);
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			transport.debug=true;
+			transport.call(SOAP_ACTION_REPLYTICKET, envelope);
+
+			System.out.println("TEST Request :"+transport.requestDump);
+			System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+			System.out.println("TEST RESULT :"+response);
+			
+			/*SoapObject object=(SoapObject) response.getProperty(0);
+
+			result=Boolean.valueOf(object.getProperty("ok").toString());*/
+
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally{
+			
+		}
+		return result;
+		
 	}
 }

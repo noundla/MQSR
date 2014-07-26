@@ -55,8 +55,11 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		  mConneDetect =new ConnectionDetector(getApplicationContext());
 		  
 		  User user=User.getInstance();
-		  user.setUser("Balaji");
-		  user.setPassword("9balaji@");
+		/*  user.setUser("Balaji");
+		  user.setPassword("9balaji@");*/
+		  
+		  user.setUser("Harini");
+		  user.setPassword("harini");
 		  
 		  DoBackground doBackground=new DoBackground();
 		  doBackground.execute();
@@ -81,7 +84,8 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		boolean state=false;
 		ProgressDialog dialog=null;
 		
-		ArrayList<MQTicketing> tickeinglist=null;
+		
+		//ArrayList<MQTicketing> tickeinglist=null;
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -98,7 +102,27 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				tickeinglist=	method.getTicketsList(User.getInstance(),"ticketStatus","lastchange","ticketStatus");
+				MQTicketing replayTicket=new MQTicketing();
+				replayTicket.setAssignedOwner("Appaji");
+				replayTicket.setCopyToEmail("harini@pravastech.com");
+				replayTicket.setCreatedDate("2014-07-23T18:43:00");
+				replayTicket.setCreatedUser("Harini");
+				replayTicket.setDepartment("IT");
+				replayTicket.setDetails("Test");
+				replayTicket.setDueDate("2014-07-23T18:43:00");
+				replayTicket.setGuidfield("08dd2c5c-61ff-4291-834b-614d45bb84a3");
+				replayTicket.setLastChange("2014-07-23T18:43:00");
+				replayTicket.setLastChangeUser("Harini");
+				replayTicket.setPriority("High");
+				replayTicket.setReplyId("0");
+				replayTicket.setStoreId("K007102");
+				replayTicket.setTicketId("0");
+				replayTicket.setTicketStatus("open");
+				replayTicket.setTitle("test");
+				
+				 state=method.replayTicket(User.getInstance(), replayTicket);
+				//tickeinglist=	method.getTicketsList(User.getInstance(),"ticketStatus","lastchange","ticketStatus");
+				
 			}
 			else{
 				System.out.println("TEST Connection Error ");
@@ -112,8 +136,9 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			dialog.dismiss();
-			if(tickeinglist!=null)
-			Toast.makeText(getApplicationContext(), "Total size :"+tickeinglist.size(), Toast.LENGTH_LONG).show();
+//			if(tickeinglist!=null)
+//			Toast.makeText(getApplicationContext(), "Total size :"+tickeinglist.size(), Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Result "+result, Toast.LENGTH_LONG).show();
 		}
 	}
 	@Override
