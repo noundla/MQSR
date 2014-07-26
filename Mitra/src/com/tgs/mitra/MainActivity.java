@@ -113,7 +113,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			super.onPostExecute(result);
 			dialog.dismiss();
 			if(tickeinglist!=null)
-			Toast.makeText(getApplicationContext(), "Total size"+tickeinglist.size(), Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Total size :"+tickeinglist.size(), Toast.LENGTH_LONG).show();
 		}
 	}
 	@Override

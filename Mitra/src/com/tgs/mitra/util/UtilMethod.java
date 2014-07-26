@@ -254,22 +254,22 @@ public class UtilMethod {
 
 				 department=new MQTicketing();
 				departObject=(SoapObject)(recordObjecct).getProperty(i);
-				department.setAssignedOwner(departObject.getProperty("assignedOwner").toString());
-				department.setCopyToEmail(departObject.getProperty("copyToEmail").toString());
-				department.setCreatedDate(departObject.getProperty("createdDate").toString());
-				department.setCreatedUser(departObject.getProperty("createdUser").toString());
-				department.setDepartment(departObject.getProperty("department").toString());
-				department.setDetails(departObject.getProperty("details").toString());
-				department.setDueDate(departObject.getProperty("dueDate").toString());
-				department.setGuidfield(departObject.getProperty("guidfield").toString());
-				department.setLastChange(departObject.getProperty("lastChange").toString());
-				department.setLastChangeUser(departObject.getProperty("lastChangeUser").toString());
-				department.setPriority(departObject.getProperty("priority").toString());
-				department.setReplyId(departObject.getProperty("replyId").toString());
-				department.setStoreId(departObject.getProperty("storeId").toString());
-				department.setTicketId(departObject.getProperty("ticketId").toString());
-				department.setTicketStatus(departObject.getProperty("ticketStatus").toString());
-				department.setTitle(departObject.getProperty("title").toString());
+				department.setAssignedOwner(departObject.getProperty("assignedOwner"));
+				department.setCopyToEmail(departObject.getProperty("copyToEmail"));
+				department.setCreatedDate(departObject.getProperty("createdDate"));
+				department.setCreatedUser(departObject.getProperty("createdUser"));
+				department.setDepartment(departObject.getProperty("department"));
+				department.setDetails(departObject.getProperty("details"));
+				department.setDueDate(departObject.getProperty("dueDate"));
+				department.setGuidfield(departObject.getProperty("guidfield"));
+				department.setLastChange(departObject.getProperty("lastChange"));
+				department.setLastChangeUser(departObject.getProperty("lastChangeUser"));
+				department.setPriority(departObject.getProperty("priority"));
+				department.setReplyId(departObject.getProperty("replyId"));
+				department.setStoreId(departObject.getProperty("storeId"));
+				department.setTicketId(departObject.getProperty("ticketId"));
+				department.setTicketStatus(departObject.getProperty("ticketStatus"));
+				department.setTitle(departObject.getProperty("title"));
 				
 			 
 				
