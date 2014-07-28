@@ -15,6 +15,9 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int cycle=0x7f040006;
+        public static final int hyperspace_jump=0x7f040007;
+        public static final int shakeanim=0x7f040008;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1009,20 +1012,21 @@ containing a value of this type.
         public static final int approve_btn=0x7f020057;
         public static final int banner640_300=0x7f020058;
         public static final int banner640_400=0x7f020059;
-        public static final int cab_background_bottom_teenmaar=0x7f02005a;
-        public static final int chk_box_manager=0x7f02005b;
-        public static final int drawer_shadow=0x7f02005c;
-        public static final int ic_drawer=0x7f02005d;
-        public static final int ic_launcher=0x7f02005e;
-        public static final int login_kfclogo72_72=0x7f02005f;
-        public static final int login_logo72_72=0x7f020060;
-        public static final int login_longjhonsilvers72_72=0x7f020061;
-        public static final int login_tacobell72_72=0x7f020062;
-        public static final int password_icon=0x7f020063;
-        public static final int splash_logo152_152=0x7f020064;
-        public static final int tickmark=0x7f020065;
-        public static final int tickmarkoff=0x7f020066;
-        public static final int user=0x7f020067;
+        public static final int bg_color=0x7f02005a;
+        public static final int cab_background_bottom_teenmaar=0x7f02005b;
+        public static final int chk_box_manager=0x7f02005c;
+        public static final int drawer_shadow=0x7f02005d;
+        public static final int ic_drawer=0x7f02005e;
+        public static final int ic_launcher=0x7f02005f;
+        public static final int login_kfclogo72_72=0x7f020060;
+        public static final int login_logo72_72=0x7f020061;
+        public static final int login_longjhonsilvers72_72=0x7f020062;
+        public static final int login_tacobell72_72=0x7f020063;
+        public static final int password_icon=0x7f020064;
+        public static final int splash_logo152_152=0x7f020065;
+        public static final int tickmark=0x7f020066;
+        public static final int tickmarkoff=0x7f020067;
+        public static final int user=0x7f020068;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;

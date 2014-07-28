@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 /**
  * 
  * @author Rajesh
@@ -18,10 +22,36 @@ public class Splash  extends Activity{
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.splash);
 
-		startLoginActivty(DELAY);
+		
+		
+		ImageView view=(ImageView)findViewById(R.id.splashimg);
+		
+		Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(this,
+	            R.anim.hyperspace_jump);
+		view.startAnimation(hyperspaceJumpAnimation);
+	    
+	    hyperspaceJumpAnimation.setAnimationListener(new AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {}
+			@Override
+			public void onAnimationRepeat(Animation animation) {}
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				finish();
+				
+				Intent loginIntent = new Intent(Splash.this,
+						LoginActivity.class);
+				startActivity(loginIntent);
+			}
+			
+		});
+		
+		
+		
+		
 	}
 
-	private void startLoginActivty(int delay) {
+	/*private void startLoginActivty(int delay) {
 
 		Runnable runnable = new Runnable() {
 
@@ -35,5 +65,5 @@ public class Splash  extends Activity{
 
 		Handler handler = new Handler();
 		handler.postDelayed(runnable, delay);
-	}
+	}*/
 }
