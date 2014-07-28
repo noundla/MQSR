@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+   >
+
+    <ImageView
+        android:id="@+id/login_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+       android:layout_marginTop="-60dp"
+        android:src="@drawable/banner640_300" >
+    </ImageView>
+
+    <EditText
+        android:id="@+id/edit_user"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_wd"
+        android:layout_below="@id/login_img"
+        android:layout_marginLeft="@dimen/marg_lt"
+        android:layout_marginRight="@dimen/marg_lt"
+        android:layout_marginTop="0dp"
+        android:background="@color/white_text"
+        android:drawableLeft="@drawable/user"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:text=""
+        android:textSize="13dp" >
+    </EditText>
+    <!-- android:text="ylekkala" -->
+
+    <EditText
+        android:id="@+id/edit_passwd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_wd"
+        android:layout_below="@id/edit_user"
+        android:layout_marginLeft="@dimen/marg_lt"
+        android:layout_marginRight="@dimen/marg_lt"
+        android:layout_marginTop="10dp"
+        android:background="@color/white_text"
+        android:drawableLeft="@drawable/password_icon"
+        android:hint="Password"
+        android:password="true"
+        android:singleLine="true"
+        android:text=""
+        android:textSize="13dp" >
+    </EditText>
+    <!-- android:text="$Password123!" -->
+
+      <CheckBox
+        android:id="@+id/remember_chkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/chk_btn_ht"
+        android:layout_below="@id/edit_passwd"
+  		android:layout_marginTop="10dp"
+               android:layout_marginLeft="@dimen/marg_lt"
+        android:button="@drawable/chk_box_manager"
+         />
+ <TextView
+        android:id="@+id/remenber_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_passwd"
+        android:layout_toRightOf="@id/remember_chkbox"
+        android:layout_marginTop="20dp"
+
+        android:text="Remember me"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold" />
+    
+  
+
+    <Button
+        android:id="@+id/login_button1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_wd"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/remember_chkbox"
+        android:layout_marginLeft="@dimen/marg_lt"
+        android:layout_marginRight="@dimen/marg_lt"
+        android:layout_marginTop="10dp"
+        android:background="#d2201c"
+        android:text="Login"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="60dp" 
+    android:layout_alignParentBottom="true"
+  android:background="#c2c2c2"
+ >
+    <ImageView
+        android:id="@+id/login_img1"
+        android:layout_width="@dimen/login_img"
+        android:layout_height="@dimen/login_img"
+        android:layout_alignParentLeft="true"
+                android:layout_margin="@dimen/login_img_mar"
+        android:src="@drawable/login_kfclogo72_72" >
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/login_img2"
+        android:layout_width="@dimen/login_img"
+        android:layout_height="@dimen/login_img"
+        android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/login_img_mar"
+        android:src="@drawable/login_longjhonsilvers72_72" />
+
+    <ImageView
+        android:id="@+id/login_img2"
+        android:layout_width="@dimen/login_img"
+        android:layout_height="@dimen/login_img"
+        
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/login_img_mar"
+        android:src="@drawable/login_tacobell72_72" />
+</RelativeLayout>
+</RelativeLayout>

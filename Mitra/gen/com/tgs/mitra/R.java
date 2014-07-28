@@ -794,10 +794,19 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f060002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f070003;
+        public static final int abc_search_url_text_holo=0x7f07000c;
         public static final int abc_search_url_text_normal=0x7f070000;
         public static final int abc_search_url_text_pressed=0x7f070002;
         public static final int abc_search_url_text_selected=0x7f070001;
+        public static final int approve_color=0x7f07000a;
+        public static final int blue_main=0x7f070008;
+        public static final int findc=0x7f07000b;
+        public static final int grey=0x7f070003;
+        public static final int grey1=0x7f070004;
+        public static final int lightblue=0x7f070006;
+        public static final int log_btnn=0x7f070005;
+        public static final int reject_color=0x7f070009;
+        public static final int white_text=0x7f070007;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -884,15 +893,30 @@ containing a value of this type.
          */
         public static final int abc_search_view_text_min_width=0x7f08000c;
         /**  Default screen margins, per the Android Design guidelines. 
+
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
          */
         public static final int activity_horizontal_margin=0x7f080011;
         public static final int activity_vertical_margin=0x7f080012;
+        public static final int chk_btn_ht=0x7f08001d;
+        public static final int edit_wd=0x7f080015;
+        public static final int heading=0x7f080018;
+        public static final int leavedet_txt_ht1=0x7f080017;
+        public static final int login_img=0x7f08001b;
+        public static final int login_img_mar=0x7f08001c;
+        public static final int marg_lt=0x7f080016;
         /** 
          Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html
     
          */
         public static final int navigation_drawer_width=0x7f080013;
+        public static final int padding=0x7f08001a;
+        public static final int sum_lv_btn=0x7f080019;
+        public static final int text_size=0x7f080014;
     }
     public static final class drawable {
         public static final int abc_ab_bottom_solid_dark_holo=0x7f020000;
@@ -982,10 +1006,23 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int cab_background_bottom_teenmaar=0x7f020057;
-        public static final int drawer_shadow=0x7f020058;
-        public static final int ic_drawer=0x7f020059;
-        public static final int ic_launcher=0x7f02005a;
+        public static final int approve_btn=0x7f020057;
+        public static final int banner640_300=0x7f020058;
+        public static final int banner640_400=0x7f020059;
+        public static final int cab_background_bottom_teenmaar=0x7f02005a;
+        public static final int chk_box_manager=0x7f02005b;
+        public static final int drawer_shadow=0x7f02005c;
+        public static final int ic_drawer=0x7f02005d;
+        public static final int ic_launcher=0x7f02005e;
+        public static final int login_kfclogo72_72=0x7f02005f;
+        public static final int login_logo72_72=0x7f020060;
+        public static final int login_longjhonsilvers72_72=0x7f020061;
+        public static final int login_tacobell72_72=0x7f020062;
+        public static final int password_icon=0x7f020063;
+        public static final int splash_logo152_152=0x7f020064;
+        public static final int tickmark=0x7f020065;
+        public static final int tickmarkoff=0x7f020066;
+        public static final int user=0x7f020067;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -996,11 +1033,11 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f050023;
         public static final int action_bar_title=0x7f050022;
         public static final int action_context_bar=0x7f05001d;
-        public static final int action_example=0x7f050041;
+        public static final int action_example=0x7f05004a;
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f050040;
+        public static final int action_settings=0x7f050049;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1012,7 +1049,9 @@ containing a value of this type.
         public static final int disableHome=0x7f050008;
         public static final int drawer_layout=0x7f05003c;
         public static final int dropdown=0x7f05000f;
+        public static final int edit_passwd=0x7f050042;
         public static final int edit_query=0x7f050030;
+        public static final int edit_user=0x7f050041;
         public static final int end=0x7f050013;
         public static final int expand_activities_button=0x7f050026;
         public static final int expanded_menu=0x7f05002c;
@@ -1023,6 +1062,10 @@ containing a value of this type.
         public static final int image=0x7f050027;
         public static final int listMode=0x7f050001;
         public static final int list_item=0x7f050029;
+        public static final int login_button1=0x7f050045;
+        public static final int login_img=0x7f050040;
+        public static final int login_img1=0x7f050046;
+        public static final int login_img2=0x7f050047;
         public static final int middle=0x7f050012;
         public static final int navigation_drawer=0x7f05003e;
         public static final int never=0x7f050009;
@@ -1031,6 +1074,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f050018;
         public static final int progress_horizontal=0x7f050019;
         public static final int radio=0x7f05002f;
+        public static final int remember_chkbox=0x7f050043;
+        public static final int remenber_login=0x7f050044;
         public static final int search_badge=0x7f050032;
         public static final int search_bar=0x7f050031;
         public static final int search_button=0x7f050033;
@@ -1046,6 +1091,7 @@ containing a value of this type.
         public static final int showCustom=0x7f050007;
         public static final int showHome=0x7f050004;
         public static final int showTitle=0x7f050006;
+        public static final int splashimg=0x7f050048;
         public static final int split_action_bar=0x7f05001e;
         public static final int submit_area=0x7f050039;
         public static final int tabMode=0x7f050002;
@@ -1108,7 +1154,9 @@ containing a value of this type.
         public static final int activity_main=0x7f030018;
         public static final int fragment_main=0x7f030019;
         public static final int fragment_navigation_drawer=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int loginpage=0x7f03001b;
+        public static final int splash=0x7f03001c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
         public static final int global=0x7f0c0000;
@@ -1158,6 +1206,7 @@ containing a value of this type.
         public static final int action_logout=0x7f0a0012;
         public static final int action_settings=0x7f0a0013;
         public static final int app_name=0x7f0a000d;
+        public static final int connection_error=0x7f0a0014;
         public static final int navigation_drawer_close=0x7f0a0011;
         public static final int navigation_drawer_open=0x7f0a0010;
         public static final int title_section1=0x7f0a000e;
@@ -1173,6 +1222,17 @@ containing a value of this type.
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
+
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
+ API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0b0083;
         /**  Application theme. 

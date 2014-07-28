@@ -1,7 +1,5 @@
 package com.tgs.mitra;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -12,7 +10,6 @@ import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.ui.BaseActionBarActivity;
@@ -120,7 +117,8 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 				replayTicket.setTicketStatus("open");
 				replayTicket.setTitle("test");
 				
-				 state=method.replayTicket(User.getInstance(), replayTicket);
+				 //state=method.replayTicket(User.getInstance(), replayTicket);
+				state=method.createTicket(User.getInstance(), replayTicket);
 				//tickeinglist=	method.getTicketsList(User.getInstance(),"ticketStatus","lastchange","ticketStatus");
 				
 			}
@@ -138,7 +136,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			dialog.dismiss();
 //			if(tickeinglist!=null)
 //			Toast.makeText(getApplicationContext(), "Total size :"+tickeinglist.size(), Toast.LENGTH_LONG).show();
-			Toast.makeText(getApplicationContext(), "Result "+result, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "Result "+state, Toast.LENGTH_LONG).show();
 		}
 	}
 	@Override
