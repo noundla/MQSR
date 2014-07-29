@@ -110,7 +110,7 @@ public class LoginActivity extends Activity {
 			if(result)
 			{
 				finish();
-				Intent i3 = new Intent(LoginActivity.this, MainActivity.class);
+				Intent i3 = new Intent(LoginActivity.this, HomePage.class);
 				startActivity(i3);
 			}else{
 				Toast.makeText(getApplicationContext(), "Login failed!", Toast.LENGTH_LONG).show();

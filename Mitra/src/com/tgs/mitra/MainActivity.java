@@ -1,5 +1,7 @@
 package com.tgs.mitra;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -16,6 +18,7 @@ import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.ui.BaseActionBarActivity;
 import com.tgs.mitra.util.ConnectionDetector;
+import com.tgs.mitra.util.MQDetQsn;
 import com.tgs.mitra.util.UtilMethod;
 
 public class MainActivity extends BaseActionBarActivity implements
@@ -53,12 +56,9 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 		  mConneDetect =new ConnectionDetector(getApplicationContext());
 		  
-		  User user=User.getInstance();
-		/*  user.setUser("Balaji");
-		  user.setPassword("9balaji@");*/
+		   
 		  
-		  user.setUser("Harini");
-		  user.setPassword("harini");
+		  
 		  
 		  DoBackground doBackground=new DoBackground();
 		  doBackground.execute();
@@ -83,7 +83,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		boolean state=false;
 		ProgressDialog dialog=null;
 		
-		
+		 ArrayList<MQDetQsn> mqlist=null;
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -124,7 +124,8 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 				
 				//method.getDeptQuestions(User.getInstance(),"dfefd2b5-7863-47fe-910f-63cd92f407ca","");
 				//method.getDepartmentList(user)
-				
+				method.getLoginState(User.getInstance());
+				  mqlist=	method.getDeptQuestions(User.getInstance(),"dfefd2b5-7863-47fe-910f-63cd92f407ca","");
 				
 			}
 			else{
@@ -142,6 +143,9 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 //			if(tickeinglist!=null)
 //			Toast.makeText(getApplicationContext(), "Total size :"+tickeinglist.size(), Toast.LENGTH_LONG).show();
 			Toast.makeText(getApplicationContext(), "Result "+state, Toast.LENGTH_LONG).show();
+			for (int i = 0; i < mqlist.size(); i++) {
+				System.out.println("TEST :"+mqlist.get(i).getQuestionTitle());
+			}
 		}
 	}
 	@Override
@@ -158,19 +162,19 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		switch (position) {
 		case 0:
 
-			// update the main content by replacing fragments
+		/*	// update the main content by replacing fragments
 			FragmentManager fragmentManager = getSupportFragmentManager();
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,
-					CreateTicket.newInstance(position + 1)).commit();
+					CreateTicket.newInstance(position + 1)).commit();*/
 			break;
 		case 1:
-			FragmentManager fragmentManager1 = getSupportFragmentManager();
+			/*FragmentManager fragmentManager1 = getSupportFragmentManager();
 			fragmentManager1
 			.beginTransaction()
 			.replace(R.id.container,
-					ReplayTicket.newInstance(position + 1)).commit();
+					ReplayTicket.newInstance(position + 1)).commit();*/
 			break;
 
 		default:

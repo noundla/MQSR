@@ -3,53 +3,30 @@ package com.tgs.mitra.replayticket;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.tgs.mitra.HomePage;
+import com.tgs.mitra.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.tgs.mitra.MainActivity;
-import com.tgs.mitra.PlaceholderFragment;
-import com.tgs.mitra.R;
-
-public class ReplayTicket extends Fragment implements OnClickListener {
+public class ReplayTicket extends Activity implements OnClickListener{
 	ArrayList<ContentObject> arrayList=new ArrayList<ContentObject>();
 
-	/**
-	 * The fragment argument representing the section number for this
-	 * fragment.
-	 */
-	private static final String ARG_SECTION_NUMBER = "section_number";
-
-	/**
-	 * Returns a new instance of this fragment for the given section number.
-	 */
-	public static ReplayTicket newInstance(int sectionNumber) {
-		ReplayTicket fragment = new ReplayTicket();
-		Bundle args = new Bundle();
-		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-		fragment.setArguments(args);
-		return fragment;
-	}
-
-	public ReplayTicket() {
-	}
-
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.replay_xml, container,
-				false);
-Button back= (Button)rootView.findViewById(R.id.back_btnn);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.replay_xml);
+Button back= (Button)findViewById(R.id.back_btnn);
 		
 		
 		back.setOnClickListener(new OnClickListener() {
@@ -58,12 +35,12 @@ Button back= (Button)rootView.findViewById(R.id.back_btnn);
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				Intent ir = new Intent(getActivity(), MainActivity.class);
+				Intent ir = new Intent(getApplicationContext(), HomePage.class);
 				
 			startActivity(ir);
 			}
 		});
-		LinearLayout contentLayout=(LinearLayout)rootView.findViewById(R.id.content_layout);
+		LinearLayout contentLayout=(LinearLayout)findViewById(R.id.content_layout);
 		
 		ContentObject contentObject=null;
 		for (int i = 0; i < 15; i++) {
@@ -83,7 +60,7 @@ Button back= (Button)rootView.findViewById(R.id.back_btnn);
 		
 		for (int i = 0; i < arrayList.size(); i++) {
 			
-			View view=View.inflate(getActivity(), R.layout.content_layout, null);
+			View view=View.inflate(getApplicationContext(), R.layout.content_layout, null);
 			
 			TextView title=(TextView)view.findViewById(R.id.depart_title);
 			
@@ -105,23 +82,30 @@ Button back= (Button)rootView.findViewById(R.id.back_btnn);
 			contentLayout.addView(view);
 		}
 		
+	}
 	
-		return rootView;
-	}
+	
+	/*public class ContentObject implements Serializable
+	{
+		String name="";
+		
+		String id="";
+		
+		String department="";
+		String description="";
+		
+	}*/
+
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		((MainActivity) activity).onSectionAttached(getArguments().getInt(
-				ARG_SECTION_NUMBER));
-	}
+	public void onClick(View arg0) {
 
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		Intent intent=new Intent(getActivity(),ReplayDialogActivity.class);
-		 ContentObject contenObj=((ContentObject)v.getTag());
-		 intent.putExtra("OBJ",(Serializable) contenObj);
-				startActivity(intent);
+// Toast.makeText(getApplicationContext(), "Selected" +((ContentObject)arg0.getTag()).id, Toast.LENGTH_LONG).show();
+ Intent intent=new Intent(ReplayTicket.this,ReplayDialogActivity.class);
+ ContentObject contenObj=((ContentObject)arg0.getTag());
+ intent.putExtra("OBJ",(Serializable) contenObj);
+		startActivity(intent);
 	}
+	
+	
 }
