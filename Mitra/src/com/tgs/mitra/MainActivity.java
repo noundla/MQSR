@@ -99,7 +99,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				MQTicketing replayTicket=new MQTicketing();
+				/*MQTicketing replayTicket=new MQTicketing();
 				replayTicket.setAssignedOwner("Appaji");
 				replayTicket.setCopyToEmail("harini@pravastech.com");
 				replayTicket.setCreatedDate("2014-07-23T18:43:00");
@@ -115,11 +115,14 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 				replayTicket.setStoreId("K007102");
 				replayTicket.setTicketId("0");
 				replayTicket.setTicketStatus("open");
-				replayTicket.setTitle("test");
+				replayTicket.setTitle("test");*/
 				
 				 //state=method.replayTicket(User.getInstance(), replayTicket);
-				state=method.createTicket(User.getInstance(), replayTicket);
+				//state=method.createTicket(User.getInstance(), replayTicket);
 				//tickeinglist=	method.getTicketsList(User.getInstance(),"ticketStatus","lastchange","ticketStatus");
+				
+				//method.getDeptQuestions(User.getInstance(),"dfefd2b5-7863-47fe-910f-63cd92f407ca","");
+				method.getMyTeckets(User.getInstance(), "Open");
 				
 			}
 			else{
