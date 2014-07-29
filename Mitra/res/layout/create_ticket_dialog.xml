@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg" >
+
+    
+        <TextView
+        android:id="@+id/main_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/leavedet_txt_ht1"
+        android:background="@color/blue_main"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="Create Ticket for Payroll"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/heading"
+        android:textStyle="bold" />
+    
+                 <Button
+        android:id="@+id/back_btnn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/backbutton_48x48_in20x20" />
+    <LinearLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+ android:layout_below="@id/main_img"
+ android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <TextView
+            android:id="@+id/tic_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="101"
+            android:textStyle="bold"
+            android:textColor="@color/white_text"
+            android:textSize="14sp" />
+
+        <!--
+             <TextView
+            android:id="@+id/depart_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="Content Title"
+            android:textColor="#0101DF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/depart_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="Content Title"
+            android:textColor="#FF0040"
+            android:textSize="14sp" />
+        -->
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_layout"
+        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/depart_desc_replay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+          
+            android:hint="message"
+            android:maxLines="5"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:background="@color/white_text"
+            android:minHeight="100dp"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+                <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marg_lt"
+            android:layout_marginRight="@dimen/marg_lt"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/depart_desc_replay"
+            android:layout_alignParentLeft="true"
+            android:background="#225dab"
+            android:text="Cancel"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+        
+        <Button
+            android:id="@+id/reply_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marg_lt"
+            android:layout_marginRight="@dimen/marg_lt"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:background="#225dab"
+            android:layout_below="@id/depart_desc_replay"
+            android:text="Create ticket"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/text_size"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</RelativeLayout>

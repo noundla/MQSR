@@ -1,11 +1,7 @@
-package com.tgs.mitra;
+package com.tgs.mitra.replayticket;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import com.tgs.mitra.replayticket.ContentObject;
-import com.tgs.mitra.replayticket.ReplayDialogActivity;
-import com.tgs.mitra.replayticket.ReplayTicket;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,17 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
- 
+import com.tgs.mitra.MainActivity;
+import com.tgs.mitra.PlaceholderFragment;
+import com.tgs.mitra.R;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class PlaceholderFragment extends Fragment implements OnClickListener {
+public class ReplayTicket extends Fragment implements OnClickListener {
 	ArrayList<ContentObject> arrayList=new ArrayList<ContentObject>();
 
 	/**
@@ -37,15 +33,15 @@ public class PlaceholderFragment extends Fragment implements OnClickListener {
 	/**
 	 * Returns a new instance of this fragment for the given section number.
 	 */
-	public static PlaceholderFragment newInstance(int sectionNumber) {
-		PlaceholderFragment fragment = new PlaceholderFragment();
+	public static ReplayTicket newInstance(int sectionNumber) {
+		ReplayTicket fragment = new ReplayTicket();
 		Bundle args = new Bundle();
 		args.putInt(ARG_SECTION_NUMBER, sectionNumber);
 		fragment.setArguments(args);
 		return fragment;
 	}
 
-	public PlaceholderFragment() {
+	public ReplayTicket() {
 	}
 
 	@Override

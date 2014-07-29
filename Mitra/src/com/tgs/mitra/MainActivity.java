@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
+import com.tgs.mitra.createTicket.CreateTicket;
+import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.ui.BaseActionBarActivity;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.UtilMethod;
@@ -82,7 +84,6 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		ProgressDialog dialog=null;
 		
 		
-		//ArrayList<MQTicketing> tickeinglist=null;
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -122,7 +123,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 				//tickeinglist=	method.getTicketsList(User.getInstance(),"ticketStatus","lastchange","ticketStatus");
 				
 				//method.getDeptQuestions(User.getInstance(),"dfefd2b5-7863-47fe-910f-63cd92f407ca","");
-				method.getMyTeckets(User.getInstance(), "Open");
+				//method.getDepartmentList(user)
 				
 			}
 			else{
@@ -161,10 +162,14 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 			fragmentManager
 			.beginTransaction()
 			.replace(R.id.container,
-					PlaceholderFragment.newInstance(position + 1)).commit();
+					CreateTicket.newInstance(position + 1)).commit();
 			break;
 		case 1:
-
+			FragmentManager fragmentManager1 = getSupportFragmentManager();
+			fragmentManager1
+			.beginTransaction()
+			.replace(R.id.container,
+					ReplayTicket.newInstance(position + 1)).commit();
 			break;
 
 		default:

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+ 
+    android:orientation="vertical"  >
+
+     <TextView
+                android:id="@+id/main_img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/leavedet_txt_ht1"
+              android:singleLine="true"
+   android:textStyle="bold" 
+                android:background="@color/blue_main"
+    android:paddingTop="10dp"
+                android:paddingLeft="40dp"
+                android:text="sd"
+                android:textColor="@color/white_text"
+                android:textSize="@dimen/heading"
+              />
+    
+         <Button
+        android:id="@+id/back_btnn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/backbutton_48x48_in20x20" />
+                <Spinner
+        android:id="@+id/spinnerstate"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="4dp"
+         android:background="@color/blue_main" />
+    <ListView
+        android:id="@+id/mainListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:dividerHeight="1dp"
+        android:layout_below="@id/main_img"
+        android:divider="@color/white_text"
+        android:background="@drawable/bg" >
+    </ListView>
+
+</RelativeLayout>
