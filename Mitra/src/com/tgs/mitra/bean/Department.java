@@ -1,11 +1,13 @@
 package com.tgs.mitra.bean;
 
+import java.io.Serializable;
+
 /**
  * Department object data.
  * @author TGS
  *
  */
-public class Department {
+public class Department implements Serializable{
 
 	private boolean allowTicketing=false;
 	

@@ -1,7 +1,13 @@
 package com.tgs.mitra.createTicket;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,9 +19,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
+import com.tgs.mitra.bean.Department;
+import com.tgs.mitra.bean.User;
+import com.tgs.mitra.util.ConnectionDetector;
+import com.tgs.mitra.util.UtilMethod;
 
 public class CreateTicket extends Activity {
 
@@ -26,6 +37,8 @@ public class CreateTicket extends Activity {
 			"K071006", "K071007", "K071008", "K071009", "K071010", "K071011",
 			"K071012", "K071013", "K071014", "K071015", "K071016", "K071017",
 			"K071018", "K071019", "K071020" };
+	private Context _activity=null;
+	ConnectionDetector mConneDetect=null;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -33,6 +46,15 @@ public class CreateTicket extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.createticket);
+		
+		_activity=this;
+		  mConneDetect =new ConnectionDetector(getApplicationContext());
+		
+		
+		DoBackground background=new DoBackground();
+		background.execute();
+		
+		
 		spinnerOsversions = (Spinner) findViewById(R.id.spinnerstate);
 
 		ArrayAdapter<String> adapter_state = new ArrayAdapter<String>(this,
@@ -58,24 +80,9 @@ public class CreateTicket extends Activity {
 
 		// Find the ListView resource.
 		mainListView = (ListView) findViewById(R.id.mainListView);
+		mainListView.setScrollingCacheEnabled(false);
 
-		String[] planets = new String[] { "Payroll", "Human Resource", "IT",
-				"Finance", " Loss prevension" };
-		Integer[] imageId = { R.drawable.payroll, R.drawable.hr, R.drawable.it,
-				R.drawable.fin, R.drawable.hr };
-
-		CustomList listAdapter = new CustomList(CreateTicket.this, planets,
-				imageId);
-
-		/*
-		 * ArrayList<String> planetList = new ArrayList<String>();
-		 * planetList.addAll( Arrays.asList(planets) );
-		 */
-
-		// listAdapter = new ArrayAdapter<String>(this, R.layout.listtext,
-		// planetList);
-
-		mainListView.setAdapter(listAdapter);
+		
 		mainListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -83,41 +90,82 @@ public class CreateTicket extends Activity {
 					int position, long id) {
 				// TODO Auto-generated method stub
 				String name = parent.getItemAtPosition(position).toString();
-
-				switch (position) {
-				case 0:
-					Intent ir = new Intent(getApplicationContext(),
+ 
+					/*Intent ir = new Intent(getApplicationContext(),
 							Payroll.class);
 					ir.putExtra("msg", name);
-					startActivity(ir);
-					break;
-				case 1:
-					/*
-					 * Intent i = new Intent(getActivity(), ActioPage.class);
-					 * startActivity(i);
-					 */
-					break;
-				case 2:
-					/*
-					 * Intent i1 = new Intent(getApplicationContext(),
-					 * Payroll.class); startActivity(i1);
-					 */
-					break;
+					startActivity(ir);*/
+				 
+			}
+		});
+		mainListView.setOnItemClickListener(new OnItemClickListener() {
 
-				default:
-					break;
-				}
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				 
+				System.out.println("TEST ITEM name "+((Department)arg1.getTag()).getDepartment());
+				//Toast.makeText(_activity, "Depart: "+((Department)arg1.getTag()).getDepartment(), Toast.LENGTH_LONG).show();
+				Intent ir = new Intent(getApplicationContext(),
+						Payroll.class);
+				ir.putExtra("DEPRT_OBJ", (Serializable)((Department)arg1.getTag()));
+				startActivity(ir);
+				
 			}
 		});
 	}
 	
+	class DoBackground extends AsyncTask<Void, Void, Void>
+	{
+		ProgressDialog dialog=null;
+		private ArrayList<Department> dpartmentList=null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog=new ProgressDialog(_activity);
+			dialog.setTitle("Loading Departments...");
+			dialog.show();
+		}
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			 
+			if(mConneDetect.isConnectingToInternet())
+			{
+				UtilMethod method=new UtilMethod();
+				dpartmentList=method.getDepartmentList(User.getInstance());
+			}
+			return null;
+		}
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			
+			
+
+		 
+			for (int i = 0; i < dpartmentList.size(); i++) {
+				
+			}
+			
+			CustomList listAdapter = new CustomList(CreateTicket.this,dpartmentList);
+
+			 
+
+			mainListView.setAdapter(listAdapter);
+			
+			
+			dialog.dismiss();
+		}
+	}
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 		Intent ir = new Intent(getApplicationContext(), HomePage.class);
-
 		startActivity(ir);
-		
 	}
 }
