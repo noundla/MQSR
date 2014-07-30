@@ -1,4 +1,4 @@
-package com.tgs.mitra.util;
+ package com.tgs.mitra.util;
 
 import java.util.ArrayList;
 
@@ -42,6 +42,13 @@ public class UtilMethod {
 		public final String METHOD_NAME_CREATETICKET="CreateTicket";
 		public final String SOAP_ACTION_CREATETICKET="http://tempuri.org/IMitraQSRService/CreateTicket";
 		
+	//DepartmentQuestions
+		public final String METHOD_NAME_DEPARTMENTQUESTIONS="DepartmentQuestions";
+		public final String SOAP_ACTION_DEPARTMENTQUESTIONS="http://tempuri.org/IMitraQSRService/DepartmentQuestions";
+		
+		//MyTickets
+		public final String METHOD_NAME_MYTICKETS="MyTickets";
+		public final String SOAP_ACTION_MYTICKETS="http://tempuri.org/IMitraQSRService/MyTickets";
 	
 	/**
 	 * Crate object for Methods calss.
@@ -485,11 +492,11 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			transport.debug=true;
+			//transport.debug=true;
 			transport.call(SOAP_ACTION_CREATETICKET, envelope);
 
-			System.out.println("TEST Request :"+transport.requestDump);
-			System.out.println("Response :"+transport.responseDump);
+			//System.out.println("TEST Request :"+transport.requestDump);
+			//System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 			System.out.println("TEST RESULT :"+response);
 			
@@ -511,11 +518,91 @@ public class UtilMethod {
 	
 	/**
 	 * 
+	 * @param user
+	 * @param depatId
+	 * @param storeId
+	 * @return
+	 */
+	public ArrayList<MQDetQsn> getDeptQuestions(User user,String depatId,String storeId)
+	{
+
+		ArrayList<MQDetQsn> MQDetQsnList=new ArrayList<MQDetQsn>();
+		try{
+
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_DEPARTMENTQUESTIONS);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(user.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(user.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+
+			request.addPropertyIfValue("DeptId",depatId);
+			request.addPropertyIfValue("storeId", storeId);
+			 
+
+
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			// transport.debug=true;
+			transport.call(SOAP_ACTION_DEPARTMENTQUESTIONS, envelope);
+
+			  //System.out.println("TEST Request :"+transport.requestDump);
+			  //System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+
+			SoapObject object=(SoapObject)response.getProperty(0);
+			
+			SoapObject depobj=null;
+			MQDetQsn detQsn=null;
+			for (int i = 0; i < object.getPropertyCount(); i++) {
+				depobj=(SoapObject)(object).getProperty(i);
+				detQsn=new MQDetQsn();
+				detQsn.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				detQsn.setQuestionId(depobj.getProperty("QuestionId").toString());
+				detQsn.setQuestionTitle(depobj.getProperty("QuestionTitle").toString());
+				MQDetQsnList.add(detQsn); 
+			}
+
+		}
+
+		catch(Exception e){
+			e.printStackTrace();
+
+			 
+		}
+		return MQDetQsnList;
+	
+		 
+	}
+	/**
+	 * 
 	 * @param curentUser Current user information 
 	 * @param replayTicket Replay for ticket.
 	 * @return
 	 */
-	public boolean replayTicket(User curentUser,MQTicketing replayTicket )
+ 	public boolean replayTicket(User curentUser,MQTicketing replayTicket )
 	{
 		boolean result=false;
 		try{
@@ -709,5 +796,92 @@ public class UtilMethod {
 		}
 		return result;
 		
+	}
+ 	
+ 	
+ 	/**
+ 	 * 
+ 	 * @param user
+ 	 * @param status
+ 	 * @return
+ 	 */
+ 	public ArrayList<MQTickets> getMyTeckets(User user,String status)
+	{
+
+		ArrayList<MQTickets> mQTicketsList=new ArrayList<MQTickets>();
+		try{
+
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_MYTICKETS);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(user.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(user.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+
+			request.addPropertyIfValue("Status",status);
+			 
+			 
+
+
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			// transport.debug=true;
+			transport.call(SOAP_ACTION_MYTICKETS, envelope);
+
+			//  System.out.println("TEST Request :"+transport.requestDump);
+			 // System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+
+			SoapObject object=(SoapObject)response.getProperty(0);
+			
+			SoapObject depobj=null;
+			MQTickets myticket=null;
+			for (int i = 0; i < object.getPropertyCount(); i++) {
+				depobj=(SoapObject)(object).getProperty(i);
+				myticket=new MQTickets();
+				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
+				myticket.setLastModified(depobj.getProperty("LastModified").toString());
+				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
+				myticket.setStatus(depobj.getProperty("Status").toString());
+				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
+				myticket.setTicketId(depobj.getProperty("TicketId").toString());
+				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
+				
+				mQTicketsList.add(myticket); 
+			}
+
+		}
+
+		catch(Exception e){
+			e.printStackTrace();
+
+			 
+		}
+		return mQTicketsList;
+	
+		 
 	}
 }
