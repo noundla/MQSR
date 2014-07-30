@@ -25,7 +25,7 @@ import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
 public class ReplayTicket extends Activity implements OnClickListener{
-	ArrayList<ContentObject> arrayList=new ArrayList<ContentObject>();
+	//ArrayList<ContentObject> arrayList=new ArrayList<ContentObject>();
 	private Context _activity=null;
 	private ConnectionDetector mConneDetect=null;
 	private LinearLayout contentLayout=null;
@@ -96,7 +96,7 @@ public class ReplayTicket extends Activity implements OnClickListener{
 			{
 			try{
 				
-				ContentObject contentObject =null;
+				/*//ContentObject contentObject =null;
 				for (int i = 0; i < myTicketsList.size(); i++) {
 
 					contentObject=new ContentObject();
@@ -108,9 +108,9 @@ public class ReplayTicket extends Activity implements OnClickListener{
 					contentObject.name=myTicketsList.get(i).getDepartmentName();
 					contentObject.id=myTicketsList.get(i).getTicketId();
 					arrayList.add(contentObject);
-				}
+				}*/
 
-				for (int i = 0; i < arrayList.size(); i++) {
+				for (int i = 0; i < myTicketsList.size(); i++) {
 
 					View view=View.inflate(getApplicationContext(), R.layout.content_layout, null);
 
@@ -121,14 +121,14 @@ public class ReplayTicket extends Activity implements OnClickListener{
 					TextView deptDes=(TextView)view.findViewById(R.id.depart_desc);
 					TextView deptName=(TextView)view.findViewById(R.id.depart_name);
 
-					title.setText(arrayList.get(i).name);
-					deptId.setText(""+arrayList.get(i).id);
-					deptDes.setText(arrayList.get(i).description);
+					title.setText(myTicketsList.get(i).getDepartmentName());
+					deptId.setText(""+myTicketsList.get(i).getTicketId());
+					deptDes.setText(myTicketsList.get(i).getTicketDescription());
 					//	deptName.setText(arrayList.get(i).department+"dsfds");
-					deptName.setText("7/4/2014");
+					deptName.setText(myTicketsList.get(i).getLastModified());
 					ImageView button=(ImageView)view.findViewById(R.id.reply_button);
 
-					button.setTag(arrayList.get(i));
+					button.setTag(myTicketsList.get(i));
 					button.setOnClickListener(ReplayTicket.this);
 
 					contentLayout.addView(view);
@@ -147,8 +147,7 @@ public class ReplayTicket extends Activity implements OnClickListener{
 
 		// Toast.makeText(getApplicationContext(), "Selected" +((ContentObject)arg0.getTag()).id, Toast.LENGTH_LONG).show();
 		Intent intent=new Intent(ReplayTicket.this,ReplayDialogActivity.class);
-		ContentObject contenObj=((ContentObject)arg0.getTag());
-		intent.putExtra("OBJ",(Serializable) contenObj);
+		intent.putExtra("MQT_OBJ",(Serializable)(MQTickets) arg0.getTag());
 		startActivity(intent);
 	}
 

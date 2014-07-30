@@ -1,10 +1,12 @@
 package com.tgs.mitra.util;
 
+import java.io.Serializable;
+
 /**
  * This calls is for MyTickets.
  *
  */
-public class MQTickets {
+public class MQTickets implements Serializable{
 
 	private String DepartmentId="";
 	
