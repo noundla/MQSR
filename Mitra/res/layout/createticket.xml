@@ -2,47 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
- 
-    android:orientation="vertical"  >
+    android:orientation="vertical" >
 
-     <TextView
-                android:id="@+id/main_img"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/leavedet_txt_ht1"
-              android:singleLine="true"
-   android:textStyle="bold" 
-                android:background="@color/blue_main"
-    android:paddingTop="10dp"
-                android:paddingLeft="40dp"
-                android:text="sd"
-                android:textColor="@color/white_text"
-                android:textSize="@dimen/heading"
-              />
-    
-         <Button
+    <TextView
+        android:id="@+id/main_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/leavedet_txt_ht1"
+        android:background="@color/blue_main"
+        android:paddingLeft="40dp"
+        android:paddingTop="10dp"
+        android:singleLine="true"
+        android:text="sd"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/heading"
+        android:textStyle="bold" />
+
+    <Button
         android:id="@+id/back_btnn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/backbutton_48x48_in20x20" />
-                <Spinner
+
+    <Spinner
         android:id="@+id/spinnerstate"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="4dp"
-         android:background="@color/blue_main" />
+        android:background="@color/blue_main" />
+
     <ListView
         android:id="@+id/mainListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:dividerHeight="1dp"
         android:layout_below="@id/main_img"
+        android:background="@drawable/bg"
+        android:layout_marginBottom="40dp"
         android:divider="@color/white_text"
-        
-        android:background="@drawable/bg" >
+        android:dividerHeight="1dp" >
     </ListView>
 
+       <include
+        android:id="@+id/bottem"
+        layout="@layout/common_layout" />
 </RelativeLayout>

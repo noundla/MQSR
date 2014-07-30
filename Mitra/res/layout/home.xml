@@ -2,88 +2,53 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-       android:background="@drawable/bg" 
->
+    android:background="@drawable/bg" >
+
     
+
     
-     <!--    <ImageView
+    <TextView
         android:id="@+id/main_img"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ph_hed_img"
-        android:src="@drawable/topbanner" >
-    </ImageView>
-     -->
-     
-     
-         <TextView
-                android:id="@+id/main_img"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/leavedet_txt_ht1"
-              android:singleLine="true"
-   android:textStyle="bold" 
-                android:background="@color/blue_main"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text=""
-                android:textColor="@color/white_text"
-                android:textSize="@dimen/heading"
-              />
-         
-         <Spinner
-        android:id="@+id/spinnerstate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-         android:background="@color/blue_main"
-         android:visibility="gone" />
-         
-                   <Button
-                android:id="@+id/logout"
-                android:layout_width="wrap_content"
-                 android:layout_height="@dimen/sum_lv_btn"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                             android:background="#225dab"
-                android:text="Logout"
-                  android:textStyle="bold" 
-                   android:textSize="@dimen/text_size"
-                   android:layout_marginTop="6dp"
-                        android:layout_marginRight="@dimen/padding"
-                android:textColor="@color/white_text" />
-        
-    
-                   
-                   <TextView
-                android:id="@+id/btm_img"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/blue_main"
-                android:gravity="center"
-                android:layout_alignParentBottom="true"
-                android:text=""
-                android:singleLine="true"
-                android:textColor="@color/white_text"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-        <GridView
-        android:id="@+id/gridView1"
+        android:layout_height="@dimen/leavedet_txt_ht1"
+        android:background="@color/blue_main"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/heading"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:columnWidth="120dp"
-        android:layout_marginLeft="@dimen/padding"
+        android:layout_height="@dimen/sum_lv_btn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/padding"
-            android:layout_marginBottom="@dimen/padding"
-        android:horizontalSpacing="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/main_img"
-             android:layout_above="@id/btm_img"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
-  <include
-        android:id="@+id/header" 
+        android:layout_marginTop="6dp"
+        android:background="#225dab"
+        android:text="Logout"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/homelist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white"
+        android:layout_below="@id/logout"
+        android:divider="@color/blue_main"
+      >
+    </ListView>
+
+    <include
+        android:id="@+id/bottem"
         layout="@layout/common_layout" />
-  
+
 </RelativeLayout>

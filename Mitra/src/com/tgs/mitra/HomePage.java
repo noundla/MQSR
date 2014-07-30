@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ private String[] state = { "K071002", "K071003", "K071004", "K071005",
 	 
 Button logout_btn,create_btn,reply_btn;
 TextView toptext;
-
+ListView homeListView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -51,23 +52,25 @@ TextView toptext;
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home);
 		
-	spinnerOsversions=(Spinner)findViewById(R.id.spinnerstate);
+  
+
+				homeListView = (ListView) findViewById(R.id.homelist);
+				
+				String[] homelist = new String[] { "Create Ticket List", "Reply Ticket List" };
+				Integer[] imageId = { R.drawable.payroll, R.drawable.hr,  };
+
+				CustomHomeList homelistAdapter = new CustomHomeList(HomePage.this, homelist,
+						imageId);
+				homeListView.setAdapter(homelistAdapter);
+				
+				logout_btn=(Button)findViewById(R.id.logout);
+				create_btn=(Button)findViewById(R.id.btn_create);
+				reply_btn=(Button)findViewById(R.id.btn_reply);
+				
+				create_btn.setOnClickListener(listener);
+				reply_btn.setOnClickListener(listener);
 		
-		ArrayAdapter<String> adapter_state = new ArrayAdapter<String>(this,
-			    R.layout.spintext, state);
-			  adapter_state
-			    .setDropDownViewResource(R.layout.spintext);
-			  spinnerOsversions.setAdapter(adapter_state);
-			  
-		
-		
-		
-		logout_btn=(Button)findViewById(R.id.logout);
-		create_btn=(Button)findViewById(R.id.btn_create);
-		reply_btn=(Button)findViewById(R.id.btn_reply);
-		
-		create_btn.setOnClickListener(listener);
-		reply_btn.setOnClickListener(listener);
+
 
 		
 		//birthdayService();

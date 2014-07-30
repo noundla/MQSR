@@ -3,31 +3,44 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
-    >
+    android:background="@color/blue_main" >
 
     <Button
         android:id="@+id/btn_create"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/sum_lv_btn"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="20dip"
-  
-        android:background="@drawable/approve_btn"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="@dimen/padding"
+        android:layout_marginRight="@dimen/padding"
+        android:layout_marginTop="6dp"
+        android:background="@color/reject_color"
         android:text="Create Ticket"
-        android:textColor="#F9F9F6" />
+              android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold" />
 
     <!-- The text of this button depends of which activity we are, may be change to "Back" or "Menu" -->
 
     <Button
         android:id="@+id/btn_reply"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/sum_lv_btn"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="20dip"
-        android:background="@drawable/approve_btn"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="@dimen/padding"
+        android:layout_marginRight="@dimen/padding"
+        android:layout_marginTop="6dp"
+        android:background="@color/reject_color"
         android:text="Reply Ticket"
-        android:textColor="#F9F9F6" />
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/text_size"
+        android:textStyle="bold" />
 
 </RelativeLayout>

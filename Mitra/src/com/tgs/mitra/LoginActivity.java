@@ -2,27 +2,32 @@ package com.tgs.mitra;
 
 
 
-import com.tgs.mitra.bean.User;
-import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.UtilMethod;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.tgs.mitra.bean.User;
+import com.tgs.mitra.util.ConnectionDetector;
+import com.tgs.mitra.util.UtilMethod;
 
 public class LoginActivity extends Activity {
 	private ConnectionDetector mConneDetect=null;
 	private Context _activity;
-
+	private SharedPreferences loginPreferences;
+	private SharedPreferences.Editor loginPrefsEditor;
+	private Boolean saveLogin;
+	CheckBox remember_cbox;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +37,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.loginpage);
 		
 		_activity=this;
-		
+		remember_cbox = (CheckBox) findViewById(R.id.remember_chkbox);
 		Button  login_btn=(Button)findViewById(R.id.login_button1);
 		
 		final EditText user=(EditText)findViewById(R.id.edit_user);
@@ -48,6 +53,17 @@ public class LoginActivity extends Activity {
 			  Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_LONG).show();
 			  login_btn.setEnabled(false);
 		  }
+		  
+		  loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+			loginPrefsEditor = loginPreferences.edit();
+
+			saveLogin = loginPreferences.getBoolean("saveLogin", false);
+			if (saveLogin == true) {
+				user.setText(loginPreferences.getString("username", ""));
+				password.setText(loginPreferences.getString("password", ""));
+				remember_cbox.setChecked(true);
+			}
+		  
 		login_btn.setOnClickListener(new View.OnClickListener() {
  
             @Override
@@ -55,6 +71,18 @@ public class LoginActivity extends Activity {
             	
             	if((user.getText().toString().trim().length()>1) && (password.getText().toString().trim().length()>1))
             	{
+            		
+            		if (remember_cbox.isChecked()) {
+						loginPrefsEditor.putBoolean("saveLogin", true);
+						loginPrefsEditor.putString("username", user.getText()
+								.toString().trim());
+						loginPrefsEditor.putString("password", password
+								.getText().toString().trim());
+						loginPrefsEditor.commit();
+					} else {
+						loginPrefsEditor.clear();
+						loginPrefsEditor.commit();
+					}
             		 User userObject=User.getInstance();
             			  userObject.setUser(user.getText().toString().trim());
             			  userObject.setPassword(password.getText().toString().trim());
