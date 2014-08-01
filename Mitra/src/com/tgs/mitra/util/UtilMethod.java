@@ -12,6 +12,7 @@ import com.tgs.mitra.bean.Department;
 import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
 
+import android.os.storage.StorageManager;
 import android.util.Log;
 
 public class UtilMethod {
@@ -49,6 +50,15 @@ public class UtilMethod {
 		//MyTickets
 		public final String METHOD_NAME_MYTICKETS="MyTickets";
 		public final String SOAP_ACTION_MYTICKETS="http://tempuri.org/IMitraQSRService/MyTickets";
+		
+		//Userallowedstores
+		public final String METHOD_NAME_USERALLOWEDSTORES="Userallowedstores";
+		public final String SOAP_ACTION_USERALLOWEDSTORES="http://tempuri.org/IMitraQSRService/Userallowedstores";
+		
+		//ReplyTickets
+		public final String METHOD_NAME_REPLYTICKETS="ReplyTickets";
+		public final String SOAP_ACTION_REPLYTICKETS="http://tempuri.org/IMitraQSRService/ReplyTickets";
+		
 	
 	/**
 	 * Crate object for Methods calss.
@@ -881,7 +891,153 @@ public class UtilMethod {
 			 
 		}
 		return mQTicketsList;
-	
-		 
 	}
+ 	
+ 	public ArrayList<String> getUserallowedstoresList(User user)
+ 	{
+
+ 		ArrayList<String> stroList=new ArrayList<String>();
+
+		try{
+
+
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_USERALLOWEDSTORES);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(user.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(user.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			 //transport.debug=true;
+			transport.call(SOAP_ACTION_USERALLOWEDSTORES, envelope);
+
+			// System.out.println("Request :"+transport.requestDump);
+			// System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+			SoapObject object=(SoapObject) response.getProperty(0);
+
+			 for (int i = 0; i < object.getPropertyCount(); i++) {
+				 
+				 stroList.add(object.getProperty("string").toString());
+			}
+			 
+		}
+
+		catch(Exception e){
+			e.printStackTrace();
+
+			Log.e(getClass().getName(), e.getMessage());
+		}
+		return stroList;
+
+	
+ 		
+ 	}
+ 	
+ 	
+ 	/**
+ 	 * Replay user created and assinged tickets.
+ 	 * @param user
+ 	 * @return
+ 	 */
+ 	public ArrayList<MQTickets> getReplyTicketsList(User user)
+ 	{
+
+ 		ArrayList<MQTickets> mQTicketsList=new ArrayList<MQTickets>();
+
+		try{
+
+
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_REPLYTICKETS);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(user.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(user.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			  transport.debug=true;
+			transport.call(SOAP_ACTION_REPLYTICKETS, envelope);
+
+			 // System.out.println("Request :"+transport.requestDump);
+			  System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+			SoapObject object=(SoapObject) response.getProperty(0);
+			
+			SoapObject depobj=null;
+			MQTickets myticket=null;
+			for (int i = 0; i < object.getPropertyCount(); i++) {
+				depobj=(SoapObject)(object).getProperty(i);
+				myticket=new MQTickets();
+				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
+				myticket.setLastModified(depobj.getProperty("LastModified").toString());
+				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
+				myticket.setStatus(depobj.getProperty("Status").toString());
+				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
+				myticket.setTicketId(depobj.getProperty("TicketId").toString());
+				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
+				
+				mQTicketsList.add(myticket); d
+			}
+
+			 System.out.println("TEST ticke list :"+mQTicketsList.size());
+			 
+		}
+
+		catch(Exception e){
+			e.printStackTrace();
+
+			Log.e(getClass().getName(), e.getMessage());
+		}
+		return mQTicketsList;
+
+	
+ 		
+ 	}
 }
