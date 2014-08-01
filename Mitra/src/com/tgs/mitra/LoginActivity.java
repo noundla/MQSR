@@ -35,44 +35,44 @@ public class LoginActivity extends Activity {
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		setContentView(R.layout.loginpage);
-		
+
 		_activity=this;
 		remember_cbox = (CheckBox) findViewById(R.id.remember_chkbox);
 		Button  login_btn=(Button)findViewById(R.id.login_button1);
-		
+
 		final EditText user=(EditText)findViewById(R.id.edit_user);
 		final EditText password=(EditText)findViewById(R.id.edit_passwd);
-		
-		  mConneDetect =new ConnectionDetector(getApplicationContext());
-		  
-		  if(mConneDetect.isConnectingToInternet())
-		  {
-			  login_btn.setEnabled(true);
-		  }else{
-			  
-			  Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_LONG).show();
-			  login_btn.setEnabled(false);
-		  }
-		  
-		  loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-			loginPrefsEditor = loginPreferences.edit();
 
-			saveLogin = loginPreferences.getBoolean("saveLogin", false);
-			if (saveLogin == true) {
-				user.setText(loginPreferences.getString("username", ""));
-				password.setText(loginPreferences.getString("password", ""));
-				remember_cbox.setChecked(true);
-			}
-		  
+		mConneDetect =new ConnectionDetector(getApplicationContext());
+
+		if(mConneDetect.isConnectingToInternet())
+		{
+			login_btn.setEnabled(true);
+		}else{
+
+			Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_LONG).show();
+			login_btn.setEnabled(false);
+		}
+
+		loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+		loginPrefsEditor = loginPreferences.edit();
+
+		saveLogin = loginPreferences.getBoolean("saveLogin", false);
+		if (saveLogin == true) {
+			user.setText(loginPreferences.getString("username", ""));
+			password.setText(loginPreferences.getString("password", ""));
+			remember_cbox.setChecked(true);
+		}
+
 		login_btn.setOnClickListener(new View.OnClickListener() {
- 
-            @Override
-            public void onClick(View v) {
-            	
-            	if((user.getText().toString().trim().length()>1) && (password.getText().toString().trim().length()>1))
-            	{
-            		
-            		if (remember_cbox.isChecked()) {
+
+			@Override
+			public void onClick(View v) {
+
+				if((user.getText().toString().trim().length()>1) && (password.getText().toString().trim().length()>1))
+				{
+
+					if (remember_cbox.isChecked()) {
 						loginPrefsEditor.putBoolean("saveLogin", true);
 						loginPrefsEditor.putString("username", user.getText()
 								.toString().trim());
@@ -83,27 +83,37 @@ public class LoginActivity extends Activity {
 						loginPrefsEditor.clear();
 						loginPrefsEditor.commit();
 					}
-            		 User userObject=User.getInstance();
-            			  userObject.setUser(user.getText().toString().trim());
-            			  userObject.setPassword(password.getText().toString().trim());
-            			  
-            			  DologinBackground doBackground=new DologinBackground();
-            			  doBackground.execute("","");
-            		
-            	}
-            	else{
-            		Toast.makeText(getApplicationContext(), "Please enter valid credentials", Toast.LENGTH_LONG).show();
-            	}
-            }
-        });
+					User userObject=User.getInstance();
+					userObject.setUser(user.getText().toString().trim());
+					userObject.setPassword(password.getText().toString().trim());
 
-		
+					DologinBackground doBackground=new DologinBackground();
+					doBackground.execute("","");
+
+				}
+				else{
+					Toast.makeText(getApplicationContext(), "Please enter valid credentials", Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+
+		/*new Thread()
+		{
+			public void run() {
+				User user=User.getInstance();
+				user.setPassword("harini");
+				user.setUser("Harini");
+				UtilMethod method=new UtilMethod();
+				method.getHomeScreenInfoList(user);
+			}
+		}.start();*/
+
 	}
-	
+
 	class DologinBackground extends AsyncTask<String, Boolean, Boolean>
 	{
 		ProgressDialog dialog=null;
-		
+
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -114,26 +124,26 @@ public class LoginActivity extends Activity {
 
 		@Override
 		protected Boolean doInBackground(String... params) {
-			
-			 boolean state=false;
-			 try{
-				 
-				 UtilMethod method=new UtilMethod();
-				  
-					
-				  state=method.getLoginState(User.getInstance());
-			 }catch (Exception e) {
+
+			boolean state=false;
+			try{
+
+				UtilMethod method=new UtilMethod();
+
+
+				state=method.getLoginState(User.getInstance());
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			return state;
 		}
 
-		 @Override
+		@Override
 		protected void onPostExecute(Boolean result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+
 			dialog.dismiss();
 			if(result)
 			{
@@ -143,13 +153,9 @@ public class LoginActivity extends Activity {
 			}else{
 				Toast.makeText(getApplicationContext(), "Login failed!", Toast.LENGTH_LONG).show();
 			}
-			
-			
-			
-		}
-		
 
-		 
+		}
+
 	}
 
 }

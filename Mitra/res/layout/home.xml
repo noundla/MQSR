@@ -34,6 +34,14 @@
         android:textSize="@dimen/text_size"
         android:textStyle="bold" />
 
+    <Spinner
+    android:id="@+id/store_spinner"
+    android:layout_below="@id/logout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" />
+    
+   
+    
     <ListView
         android:id="@+id/homelist"
         android:layout_width="wrap_content"
@@ -42,7 +50,7 @@
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:background="@android:color/white"
-        android:layout_below="@id/logout"
+        android:layout_below="@id/store_spinner"
         android:divider="@color/blue_main"
       >
     </ListView>
@@ -50,5 +58,14 @@
     <include
         android:id="@+id/bottem"
         layout="@layout/common_layout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
 
 </RelativeLayout>

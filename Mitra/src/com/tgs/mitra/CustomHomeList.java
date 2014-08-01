@@ -1,6 +1,14 @@
 package com.tgs.mitra;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +16,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.tgs.mitra.R;
+import com.tgs.mitra.util.HomeScreenInfo;
 
-public class CustomHomeList extends ArrayAdapter<String> {
+public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 	private final Activity context;
-	private final String[] web;
-	private final Integer[] imageId;
+ 
+	ArrayList<HomeScreenInfo> list=null;
 
-	public CustomHomeList(Activity context, String[] web, Integer[] imageId) {
-		super(context, R.layout.department, web);
+	public CustomHomeList(Activity context, ArrayList<HomeScreenInfo> list) {
+		super(context, R.layout.department,list);
 		this.context = context;
-		this.web = web;
-		this.imageId = imageId;
+		 this.list=list;
 	}
 
 	@Override
@@ -29,10 +36,38 @@ public class CustomHomeList extends ArrayAdapter<String> {
 		TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
 		
 		TextView txt_count = (TextView) rowView.findViewById(R.id.txt_count);
-		txt_count.setText("12000");
+		txt_count.setText(list.get(position).getCount());
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
-		txtTitle.setText(web[position]);
-		imageView.setImageResource(imageId[position]);
+		txtTitle.setText(list.get(position).getDescription());
+		if(list.get(position).getImage()!=null )
+		{
+			if(!list.get(position).getImage().equals(""))
+			{
+				String url_val = list.get(position).getImage();
+				 URL url;
+		          Bitmap  bmImg;
+		        try {
+		            url = new URL(url_val);
+		            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		            conn.setDoInput(true);
+		            conn.connect();
+		            InputStream is = conn.getInputStream();
+		             bmImg = BitmapFactory.decodeStream(is);
+		             imageView.setImageBitmap(bmImg); //Here u will set image in imageview
+		        } catch (IOException e) {
+		            // TODO Auto-generated catch block
+		            e.printStackTrace();
+		        }
+			}
+			else{
+				imageView.setImageResource(R.drawable.hr);
+			}
+		}
+		else
+		imageView.setImageResource(R.drawable.hr);
+		
 		return rowView;
 	}
+	
+	 
 }

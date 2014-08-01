@@ -4,100 +4,175 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ClipData.Item;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.replayticket.ReplayTicket;
+import com.tgs.mitra.util.HomeScreenInfo;
+import com.tgs.mitra.util.UtilMethod;
 
 
 
 public class HomePage  extends Activity {
 
-	
-	AlertDialog alertDialog;
-	Button mApply_leave, mSummary, mTeam_summary, mMy_leave, holydays,
-			bdays_btn;
-	String myId;
-Spinner spinnerOsversions;
-private String[] state = { "K071002", "K071003", "K071004", "K071005",
-		   "K071006", "K071007", "K071008", "K071009", "K071010", "K071011",
-		   "K071012", "K071013", "K071014", "K071015", "K071016", "K071017",
-		   "K071018", "K071019" , "K071020"};
-	GridView gridView;
-	ArrayList<Item> gridArray = new ArrayList<Item>();
+
+	private AlertDialog alertDialog;
+	private Button mApply_leave, mSummary, mTeam_summary, mMy_leave, holydays,
+	bdays_btn;
 	 
-Button logout_btn,create_btn,reply_btn;
-TextView toptext;
-ListView homeListView;
+
+	private Button logout_btn,create_btn,reply_btn;
+	private TextView toptext;
+	private Context _activity=null;
+	private ListView homeListView;
+	ProgressBar homeProgressBar=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home);
-		
-  
-
-				homeListView = (ListView) findViewById(R.id.homelist);
-				
-				String[] homelist = new String[] { "Create Ticket List", "Reply Ticket List" };
-				Integer[] imageId = { R.drawable.payroll, R.drawable.hr,  };
-
-				CustomHomeList homelistAdapter = new CustomHomeList(HomePage.this, homelist,
-						imageId);
-				homeListView.setAdapter(homelistAdapter);
-				
-				logout_btn=(Button)findViewById(R.id.logout);
-				create_btn=(Button)findViewById(R.id.btn_create);
-				reply_btn=(Button)findViewById(R.id.btn_reply);
-				
-				create_btn.setOnClickListener(listener);
-				reply_btn.setOnClickListener(listener);
-		
-
 
 		
-		//birthdayService();
+		homeProgressBar=(ProgressBar)findViewById(R.id.progressBar1);
+		
+		homeProgressBar.setVisibility(View.VISIBLE);
+		
+		_activity=this;
+
+		homeListView = (ListView) findViewById(R.id.homelist);
+
+		
+
+		logout_btn=(Button)findViewById(R.id.logout);
+		create_btn=(Button)findViewById(R.id.btn_create);
+		reply_btn=(Button)findViewById(R.id.btn_reply);
+
+		create_btn.setOnClickListener(listener);
+		reply_btn.setOnClickListener(listener);
+
+
 
 		logout_btn.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				
-				
+
+
+
 				Intent i = new Intent(getApplicationContext(),
 						LoginActivity.class);
-			
+
 				startActivity(i);
 			}
 		});
+
+
+		StoreListTaks storeListTaks=new StoreListTaks();
+		storeListTaks.execute();
 		
+		HomeInfoTaks homeInfoTaks=new HomeInfoTaks();
+		homeInfoTaks.execute();
 
 
 	}
 
 
+	class StoreListTaks extends AsyncTask<Void, Void, Void>
+	{
+		private ArrayList<String> storeList=null;
+		private ProgressDialog dialog=null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog=new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			UtilMethod method=new UtilMethod();
+			storeList= method.getUserallowedstoresList(User.getInstance());
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			
+			Spinner spinner = (Spinner) findViewById(R.id.store_spinner);
+			// Create an ArrayAdapter using the string array and a default spinner layout
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
+					android.R.layout.simple_spinner_item, storeList);
+				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				spinner.setAdapter(dataAdapter);
+			
+			dialog.dismiss();
+		}
+	}
+
+
+	class HomeInfoTaks extends AsyncTask<Void, Void, Void>
+	{
+		private ArrayList<HomeScreenInfo> homeInfoList=null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			UtilMethod method=new UtilMethod();
+			homeInfoList= method.getHomeScreenInfoList(User.getInstance());
+			
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			
+			
+			homeProgressBar.setVisibility(View.GONE);
+			
+			 
+			CustomHomeList homelistAdapter = new CustomHomeList(HomePage.this,homeInfoList);
+			homeListView.setAdapter(homelistAdapter);
+			homeListView.invalidateViews();
+			
+		}
+	}
+
+
 	private OnClickListener listener = new OnClickListener() {
 
-	
+
 
 		@Override
 		public void onClick(View v) {
@@ -105,22 +180,22 @@ ListView homeListView;
 			switch (v.getId()) {
 
 			case R.id.btn_create:
-	
-					Intent i = new Intent(getApplicationContext(),
-							CreateTicket.class);
-					startActivity(i);
-			
+
+				Intent i = new Intent(getApplicationContext(),
+						CreateTicket.class);
+				startActivity(i);
+
 
 				break;
 			case R.id.btn_reply:
-				
+
 				Intent intent = new Intent(getApplicationContext(),
 						ReplayTicket.class);
 				startActivity(intent);
 				break;
-			
+
 			}
-			
+
 			//ss
 		}
 	};
@@ -133,18 +208,18 @@ ListView homeListView;
 
 		Intent startMain = new Intent(Intent.ACTION_MAIN);
 		startMain.addCategory(Intent.CATEGORY_HOME);
-		
-		
+
+
 		startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
-		
+
+
 		startActivity(startMain);
-		
+
 	}
 
 	public void showToast(String msg) {
 		Toast.makeText(HomePage.this, msg, Toast.LENGTH_LONG).show();
 	}
-	
+
 }
