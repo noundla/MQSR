@@ -2,6 +2,7 @@ package com.tgs.mitra.replayticket;
 
 import java.io.Serializable;
 
+/** NOT IN USE...............*/
 public class ContentObject implements Serializable{
 	/**
 	 * 

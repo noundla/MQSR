@@ -1,6 +1,8 @@
 package com.tgs.mitra;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,9 +14,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -42,6 +45,7 @@ public class HomePage  extends Activity {
 	private Context _activity=null;
 	private ListView homeListView;
 	ProgressBar homeProgressBar=null;
+	private Spinner mSpinner=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,6 +53,8 @@ public class HomePage  extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home);
 
+		
+		
 		
 		homeProgressBar=(ProgressBar)findViewById(R.id.progressBar1);
 		
@@ -58,6 +64,7 @@ public class HomePage  extends Activity {
 
 		homeListView = (ListView) findViewById(R.id.homelist);
 
+		 mSpinner = (Spinner) findViewById(R.id.store_spinner);
 		
 
 		logout_btn=(Button)findViewById(R.id.logout);
@@ -84,6 +91,22 @@ public class HomePage  extends Activity {
 			}
 		});
 
+		mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+
+				 User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+
+				
+			}
+		});
 
 		StoreListTaks storeListTaks=new StoreListTaks();
 		storeListTaks.execute();
@@ -121,12 +144,11 @@ public class HomePage  extends Activity {
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			
-			Spinner spinner = (Spinner) findViewById(R.id.store_spinner);
-			// Create an ArrayAdapter using the string array and a default spinner layout
+			
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
 					android.R.layout.simple_spinner_item, storeList);
 				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-				spinner.setAdapter(dataAdapter);
+				mSpinner.setAdapter(dataAdapter);
 			
 			dialog.dismiss();
 		}
@@ -196,7 +218,6 @@ public class HomePage  extends Activity {
 
 			}
 
-			//ss
 		}
 	};
 

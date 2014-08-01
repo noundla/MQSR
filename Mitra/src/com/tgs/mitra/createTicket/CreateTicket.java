@@ -69,11 +69,12 @@ public class CreateTicket extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
+				
+                   finish();
+/*
 				Intent ir = new Intent(getApplicationContext(), HomePage.class);
 
-				startActivity(ir);
+				startActivity(ir);*/
 			}
 		});
 		heder.setText("Department");

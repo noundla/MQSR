@@ -1,25 +1,27 @@
 package com.tgs.mitra.bean;
 
-public class MQTicketing {
+import java.io.Serializable;
 
-	private String assignedOwner=null;
+public class MQTicketing implements Serializable{
+
+	private String assignedOwner="";
 	
-	private String copyToEmail=null;
-	private String createdDate=null;
-	private String createdUser=null;
-	private String department=null;
-	private String details=null;
-	private String dueDate=null;
-	private String guidfield=null;
-	private String lastChange=null;
-	private String lastChangeUser=null;
+	private String copyToEmail="";
+	private String createdDate="";
+	private String createdUser="";
+	private String department="";
+	private String details="";
+	private String dueDate="";
+	private String guidfield="";
+	private String lastChange="";
+	private String lastChangeUser="";
 	
-	private String priority=null;
-	private String replyId=null;
-	private String storeId=null;
-	private String ticketId=null;
-	private String ticketStatus=null;
-	private String title=null;
+	private String priority="";
+	private String replyId="";
+	private String storeId="";
+	private String ticketId="";
+	private String ticketStatus="";
+	private String title="";
 	
 	public String getAssignedOwner() {
 		return assignedOwner;

@@ -43,7 +43,7 @@ public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 		{
 			if(!list.get(position).getImage().equals(""))
 			{
-				String url_val = list.get(position).getImage();
+				/*String url_val = list.get(position).getImage();
 				 URL url;
 		          Bitmap  bmImg;
 		        try {
@@ -57,7 +57,9 @@ public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 		        } catch (IOException e) {
 		            // TODO Auto-generated catch block
 		            e.printStackTrace();
-		        }
+		        }*/
+				
+				imageView.setImageResource(R.drawable.hr);
 			}
 			else{
 				imageView.setImageResource(R.drawable.hr);

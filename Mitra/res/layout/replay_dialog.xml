@@ -81,6 +81,13 @@ android:hint="Your replay"
                android:textSize="14sp" />
              
 
+             <Spinner
+    android:id="@+id/ticket_prority"
+    android:layout_width="wrap_content"
+    android:layout_gravity="left"
+    android:entries="@array/ticket_prority"
+    android:layout_height="wrap_content" />
+             
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"

@@ -51,9 +51,9 @@ public class ReplayTicket extends Activity implements OnClickListener{
 				// TODO Auto-generated method stub
 
 				finish();
-				Intent ir = new Intent(getApplicationContext(), HomePage.class);
+				/*Intent ir = new Intent(getApplicationContext(), HomePage.class);
 
-				startActivity(ir); 
+				startActivity(ir); */
 			}
 		});
 		  contentLayout=(LinearLayout)findViewById(R.id.content_layout);
@@ -82,9 +82,9 @@ public class ReplayTicket extends Activity implements OnClickListener{
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				myTicketsList=	method.getMyTeckets(User.getInstance(), "Open");
+				myTicketsList=method.getReplyTicketsList(User.getInstance());	//method.getMyTeckets(User.getInstance(), "Open");
 			}
-			return null;
+			return null; 
 		}
 		@Override
 		protected void onPostExecute(Void result) {

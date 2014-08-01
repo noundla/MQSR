@@ -5,6 +5,8 @@ public class User {
 	private String user="";
 	private String password="";
 	
+	private String storeName="";
+	
 	static User userObj=null;
 	public static User getInstance()
 	{
@@ -27,6 +29,14 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getStoreName() {
+		return storeName;
+	}
+
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
 	}
 	
 }

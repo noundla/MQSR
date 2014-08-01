@@ -1,6 +1,8 @@
 package com.tgs.mitra.replayticket;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -8,14 +10,18 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tgs.mitra.R;
+import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQTickets;
@@ -26,6 +32,8 @@ public class ReplayDialogActivity extends Activity{
 	private Context _activity=null;
 	private ConnectionDetector mConneDetect=null;
 	private MQTickets replayTecket=null;
+	private String ticket_prority="Low";
+	MQTicketing mqTicketing=new MQTicketing();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -47,6 +55,25 @@ public class ReplayDialogActivity extends Activity{
 		deptId.setText(""+replayTecket.getTicketId());
 		deptDes.setText(replayTecket.getTicketDescription());
 		deptName.setText(replayTecket.getTicketTitle());
+		Spinner priority=(Spinner)findViewById(R.id.ticket_prority);
+		
+		priority.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				ticket_prority=((TextView)arg1).getText().toString();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		
 		final EditText replyText=(EditText)findViewById(R.id.depart_desc_replay);
@@ -57,12 +84,38 @@ public class ReplayDialogActivity extends Activity{
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				finish();
+				
 				
 				if(replyText.getText().toString().trim().length()>1)
 				{
 				if(mConneDetect.isConnectingToInternet())
 				{
+					
+					//Creating MQTicketing objecct from MQTicket
+					
+					mqTicketing.setAssignedOwner("");
+					mqTicketing.setCopyToEmail("");
+					mqTicketing.setCreatedDate("");
+					mqTicketing.setCreatedUser(User.getInstance().getUser());
+					mqTicketing.setDepartment(replayTecket.getDepartmentName());
+					mqTicketing.setDetails(replyText.getText().toString());
+					mqTicketing.setDueDate("");//No need to pass
+					mqTicketing.setGuidfield("");//No need it's generate automatically.
+					
+					Date javaUtilDate= new Date();  
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");  
+					//System.out.println(formatter.format(javaUtilDate));
+					 
+                   mqTicketing.setLastChange(formatter.format(javaUtilDate));
+                   mqTicketing.setLastChangeUser(User.getInstance().getUser());
+                   mqTicketing.setPriority(ticket_prority);
+                   mqTicketing.setReplyId("");//NO need
+                   mqTicketing.setStoreId(User.getInstance().getStoreName());
+                   mqTicketing.setTicketId(replayTecket.getTicketId());
+                   mqTicketing.setTicketStatus("Close");//We need to send close
+                   mqTicketing.setTitle(replayTecket.getTicketTitle());
+					
+					
 					
 					DoBackground mBackground=new DoBackground();
 					mBackground.execute(replyText.getText().toString());
@@ -85,6 +138,7 @@ public class ReplayDialogActivity extends Activity{
 		ProgressDialog dialog=null;
 		private ArrayList<MQTickets> myTicketsList=null;
 		
+		boolean status=false;
 
 
 		@Override
@@ -104,6 +158,7 @@ public class ReplayDialogActivity extends Activity{
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
+				status= method.replayTicket(User.getInstance(), mqTicketing);
 				//method.g
 				//method.replayTicket(User.getInstance(), replayTecket);
 			}
@@ -115,6 +170,14 @@ public class ReplayDialogActivity extends Activity{
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			if(status)
+			{
+				Toast.makeText(_activity, "Done successfully ", Toast.LENGTH_LONG).show();
+				finish();
+			}
+			else{
+			Toast.makeText(_activity, "Not successfully Done! ", Toast.LENGTH_LONG).show();
+			}	
 			dialog.dismiss();
 		}
 	}
