@@ -12,7 +12,7 @@ public class MQTicketing implements Serializable{
 	private String department="";
 	private String details="";
 	private String dueDate="";
-	private String guidfield="";
+	private String guidfield="99999999-9999-9999-9999-999999999999";// This is default .
 	private String lastChange="";
 	private String lastChangeUser="";
 	

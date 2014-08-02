@@ -1,5 +1,6 @@
 package com.tgs.mitra.util;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.ksoap2.SoapEnvelope;
@@ -498,11 +499,11 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			//transport.debug=true;
+			transport.debug=true;
 			transport.call(SOAP_ACTION_CREATETICKET, envelope);
 
-			//System.out.println("TEST Request :"+transport.requestDump);
-			//System.out.println("Response :"+transport.responseDump);
+			System.out.println("TEST Request :"+transport.requestDump);
+			System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 			System.out.println("TEST RESULT :"+response);
 
@@ -713,7 +714,7 @@ public class UtilMethod {
 			lastChange.setName("lastChange");
 			lastChange.setNamespace(MOBSERVICE);
 			lastChange.setValue(replayTicket.getLastChange());
-			lastChange.setType(null);
+			lastChange.setType(Date.class);
 			ticket.addProperty(lastChange);
 			//ticket.addPropertyIfValue("lastChange", replayTicket.getLastChange());
 
@@ -781,11 +782,11 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			//transport.debug=true;
+			transport.debug=true;
 			transport.call(SOAP_ACTION_REPLYTICKET, envelope);
 
-			//System.out.println("TEST Request :"+transport.requestDump);
-			//System.out.println("Response :"+transport.responseDump);
+			System.out.println("TEST Request :"+transport.requestDump);
+			System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
 			SoapObject object=(SoapObject) response.getProperty(0);
@@ -796,9 +797,7 @@ public class UtilMethod {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		finally{
-
-		}
+		 
 		return result;
 
 	}

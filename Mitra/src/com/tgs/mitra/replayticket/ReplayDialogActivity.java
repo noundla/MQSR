@@ -32,7 +32,7 @@ public class ReplayDialogActivity extends Activity{
 	private Context _activity=null;
 	private ConnectionDetector mConneDetect=null;
 	private MQTickets replayTecket=null;
-	private String ticket_prority="Low";
+	private String ticket_prority="low";
 	MQTicketing mqTicketing=new MQTicketing();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,25 +93,24 @@ public class ReplayDialogActivity extends Activity{
 					
 					//Creating MQTicketing objecct from MQTicket
 					
-					mqTicketing.setAssignedOwner("");
+					mqTicketing.setAssignedOwner(""); 
 					mqTicketing.setCopyToEmail("");
-					mqTicketing.setCreatedDate("");
+					mqTicketing.setCreatedDate(replayTecket.getLastModified()); //Maybe we need to send Defauld date
 					mqTicketing.setCreatedUser(User.getInstance().getUser());
 					mqTicketing.setDepartment(replayTecket.getDepartmentName());
 					mqTicketing.setDetails(replyText.getText().toString());
-					mqTicketing.setDueDate("");//No need to pass
-					mqTicketing.setGuidfield("");//No need it's generate automatically.
+					mqTicketing.setDueDate(replayTecket.getLastModified());//No need to pass  //Maybe we need to send Defauld date
+					mqTicketing.setGuidfield("99999999-9999-9999-9999-999999999999");//No need it's generate automatically.
 					
 					Date javaUtilDate= new Date();  
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");  
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");  //Soap required format
 					//System.out.println(formatter.format(javaUtilDate));
-					 
-                   mqTicketing.setLastChange(formatter.format(javaUtilDate));
+                  mqTicketing.setLastChange(formatter.format(javaUtilDate));
                    mqTicketing.setLastChangeUser(User.getInstance().getUser());
                    mqTicketing.setPriority(ticket_prority);
-                   mqTicketing.setReplyId("");//NO need
+                   mqTicketing.setReplyId(replayTecket.getTicketId());//NO need
                    mqTicketing.setStoreId(User.getInstance().getStoreName());
-                   mqTicketing.setTicketId(replayTecket.getTicketId());
+                   mqTicketing.setTicketId("0");
                    mqTicketing.setTicketStatus("Close");//We need to send close
                    mqTicketing.setTitle(replayTecket.getTicketTitle());
 					
@@ -158,7 +157,7 @@ public class ReplayDialogActivity extends Activity{
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				status= method.replayTicket(User.getInstance(), mqTicketing);
+				status= /*method.createTicket(User.getInstance(), mqTicketing);*/method.replayTicket(User.getInstance(), mqTicketing);
 				//method.g
 				//method.replayTicket(User.getInstance(), replayTecket);
 			}
