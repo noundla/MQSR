@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
@@ -14,8 +13,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.tgs.mitra.bean.User;
-import com.tgs.mitra.createTicket.CreateTicket;
-import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.ui.BaseActionBarActivity;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQDetQsn;

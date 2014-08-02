@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
@@ -33,10 +32,7 @@ public class CreateTicket extends Activity {
 	private ListView mainListView;
 	private ArrayAdapter<String> listAdapter;
 	Spinner spinnerOsversions;
-	private String[] state = { "K071002", "K071003", "K071004", "K071005",
-			"K071006", "K071007", "K071008", "K071009", "K071010", "K071011",
-			"K071012", "K071013", "K071014", "K071015", "K071016", "K071017",
-			"K071018", "K071019", "K071020" };
+	 
 	private Context _activity=null;
 	ConnectionDetector mConneDetect=null;
 
@@ -55,12 +51,12 @@ public class CreateTicket extends Activity {
 		background.execute();
 		
 		
-		spinnerOsversions = (Spinner) findViewById(R.id.spinnerstate);
+		/*spinnerOsversions = (Spinner) findViewById(R.id.spinnerstate);
 
 		ArrayAdapter<String> adapter_state = new ArrayAdapter<String>(this,
 				R.layout.spintext, state);
 		adapter_state.setDropDownViewResource(R.layout.spintext);
-		spinnerOsversions.setAdapter(adapter_state);
+		spinnerOsversions.setAdapter(adapter_state);*/
 		TextView heder = (TextView) findViewById(R.id.main_img);
 
 		Button back = (Button) findViewById(R.id.back_btnn);

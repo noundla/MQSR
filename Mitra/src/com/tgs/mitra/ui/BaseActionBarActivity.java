@@ -1,12 +1,12 @@
 package com.tgs.mitra.ui;
 
-import com.tgs.mitra.R;
-
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+
+import com.tgs.mitra.R;
 
 public class BaseActionBarActivity extends ActionBarActivity{
 

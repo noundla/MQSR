@@ -1,6 +1,12 @@
 package com.tgs.mitra.util;
 
-public class MQDetQsn {
+import java.io.Serializable;
+
+public class MQDetQsn implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String departmentId="";
 	private String questionId="";
 	private String questionTitle="";

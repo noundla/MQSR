@@ -1,8 +1,6 @@
 package com.tgs.mitra;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,13 +33,8 @@ import com.tgs.mitra.util.UtilMethod;
 public class HomePage  extends Activity {
 
 
-	private AlertDialog alertDialog;
-	private Button mApply_leave, mSummary, mTeam_summary, mMy_leave, holydays,
-	bdays_btn;
-	 
 
 	private Button logout_btn,create_btn,reply_btn;
-	private TextView toptext;
 	private Context _activity=null;
 	private ListView homeListView;
 	ProgressBar homeProgressBar=null;

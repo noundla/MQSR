@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.util.ConnectionDetector;
