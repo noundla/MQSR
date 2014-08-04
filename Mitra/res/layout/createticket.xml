@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/background_color" >
 
     <TextView
         android:id="@+id/main_img"
@@ -39,7 +40,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/main_img"
-        android:background="@drawable/bg"
+       
         android:layout_marginBottom="40dp"
         android:divider="@color/white_text"
         android:dividerHeight="1dp" >
@@ -47,5 +48,6 @@
 
        <include
         android:id="@+id/bottem"
-        layout="@layout/common_layout" />
+        layout="@layout/common_layout" 
+        android:visibility="gone"/>
 </RelativeLayout>

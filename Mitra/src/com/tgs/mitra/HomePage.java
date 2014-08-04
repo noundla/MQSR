@@ -58,9 +58,8 @@ public class HomePage  extends Activity {
 		homeListView = (ListView) findViewById(R.id.homelist);
 
 		 mSpinner = (Spinner) findViewById(R.id.store_spinner);
-		
-
-		logout_btn=(Button)findViewById(R.id.logout);
+	
+		 logout_btn=(Button)findViewById(R.id.logout);
 		create_btn=(Button)findViewById(R.id.btn_create);
 		reply_btn=(Button)findViewById(R.id.btn_reply);
 
@@ -139,7 +138,7 @@ public class HomePage  extends Activity {
 			
 			
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
-					android.R.layout.simple_spinner_item, storeList);
+					R.layout.listtext, storeList);
 				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				mSpinner.setAdapter(dataAdapter);
 			

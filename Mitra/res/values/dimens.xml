@@ -20,4 +20,8 @@
         <dimen name="login_img">50dp</dimen>
         <dimen name="login_img_mar">10dp</dimen>
         <dimen name="chk_btn_ht">30dp</dimen>
+        <dimen name="listvv_item_ht">40dp</dimen>
+                <dimen name="home_listvv_item_ht">30dp</dimen>
+                <dimen name="listtext_size">16dp</dimen>
+                <dimen name="margin">10dp</dimen>
 </resources>

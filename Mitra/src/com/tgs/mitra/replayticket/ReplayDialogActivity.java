@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -78,7 +79,7 @@ public class ReplayDialogActivity extends Activity{
 		
 		final EditText replyText=(EditText)findViewById(R.id.depart_desc_replay);
 		
-		ImageView replay=(ImageView)findViewById(R.id.reply_button);
+		Button replay=(Button)findViewById(R.id.reply_button);
 		replay.setOnClickListener(new OnClickListener() {
 			
 			@Override

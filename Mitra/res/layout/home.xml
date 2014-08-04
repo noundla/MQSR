@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg" >
+    android:background="@color/background_color" >
 
     
 
@@ -19,6 +19,7 @@
         android:textColor="@color/white_text"
         android:textSize="@dimen/heading"
         android:textStyle="bold" />
+    
 
     <Button
         android:id="@+id/logout"
@@ -28,7 +29,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/padding"
         android:layout_marginTop="6dp"
-        android:background="#225dab"
+        android:background="@color/reject_color"
         android:text="Logout"
         android:textColor="@color/white_text"
         android:textSize="@dimen/text_size"
@@ -36,8 +37,10 @@
 
     <Spinner
     android:id="@+id/store_spinner"
-    android:layout_below="@id/logout"
+
     android:layout_width="fill_parent"
+    
+        android:layout_alignParentTop="true"
     android:layout_height="wrap_content" />
     
    
@@ -50,8 +53,8 @@
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
         android:background="@android:color/white"
-        android:layout_below="@id/store_spinner"
-        android:divider="@color/blue_main"
+        android:layout_below="@id/main_img"
+        android:divider="@color/background_color"
       >
     </ListView>
 

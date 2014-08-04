@@ -35,7 +35,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_alignParentLeft="true"
                 android:text="101"
-                 android:textColor="@color/blue_main"
+                 android:textColor="@android:color/black"
                 android:textSize="14sp" />
 
             <TextView
@@ -46,19 +46,19 @@
                 android:singleLine="true"
                 android:layout_centerHorizontal="true"
                 android:text="Content Title"
-                 android:textColor="#0101DF"
+                 android:textColor="@android:color/black"
                 android:textSize="14sp"  />
             
              <TextView
                 android:id="@+id/depart_name"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:singleLine="true"
                 android:layout_marginRight="10dp"
                 android:layout_alignParentRight="true"
                 android:text="Content Title"
-                 android:textColor="#FF0040"
+                 android:textColor="@android:color/black"
                  android:textSize="14sp"  />
         </RelativeLayout>
 

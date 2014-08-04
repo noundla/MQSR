@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg" >
+    android:background="@color/background_color" >
 
     
         <TextView
@@ -42,7 +42,7 @@
             android:singleLine="true"
             android:text="101"
             android:textStyle="bold"
-            android:textColor="@color/white_text"
+            android:textColor="@android:color/black"
             android:textSize="14sp" />
 
         <!--
@@ -81,13 +81,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-          
+          android:gravity="center_vertical"
             android:hint="Ticket message"
             android:maxLines="5"
             android:paddingLeft="10dp"
             android:background="@color/white_text"
             android:minHeight="100dp"
-            android:gravity="top"
+           
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
@@ -100,7 +100,7 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/depart_desc_replay"
             android:layout_alignParentLeft="true"
-            android:background="#225dab"
+            android:background="@color/reject_color"
             android:text="Cancel"
             android:textColor="@color/white_text"
             android:textSize="@dimen/text_size"
@@ -114,7 +114,7 @@
             android:layout_marginRight="@dimen/marg_lt"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
-            android:background="#225dab"
+            android:background="@color/reject_color"
             android:layout_below="@id/depart_desc_replay"
             android:text="Create ticket"
             android:textColor="@color/white_text"

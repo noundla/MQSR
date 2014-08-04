@@ -11,5 +11,6 @@
    <color name="approve_color">#6EB018</color>
    
       <color name="findc">#474c53</color>
+      <color name="background_color">#ffebeb</color>
   
 </resources>
