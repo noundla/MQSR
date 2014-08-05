@@ -110,7 +110,7 @@ public class CreateDialogActivity extends Activity {
                mqTicketing.setReplyId("0");//NO need
                mqTicketing.setStoreId(User.getInstance().getStoreName());
                mqTicketing.setTicketId("0");
-               mqTicketing.setTicketStatus("Close");//We need to send close
+               mqTicketing.setTicketStatus("Open");//We need to send close
                mqTicketing.setTitle(replyText.getText().toString());
 				
 				
