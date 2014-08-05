@@ -60,6 +60,7 @@ public class HomePage  extends Activity {
 		 mSpinner = (Spinner) findViewById(R.id.store_spinner);
 	
 		 logout_btn=(Button)findViewById(R.id.logout);
+		 logout_btn.bringToFront();
 		create_btn=(Button)findViewById(R.id.btn_create);
 		reply_btn=(Button)findViewById(R.id.btn_reply);
 

@@ -44,14 +44,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:singleLine="true"
-                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+             android:layout_toRightOf="@id/depart_id"
                 android:text="Content Title"
                  android:textColor="@android:color/black"
                 android:textSize="14sp"  />
             
              <TextView
                 android:id="@+id/depart_name"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:singleLine="true"
