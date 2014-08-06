@@ -41,6 +41,8 @@ public class CreateDialogActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create_ticket_dialog);
 
+		TextView titleText=(TextView)findViewById(R.id.main_img);
+		
 		_activity=this;
 		mConneDetect =new ConnectionDetector(getApplicationContext());
 		Button back = (Button) findViewById(R.id.back_btnn);
@@ -78,6 +80,8 @@ public class CreateDialogActivity extends Activity {
 			finish();
 		}
 		TextView deptId = (TextView) findViewById(R.id.tic_name);
+		
+		titleText.setText(department.getDepartment());
 
 		deptId.setText(detQsn.getQuestionTitle());
 
@@ -110,7 +114,7 @@ public class CreateDialogActivity extends Activity {
                mqTicketing.setReplyId("0");//NO need
                mqTicketing.setStoreId(User.getInstance().getStoreName());
                mqTicketing.setTicketId("0");
-               mqTicketing.setTicketStatus("Open");//We need to send close
+               mqTicketing.setTicketStatus("Open"); 
                mqTicketing.setTitle(replyText.getText().toString());
 				
 				
