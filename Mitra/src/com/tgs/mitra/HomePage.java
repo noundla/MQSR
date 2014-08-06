@@ -47,6 +47,15 @@ public class HomePage  extends Activity {
 		setContentView(R.layout.home);
 
 		
+		AppContext globalVariable = (AppContext) getApplicationContext();
+		
+		if(!globalVariable.isValid())
+		{
+			Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
+			
+			 finish();
+			
+		}
 		
 		
 		homeProgressBar=(ProgressBar)findViewById(R.id.progressBar1);

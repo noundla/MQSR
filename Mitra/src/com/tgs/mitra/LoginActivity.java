@@ -40,8 +40,11 @@ public class LoginActivity extends Activity {
 		remember_cbox = (CheckBox) findViewById(R.id.remember_chkbox);
 		Button  login_btn=(Button)findViewById(R.id.login_button1);
 
+		AppContext globalVariable = (AppContext) getApplicationContext();
+		
 		final EditText user=(EditText)findViewById(R.id.edit_user);
 		final EditText password=(EditText)findViewById(R.id.edit_passwd);
+ 
 
 		mConneDetect =new ConnectionDetector(getApplicationContext());
 
@@ -51,6 +54,7 @@ public class LoginActivity extends Activity {
 		}else{
 
 			Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_LONG).show();
+			login_btn.setText("Connection error!");
 			login_btn.setEnabled(false);
 		}
 
@@ -108,6 +112,14 @@ public class LoginActivity extends Activity {
 			}
 		}.start();*/
 
+		if(!globalVariable.isValid())
+		{
+			Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
+			login_btn.setEnabled(false);
+			
+		}
+		   
+		
 	}
 
 	class DologinBackground extends AsyncTask<String, Boolean, Boolean>

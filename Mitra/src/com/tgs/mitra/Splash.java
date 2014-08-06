@@ -12,7 +12,7 @@ import android.widget.ImageView;
  * @author Rajesh
  *
  */
-public class Splash  extends Activity{
+public class Splash  extends BaseActivity{
 	private final int DELAY = 1500;
 
 	@Override
