@@ -15,6 +15,7 @@
         android:allowBackup="true"
         android:icon="@drawable/splash_logo152_152"
         android:label="@string/app_name"
+        android:name="com.tgs.mitra.AppContext"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".Splash"
