@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tgs.mitra.R;
@@ -95,23 +96,11 @@ public class ReplayTicket extends Activity implements OnClickListener{
 			{
 			try{
 				
-				/*//ContentObject contentObject =null;
-				for (int i = 0; i < myTicketsList.size(); i++) {
-
-					contentObject=new ContentObject();
-					 
-					 
-						contentObject.department=myTicketsList.get(i).getDepartmentName();
-
-					contentObject.description=myTicketsList.get(i).getTicketDescription();
-					contentObject.name=myTicketsList.get(i).getDepartmentName();
-					contentObject.id=myTicketsList.get(i).getTicketId();
-					arrayList.add(contentObject);
-				}*/
-
 				for (int i = 0; i < myTicketsList.size(); i++) {
 
 					View view=View.inflate(getApplicationContext(), R.layout.content_layout, null);
+					
+					RelativeLayout bgLayout=(RelativeLayout)view.findViewById(R.id.content_bg_layout);
 
 					TextView title=(TextView)view.findViewById(R.id.depart_title);
 
@@ -129,6 +118,8 @@ public class ReplayTicket extends Activity implements OnClickListener{
 
 					button.setTag(myTicketsList.get(i));
 					button.setOnClickListener(ReplayTicket.this);
+					
+					 
 
 					contentLayout.addView(view);
 				}

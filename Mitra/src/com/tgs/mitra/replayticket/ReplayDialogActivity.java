@@ -90,8 +90,7 @@ public class ReplayDialogActivity extends Activity{
 				if(replyText.getText().toString().trim().length()>1)
 				{
 				if(mConneDetect.isConnectingToInternet())
-				{
-					
+				{ 
 					//Creating MQTicketing objecct from MQTicket
 					
 					mqTicketing.setAssignedOwner(""); 
@@ -105,7 +104,6 @@ public class ReplayDialogActivity extends Activity{
 					
 					Date javaUtilDate= new Date();  
 					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");  //Soap required format
-					//System.out.println(formatter.format(javaUtilDate));
                   mqTicketing.setLastChange(formatter.format(javaUtilDate));
                    mqTicketing.setLastChangeUser(User.getInstance().getUser());
                    mqTicketing.setPriority(ticket_prority);

@@ -17,6 +17,7 @@ public class MQTickets implements Serializable{
 	private String TicketDescription="";
 	private String TicketId="";
 	private String TicketTitle="";
+	private boolean hasReplay=false;
 	public String getDepartmentId() {
 		return DepartmentId;
 	}
@@ -64,5 +65,11 @@ public class MQTickets implements Serializable{
 	}
 	public void setTicketTitle(String ticketTitle) {
 		TicketTitle = ticketTitle;
+	}
+	public boolean isHasReplay() {
+		return hasReplay;
+	}
+	public void setHasReplay(boolean hasReplay) {
+		this.hasReplay = hasReplay;
 	}
 }

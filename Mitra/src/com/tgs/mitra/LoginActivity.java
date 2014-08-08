@@ -101,16 +101,17 @@ public class LoginActivity extends Activity {
 			}
 		});
 
-		/*new Thread()
+		//JUST for TEST
+		new Thread()
 		{
 			public void run() {
 				User user=User.getInstance();
-				user.setPassword("harini");
-				user.setUser("Harini");
+				user.setPassword("itpassword");
+				user.setUser("Ituser");
 				UtilMethod method=new UtilMethod();
-				method.getHomeScreenInfoList(user);
+				method.getTicketPopup(user, "31293");
 			}
-		}.start();*/
+		}.start();
 
 		if(!globalVariable.isValid())
 		{

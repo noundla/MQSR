@@ -66,11 +66,11 @@ public class CreateTicket extends Activity {
 			@Override
 			public void onClick(View v) {
 				
-                  // finish();
+                 finish();
 
-				Intent ir = new Intent(getApplicationContext(), HomePage.class);
+				/*Intent ir = new Intent(getApplicationContext(), HomePage.class);
 
-				startActivity(ir);
+				startActivity(ir);*/
 			}
 		});
 		heder.setText("Department");
@@ -162,7 +162,7 @@ public class CreateTicket extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
-		Intent ir = new Intent(getApplicationContext(), HomePage.class);
-		startActivity(ir);
+		/*Intent ir = new Intent(getApplicationContext(), HomePage.class);
+		startActivity(ir);*/
 	}
 }

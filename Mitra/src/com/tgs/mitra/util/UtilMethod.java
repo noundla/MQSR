@@ -1163,23 +1163,22 @@ public class UtilMethod {
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
 			SoapObject object=(SoapObject)response.getProperty(0);
-
-			/*SoapObject depobj=null;
-			MQTickets myticket=null;
+			
+			System.out.println("TEST obj :"+object.getPropertyCount()+object);
+			
+			SoapObject depobj=null;
+			MQReply replayObj=null;
+			
 			for (int i = 0; i < object.getPropertyCount(); i++) {
 				depobj=(SoapObject)(object).getProperty(i);
-				myticket=new MQTickets();
-				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
-				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
-				myticket.setLastModified(depobj.getProperty("LastModified").toString());
-				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
-				myticket.setStatus(depobj.getProperty("Status").toString());
-				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
-				myticket.setTicketId(depobj.getProperty("TicketId").toString());
-				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
-
-				mQTicketsList.add(myticket); 
-			}*/
+				replayObj=new MQReply();
+				
+				System.out.println("TEST :::"+depobj.getProperty("ReplyMessages").toString());
+				replayObj.setReplayMessage(depobj.getProperty("ReplyMessages").toString());
+				
+				mMQReplyList.add(replayObj);
+			}
+			
 
 		}
 
