@@ -102,22 +102,39 @@ public class ReplayTicket extends Activity implements OnClickListener{
 					
 					RelativeLayout bgLayout=(RelativeLayout)view.findViewById(R.id.content_bg_layout);
 
-					TextView title=(TextView)view.findViewById(R.id.depart_title);
+					TextView dept_name=(TextView)view.findViewById(R.id.department_name);
+					dept_name.setText(myTicketsList.get(i).getDepartmentName());
 
-					TextView deptId=(TextView)view.findViewById(R.id.depart_id);
+					TextView dept_title=(TextView)view.findViewById(R.id.depart_title);
 
 					TextView deptDes=(TextView)view.findViewById(R.id.depart_desc);
-					TextView deptName=(TextView)view.findViewById(R.id.depart_name);
-
-					title.setText(myTicketsList.get(i).getDepartmentName());
-					deptId.setText(""+myTicketsList.get(i).getTicketId());
 					deptDes.setText(myTicketsList.get(i).getTicketDescription());
+				
+					TextView created_date=(TextView)view.findViewById(R.id.created_date);
+					created_date.setText(myTicketsList.get(i).getLastModified());
+
+					//deptId.setText(""+myTicketsList.get(i).getTicketId());
+					
 					//	deptName.setText(arrayList.get(i).department+"dsfds");
-					deptName.setText(myTicketsList.get(i).getLastModified());
-					ImageView button=(ImageView)view.findViewById(R.id.reply_button);
+					RelativeLayout button=(RelativeLayout)view.findViewById(R.id.reply_layout);
 
 					button.setTag(myTicketsList.get(i));
 					button.setOnClickListener(ReplayTicket.this);
+					
+					ImageView popup_btn=(ImageView)view.findViewById(R.id.flag_popup);
+					popup_btn.setTag(myTicketsList.get(i));
+					popup_btn.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							// TODO Auto-generated method stub
+							System.out.println("popopop");
+							Intent ir = new Intent(ReplayTicket.this, PopupActivity.class);
+
+							startActivity(ir); 
+						}
+					});
+				
 					
 					 
 

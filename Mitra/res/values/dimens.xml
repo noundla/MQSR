@@ -24,4 +24,6 @@
                 <dimen name="home_listvv_item_ht">30dp</dimen>
                 <dimen name="listtext_size">16dp</dimen>
                 <dimen name="margin">10dp</dimen>
+                
+                     <dimen name="reply_ticket_txt">15dp</dimen>
 </resources>

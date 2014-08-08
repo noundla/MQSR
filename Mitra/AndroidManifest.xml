@@ -42,10 +42,13 @@
         </activity>
         <activity
             android:name=".replayticket.ReplayDialogActivity"
-            android:theme="@android:style/Theme.Dialog" >
+       >
         </activity>
-        <activity android:name=".createTicket.CreateDialogActivity" >
+        <activity android:name=".createTicket.CreateDialogActivity" 
+              android:theme="@android:style/Theme.Dialog">
         </activity>
+        <activity android:name=".replayticket.PopupActivity"
+            android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>
