@@ -62,7 +62,7 @@
           android:layout_alignParentRight="true"
                 android:id="@+id/flag_popup"
              
-                android:background="@drawable/flag"
+                
                 android:scaleType="fitXY" />
             
         </RelativeLayout>
