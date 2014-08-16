@@ -15,7 +15,7 @@ public class TabsMainActivity extends  ActionBarActivity{
 		// mTabHost.setup(this, getSupportFragmentManager(),
 		// R.id.menu_settings);
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
-		mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+		mTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 		Bundle b = new Bundle();
 		b.putString("key", "Home");
 		mTabHost.addTab(mTabHost.newTabSpec("Home").setIndicator("Home"),
