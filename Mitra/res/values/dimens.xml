@@ -26,4 +26,5 @@
                 <dimen name="margin">10dp</dimen>
                 
                      <dimen name="reply_ticket_txt">15dp</dimen>
+                     <dimen name="reply_ticket_txt_mag">15dp</dimen>
 </resources>

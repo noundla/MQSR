@@ -59,9 +59,12 @@
       >
     </ListView>
 
-    <include
+    <com.tgs.mitra.BottomLayout
         android:id="@+id/bottem"
-        layout="@layout/common_layout" />
+      
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       />
 
     <ProgressBar
         android:id="@+id/progressBar1"

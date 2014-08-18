@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.tgs.mitra.R;
 import com.tgs.mitra.bean.Department;
 import com.tgs.mitra.bean.User;
+import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQDetQsn;
 import com.tgs.mitra.util.UtilMethod;
@@ -90,7 +91,42 @@ public class Payroll extends Activity {
 
 			}
 		});
+		
+		 Button create_btn=(Button)findViewById(R.id.btn_create);
+			Button reply_btn=(Button)findViewById(R.id.btn_reply);
+
+			create_btn.setOnClickListener(listener);
+			reply_btn.setOnClickListener(listener);
 	}
+	
+	private OnClickListener listener = new OnClickListener() {
+
+
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			switch (v.getId()) {
+
+			case R.id.btn_create:
+
+				Intent i = new Intent(getApplicationContext(),
+						CreateTicket.class);
+				startActivity(i);
+
+
+				break;
+			case R.id.btn_reply:
+
+				Intent intent = new Intent(getApplicationContext(),
+						ReplayTicket.class);
+				startActivity(intent);
+				break;
+
+			}
+
+		}
+	};
 	public void showToast(String msg) {
 		Toast.makeText(Payroll.this, msg, Toast.LENGTH_LONG).show();
 	}

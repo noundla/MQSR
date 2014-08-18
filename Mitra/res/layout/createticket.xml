@@ -46,8 +46,10 @@
         android:dividerHeight="1dp" >
     </ListView>
 
-       <include
+  <com.tgs.mitra.BottomLayout
         android:id="@+id/bottem"
-        layout="@layout/common_layout" 
-        android:visibility="gone"/>
+      
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       />
 </RelativeLayout>

@@ -26,7 +26,26 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/backbutton_48x48_in20x20" />
 
-    <ScrollView
+    
+        <ListView
+        android:id="@+id/reply_ListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/main_img"
+       
+        android:layout_marginBottom="40dp"
+        android:divider="@color/white_text"
+        android:dividerHeight="1dp" >
+    </ListView>
+    
+        
+          <com.tgs.mitra.BottomLayout
+        android:id="@+id/bottem"
+      
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       />
+<!--     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -41,6 +60,6 @@
             android:dividerHeight="1dp"
             android:orientation="vertical" >
         </LinearLayout>
-    </ScrollView>
+    </ScrollView> -->
 
 </RelativeLayout>

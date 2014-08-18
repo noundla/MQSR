@@ -34,7 +34,7 @@ public class HomePage  extends Activity {
 
 
 
-	private Button logout_btn,create_btn,reply_btn;
+	private Button logout_btn;
 	private Context _activity=null;
 	private ListView homeListView;
 	ProgressBar homeProgressBar=null;
@@ -70,8 +70,8 @@ public class HomePage  extends Activity {
 	
 		 logout_btn=(Button)findViewById(R.id.logout);
 		 logout_btn.bringToFront();
-		create_btn=(Button)findViewById(R.id.btn_create);
-		reply_btn=(Button)findViewById(R.id.btn_reply);
+		 Button create_btn=(Button)findViewById(R.id.btn_create);
+		Button reply_btn=(Button)findViewById(R.id.btn_reply);
 
 		create_btn.setOnClickListener(listener);
 		reply_btn.setOnClickListener(listener);
