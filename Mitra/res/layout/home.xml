@@ -12,7 +12,7 @@
         android:id="@+id/main_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/leavedet_txt_ht1"
-        android:background="@color/blue_main"
+        android:background="@drawable/bottom_ar"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:singleLine="true"
