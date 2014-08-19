@@ -65,9 +65,9 @@ public class Payroll extends Activity {
 
 				finish();
 
-				Intent ir = new Intent(getApplicationContext(), CreateTicket.class);
+				/*Intent ir = new Intent(getApplicationContext(), CreateTicket.class);
 
-				startActivity(ir);
+				startActivity(ir);*/
 			}
 		});
 

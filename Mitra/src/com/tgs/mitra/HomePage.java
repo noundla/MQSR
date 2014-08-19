@@ -207,6 +207,7 @@ public class HomePage  extends Activity {
 
 				Intent i = new Intent(getApplicationContext(),
 						CreateTicket.class);
+			//	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 
 
@@ -215,6 +216,7 @@ public class HomePage  extends Activity {
 
 				Intent intent = new Intent(getApplicationContext(),
 						ReplayTicket.class);
+				//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(intent);
 				break;
 

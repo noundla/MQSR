@@ -11,18 +11,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tgs.mitra.R;
@@ -32,7 +31,7 @@ import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
-public class ReplayTicket extends Activity implements OnClickListener {
+public class ReplayTicket extends Activity   {
 	public static final ListAdapter ReplyListviewAdapter = null;
 	// ArrayList<ContentObject> arrayList=new ArrayList<ContentObject>();
 	private Context _activity = null;
@@ -71,16 +70,36 @@ public class ReplayTicket extends Activity implements OnClickListener {
 		// contentLayout=(LinearLayout)findViewById(R.id.content_layout);
 		reply_list_view = (ListView) findViewById(R.id.reply_ListView);
 
-		reply_list_view.setOnItemClickListener(new OnItemClickListener() {
+		/*reply_list_view.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+
+
+				Intent intent = new Intent(ReplayTicket.this,
+						ReplayDialogActivity.class);
+				ViewHolder holder=(ViewHolder) view.getTag();
+				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
+				startActivity(intent);
 
 			}
-		});
+		});*/
+		reply_list_view.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
+					long arg3) {
+
+				Intent intent = new Intent(ReplayTicket.this,
+						ReplayDialogActivity.class);
+				ViewHolder holder=(ViewHolder) view.getTag();
+				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
+				startActivity(intent);
+				
+			}
+		});
+		 
 		Button create_btn = (Button) findViewById(R.id.btn_create);
 		Button reply_btn = (Button) findViewById(R.id.btn_reply);
 
@@ -165,7 +184,6 @@ public class ReplayTicket extends Activity implements OnClickListener {
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			System.out.println("helloooo...." + myTicketsList.size());
 			return myTicketsList.size();
 		}
 
@@ -205,22 +223,23 @@ public class ReplayTicket extends Activity implements OnClickListener {
 				holder = (ViewHolder) view.getTag();
 			}
 			try {
-				if (myTicketsList != null)
+				//if (myTicketsList != null)
 
-					for (int i = 0; i < myTicketsList.size(); i++) {
-						holder.dep_title.setText(myTicketsList.get(i)
+					//for (int i = 0; i < myTicketsList.size(); i++) {
+						holder.dep_title.setText(myTicketsList.get(position)
 								.getTicketTitle());
-						holder.dep_name.setText(myTicketsList.get(i)
+						holder.dep_name.setText(myTicketsList.get(position)
 								.getDepartmentName());
 
-						holder.desc.setText(myTicketsList.get(i)
+						holder.desc.setText(myTicketsList.get(position)
 								.getTicketDescription());
-						holder.createdby.setText(myTicketsList.get(i)
+						holder.createdby.setText(myTicketsList.get(position)
 								.getLastModifiedBy());
 
-						holder.date.setText(myTicketsList.get(i)
+						holder.date.setText(myTicketsList.get(position)
 								.getLastModified());
-					}
+						holder.setMqTickets(myTicketsList.get(position));
+					//}
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -237,18 +256,27 @@ public class ReplayTicket extends Activity implements OnClickListener {
 		TextView desc;
 		TextView createdby;
 		TextView date;
+		MQTickets mqTickets=null;
+		public MQTickets getMqTickets() {
+			return mqTickets;
+		}
+		public void setMqTickets(MQTickets mqTickets) {
+			this.mqTickets = mqTickets;
+		}
+		
 
 	}
 
-	@Override
+	/*@Override
 	public void onClick(View arg0) {
 
 		// Toast.makeText(getApplicationContext(), "Selected"
 		// +((ContentObject)arg0.getTag()).id, Toast.LENGTH_LONG).show();
 		Intent intent = new Intent(ReplayTicket.this,
 				ReplayDialogActivity.class);
-		intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) arg0.getTag());
+		ViewHolder holder=(ViewHolder) arg0.getTag();
+		intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
 		startActivity(intent);
-	}
+	}*/
 
 }

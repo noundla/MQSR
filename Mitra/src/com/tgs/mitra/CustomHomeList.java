@@ -16,6 +16,7 @@ public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 	private final Activity context;
  
 	ArrayList<HomeScreenInfo> list=null;
+	Integer images[]={R.drawable.openticket,R.drawable.openall,R.drawable.myticket,R.drawable.closeticket};
 
 	public CustomHomeList(Activity context, ArrayList<HomeScreenInfo> list) {
 		super(context, R.layout.department,list);
@@ -53,7 +54,14 @@ public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 		            e.printStackTrace();
 		        }*/
 				
-				imageView.setImageResource(R.drawable.hr);
+				
+				if(position<4)
+				{
+					imageView.setImageResource(images[position]);
+				}
+				else{
+				imageView.setImageResource(images[3]);
+				}
 			}
 			else{
 				imageView.setImageResource(R.drawable.hr);
