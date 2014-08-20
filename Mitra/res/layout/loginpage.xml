@@ -113,7 +113,7 @@
         android:src="@drawable/login_longjhonsilvers72_72" />
 
     <ImageView
-        android:id="@+id/login_img2"
+        android:id="@+id/login_img3"
         android:layout_width="@dimen/login_img"
         android:layout_height="@dimen/login_img"
         

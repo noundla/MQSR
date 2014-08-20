@@ -32,10 +32,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/main_img"
-       
+       android:layout_margin="5dp"
+       android:cacheColorHint="@android:color/transparent" 
         android:layout_marginBottom="40dp"
-        android:divider="@color/white_text"
-        android:dividerHeight="1dp" >
+         android:divider="@android:color/transparent"
+            android:dividerHeight="4dp"
+         >
     </ListView>
     
         
@@ -45,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
        />
-    <ScrollView
+    <!-- <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -56,10 +58,10 @@
             android:id="@+id/content_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@color/white_text"
-            android:dividerHeight="1dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="4dp"
             android:orientation="vertical" >
         </LinearLayout>
-    </ScrollView>
+    </ScrollView> -->
 
 </RelativeLayout>
