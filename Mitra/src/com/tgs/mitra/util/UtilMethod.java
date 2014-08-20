@@ -1020,7 +1020,8 @@ public class UtilMethod {
 				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
 				myticket.setTicketId(depobj.getProperty("TicketId").toString());
 				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
-
+				//hasReply
+				myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
 				mQTicketsList.add(myticket); 
 			}
 

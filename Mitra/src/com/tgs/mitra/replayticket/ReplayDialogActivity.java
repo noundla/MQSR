@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import com.tgs.mitra.R;
 import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.util.ConnectionDetector;
+import com.tgs.mitra.util.MQReply;
 import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
@@ -35,6 +38,7 @@ public class ReplayDialogActivity extends Activity{
 	private MQTickets replayTecket=null;
 	private String ticket_prority="low";
 	MQTicketing mqTicketing=new MQTicketing();
+	private LinearLayout replayLayout;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -51,6 +55,8 @@ public class ReplayDialogActivity extends Activity{
 		
 		TextView deptDes=(TextView)findViewById(R.id.depart_desc);
 		TextView deptName=(TextView)findViewById(R.id.depart_name);
+		
+		replayLayout=(LinearLayout)findViewById(R.id.replasys_layout);
 		
 		title.setText(replayTecket.getDepartmentName());
 		deptId.setText(""+replayTecket.getTicketId());
@@ -128,6 +134,56 @@ public class ReplayDialogActivity extends Activity{
 			}
 		});
 		
+		
+		if(replayTecket.isHasReplay())
+		{
+			//Get replays
+			ReplayListTask listTask=new ReplayListTask();
+			listTask.execute(replayTecket.getTicketId());
+		}
+		
+	}
+	
+	class ReplayListTask extends AsyncTask<String, Void, Void>
+	{
+
+		private ArrayList<MQReply> replayList=null;
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+		@Override
+		protected Void doInBackground(String... arg0) {
+			 
+			if(mConneDetect.isConnectingToInternet())
+			{
+				UtilMethod method=new UtilMethod();
+				
+				replayList=method.getTicketPopup(User.getInstance(), arg0[0]);
+			}
+			
+			return null;
+		}
+		@Override
+		protected void onPostExecute(Void result) {
+			 
+			super.onPostExecute(result);
+			
+			TextView replayText=null;
+			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+			 
+			if(replayList!=null)
+			{
+				 for (int i = 0; i < replayList.size(); i++) {
+					 replayText=new TextView(_activity);
+					 replayText.setText(replayList.get(i).getReplayMessage());
+					 replayText.setBackgroundResource(R.drawable.table_sharep);
+					 
+					 replayLayout.addView(replayText,lp);
+				}
+			}
+		}
 		
 	}
 	

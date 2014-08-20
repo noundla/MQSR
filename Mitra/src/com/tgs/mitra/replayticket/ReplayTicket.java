@@ -70,21 +70,7 @@ public class ReplayTicket extends Activity   {
 		// contentLayout=(LinearLayout)findViewById(R.id.content_layout);
 		reply_list_view = (ListView) findViewById(R.id.reply_ListView);
 
-		/*reply_list_view.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-
-				Intent intent = new Intent(ReplayTicket.this,
-						ReplayDialogActivity.class);
-				ViewHolder holder=(ViewHolder) view.getTag();
-				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
-				startActivity(intent);
-
-			}
-		});*/
+		 
 		reply_list_view.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

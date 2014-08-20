@@ -66,7 +66,7 @@ Button back= (Button)rootView.findViewById(R.id.back_btnn);
 			startActivity(ir);
 			}
 		});
-		LinearLayout contentLayout=(LinearLayout)rootView.findViewById(R.id.content_layout);
+	/*	//LinearLayout contentLayout=(LinearLayout)rootView.findViewById(R.id.content_layout);
 		
 		ContentObject contentObject=null;
 		for (int i = 0; i < 15; i++) {
@@ -106,7 +106,7 @@ Button back= (Button)rootView.findViewById(R.id.back_btnn);
 			button.setOnClickListener(this);
 			
 			contentLayout.addView(view);
-		}
+		}*/
 		
 	
 		return rootView;
