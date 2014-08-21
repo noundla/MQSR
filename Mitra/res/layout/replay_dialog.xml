@@ -155,7 +155,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/reply_button"
                 android:layout_margin="10dp"
-                android:orientation="horizontal" >
+      
+                android:orientation="vertical" >
 
                 <!--
      <TextView

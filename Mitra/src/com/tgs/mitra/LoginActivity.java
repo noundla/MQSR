@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -54,8 +55,8 @@ public class LoginActivity extends Activity {
 		}else{
 
 			Toast.makeText(getApplicationContext(), getString(R.string.connection_error), Toast.LENGTH_LONG).show();
-			login_btn.setText("Connection error!");
-			login_btn.setEnabled(false);
+		/*	login_btn.setText("Connection error!");
+			login_btn.setEnabled(false);*/
 		}
 
 		loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
@@ -175,6 +176,22 @@ public class LoginActivity extends Activity {
 
 		}
 
+	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			// do your stuff
+			Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+
+			startActivity(i);
+
+			Intent startMain = new Intent(Intent.ACTION_MAIN);
+			startMain.addCategory(Intent.CATEGORY_HOME);
+			startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(startMain);
+
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

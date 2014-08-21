@@ -83,7 +83,7 @@ public class HomePage  extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-
+finish();
 
 				Intent i = new Intent(getApplicationContext(),
 						LoginActivity.class);
