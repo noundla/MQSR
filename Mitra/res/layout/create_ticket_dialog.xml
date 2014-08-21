@@ -74,6 +74,7 @@
         android:layout_below="@id/top_layout"
         android:layout_margin="10dp"
         android:layout_marginTop="5dp"
+   
         android:orientation="vertical" >
 
         <EditText
@@ -102,6 +103,7 @@
             android:layout_alignParentLeft="true"
             android:background="@drawable/bottom_ar"
             android:text="Cancel"
+                 android:layout_marginBottom="20dp"
             android:textColor="@color/white_text"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
@@ -115,6 +117,7 @@
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
              android:background="@drawable/bottom_ar"
+                  android:layout_marginBottom="20dp"
             android:layout_below="@id/depart_desc_replay"
             android:text="Create ticket"
             android:textColor="@color/white_text"

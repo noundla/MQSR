@@ -15,7 +15,7 @@
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginLeft="6dp"
         android:singleLine="true"
         android:layout_toRightOf="@+id/img"
         android:textColor="@android:color/black"

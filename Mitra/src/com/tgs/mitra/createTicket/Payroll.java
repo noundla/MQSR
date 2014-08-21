@@ -134,10 +134,10 @@ public class Payroll extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
-		Intent ir = new Intent(getApplicationContext(), CreateTicket.class);
+	/*	Intent ir = new Intent(getApplicationContext(), CreateTicket.class);
 
-		startActivity(ir);
-
+		startActivity(ir);*/
+		finish();
 	}
 
 

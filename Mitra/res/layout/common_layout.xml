@@ -7,10 +7,10 @@
 
     <Button
         android:id="@+id/btn_create"
-        android:layout_width="45dp"
+        android:layout_width="@dimen/buttom_btn_width"
         android:layout_height="45dp"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="@dimen/padding"
         android:layout_marginRight="@dimen/padding"
@@ -24,7 +24,7 @@
 
     <Button
         android:id="@+id/home_button"
-        android:layout_width="45dp"
+        android:layout_width="@dimen/buttom_btn_width"
         android:layout_height="45dp"
          
          android:layout_centerHorizontal="true"
@@ -41,7 +41,7 @@
 
     <Button
         android:id="@+id/btn_reply"
-        android:layout_width="45dp"
+        android:layout_width="@dimen/buttom_btn_width"
         android:layout_height="45dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

@@ -41,7 +41,7 @@
         android:layout_height="fill_parent"
         android:layout_below="@id/main_img"
        
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="60dp"
         android:divider="@color/white_text"
         android:dividerHeight="1dp" >
     </ListView>

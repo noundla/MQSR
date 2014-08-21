@@ -32,7 +32,7 @@ import com.tgs.mitra.util.UtilMethod;
 public class HomePage  extends Activity {
 
 
-
+	 Button create_btn,reply_btn;
 	private Button logout_btn;
 	private Context _activity=null;
 	private ListView homeListView;
@@ -69,8 +69,8 @@ public class HomePage  extends Activity {
 	
 		 logout_btn=(Button)findViewById(R.id.logout);
 		 logout_btn.bringToFront();
-		 Button create_btn=(Button)findViewById(R.id.btn_create);
-		Button reply_btn=(Button)findViewById(R.id.btn_reply);
+		  create_btn=(Button)findViewById(R.id.btn_create);
+		 reply_btn=(Button)findViewById(R.id.btn_reply);
 
 		create_btn.setOnClickListener(listener);
 		reply_btn.setOnClickListener(listener);
@@ -203,7 +203,7 @@ public class HomePage  extends Activity {
 			switch (v.getId()) {
 
 			case R.id.btn_create:
-
+				
 				Intent i = new Intent(getApplicationContext(),
 						CreateTicket.class);
 			//	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

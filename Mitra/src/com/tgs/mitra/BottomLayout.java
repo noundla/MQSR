@@ -4,6 +4,7 @@ import com.tgs.mitra.createTicket.CreateTicket;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,12 +40,13 @@ public class BottomLayout extends RelativeLayout {
         //  Button home_tab = (Button) findViewById(R.id.btn_create);
           Button create_tabe = (Button) findViewById(R.id.btn_create);
           Button reply_tab = (Button) findViewById(R.id.btn_reply);
-          Button home_tab = (Button) findViewById(R.id.home_button);
+          final Button home_tab = (Button) findViewById(R.id.home_button);
          
           home_tab.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				//home_tab.setBackgroundColor(Color.BLUE);
 				 
 				Intent i = new Intent(context,
 						HomePage.class);

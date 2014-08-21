@@ -16,5 +16,6 @@
       <color name="ash_clor">#c2c2c2</color>
 	<color name="tabDark">#000000</color>
 	<color name="tabTransparent">#10ffffff</color>
+	<color name="but_focus">#a3334c</color>
   
 </resources>

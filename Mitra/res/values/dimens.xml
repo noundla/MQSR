@@ -12,7 +12,7 @@
 
     <dimen name="text_size">12dp</dimen>
     <dimen name="edit_wd">36dp</dimen>
-        <dimen name="marg_lt">40dp</dimen>
+        <dimen name="marg_lt">20dp</dimen>
         <dimen name="leavedet_txt_ht1">48dp</dimen>
         <dimen name="heading">15dp</dimen>
         <dimen name="sum_lv_btn">36dp</dimen>
@@ -27,4 +27,5 @@
                 
                      <dimen name="reply_ticket_txt">15dp</dimen>
                      <dimen name="reply_ticket_txt_mag">15dp</dimen>
+                     <dimen name="buttom_btn_width">40dp</dimen>
 </resources>
