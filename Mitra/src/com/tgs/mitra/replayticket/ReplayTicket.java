@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tgs.mitra.R;
 import com.tgs.mitra.bean.User;
@@ -47,9 +48,16 @@ public class ReplayTicket extends Activity   {
 		_activity = this;
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 
+		if(mConneDetect.isConnectingToInternet())
+		{
 		DoBackground background = new DoBackground();
 		background.execute();
 
+		}
+		else{
+			  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+			  finish();
+		}
 		Button back = (Button) findViewById(R.id.back_btnn);
 
 		back.setOnClickListener(new OnClickListener() {
@@ -147,6 +155,18 @@ public class ReplayTicket extends Activity   {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			
+			if(myTicketsList==null)
+			{
+			Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+			finish();
+			}
+			
+			if(myTicketsList.size()==0)
+			{
+				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				finish();
+			}
 
 			reply_list_view.setAdapter(new ReplyListviewAdapter(
 					getApplicationContext()));

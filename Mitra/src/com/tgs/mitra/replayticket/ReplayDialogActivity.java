@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import android.R.color;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -207,11 +208,15 @@ public class ReplayDialogActivity extends Activity {
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
 					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
+			System.out.println("TEST REplay:"+replayList.size());
 			if (replayList != null) {
 				for (int i = 0; i < replayList.size(); i++) {
 					replayText = new TextView(_activity);
 					replayText.setText(replayList.get(i).getReplayMessage());
-					replayText.setBackgroundResource(R.drawable.table_sharep);
+					replayText.setTextColor(color.black);
+					replayText.setTextSize(16);
+					System.out.println("TEST REP :"+replayList.get(i).getReplayMessage());
+					//replayText.setBackgroundResource(R.drawable.table_sharep);
 
 					replayLayout.addView(replayText, lp);
 				}

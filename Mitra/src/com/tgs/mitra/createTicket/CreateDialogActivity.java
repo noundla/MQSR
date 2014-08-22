@@ -118,9 +118,16 @@ public class CreateDialogActivity extends Activity {
                mqTicketing.setTitle(replyText.getText().toString());
 				
 				
-				
+               
+				if(mConneDetect.isConnectingToInternet())
+				{
 				DoBackground background=new DoBackground();
 				background.execute(mqTicketing);
+				}
+				else{
+					  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+					  finish();
+				}
 				//finish();
 			}
 				else{

@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
@@ -48,8 +49,15 @@ public class CreateTicket extends Activity {
 		  mConneDetect =new ConnectionDetector(getApplicationContext());
 		
 		
+		   if(mConneDetect.isConnectingToInternet())
+			{
 		DoBackground background=new DoBackground();
 		background.execute();
+			}
+		   else{
+			   Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+			   finish();
+		   }
 		
 		
 		/*spinnerOsversions = (Spinner) findViewById(R.id.spinnerstate);
@@ -178,12 +186,20 @@ public class CreateTicket extends Activity {
 			super.onPostExecute(result);
 			
 			
-			
-
-		 
-			for (int i = 0; i < dpartmentList.size(); i++) {
-				
+			if(dpartmentList==null)
+			{
+				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				finish();
 			}
+			
+			
+			if(dpartmentList.size()==0)
+			{
+				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				finish();
+			}
+
+		  
 			
 			CustomList listAdapter = new CustomList(CreateTicket.this,dpartmentList);
 

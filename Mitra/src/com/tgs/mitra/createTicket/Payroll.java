@@ -55,8 +55,15 @@ public class Payroll extends Activity {
 
 		final Department department=(Department) getIntent().getSerializableExtra("DEPRT_OBJ");
 
+		if(mConneDetect.isConnectingToInternet())
+		{
 		DoBackground background=new DoBackground();
 		background.execute(department);
+		}
+		else{
+			  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+			  finish();
+		}
 
 		back.setOnClickListener(new OnClickListener() {
 
@@ -170,7 +177,7 @@ public class Payroll extends Activity {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 
-
+			dialog.dismiss();
 			/*ArrayList<String> questionList = new ArrayList<String>();
 
 			if(departQsnsList!=null)
@@ -183,12 +190,19 @@ public class Payroll extends Activity {
 				}
 				listAdapter = new ArrayAdapter<String>(Payroll.this, R.layout.listtext,
 						questionList);*/
+			
+			if(departQsnsList.size()==0)
+			{
+				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				finish();
+			}
+			
 			MyCustom myCustom=new MyCustom(Payroll.this, departQsnsList);
 				mainListView.setAdapter(myCustom);
 
 
 
-			dialog.dismiss();
+			
 		}
 	}
 
