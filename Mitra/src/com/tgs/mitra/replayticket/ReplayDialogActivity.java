@@ -9,6 +9,7 @@ import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -209,16 +210,23 @@ public class ReplayDialogActivity extends Activity {
 					LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
 			System.out.println("TEST REplay:"+replayList.size());
+			View view=null;
 			if (replayList != null) {
 				for (int i = 0; i < replayList.size(); i++) {
 					replayText = new TextView(_activity);
-					replayText.setText(replayList.get(i).getReplayMessage());
-					replayText.setTextColor(color.black);
+					replayText.setText(replayList.get(i).getReplayMessage().trim());
+					replayText.setTextColor(getResources().getColor(android.R.color.black));
 					replayText.setTextSize(16);
 					System.out.println("TEST REP :"+replayList.get(i).getReplayMessage());
 					//replayText.setBackgroundResource(R.drawable.table_sharep);
 
+					view=new View(_activity);
+					view.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+					view.setMinimumHeight(1);
+					
+					//replayText.setText("SAMPLE");
 					replayLayout.addView(replayText, lp);
+					replayLayout.addView(view, lp);
 				}
 			}
 		}

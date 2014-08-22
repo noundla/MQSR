@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.replayticket.ReplayTicket;
+import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.HomeScreenInfo;
 import com.tgs.mitra.util.UtilMethod;
 
@@ -38,6 +39,7 @@ public class HomePage  extends Activity {
 	private ListView homeListView;
 	ProgressBar homeProgressBar=null;
 	private Spinner mSpinner=null;
+	private ConnectionDetector mConneDetect;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -45,7 +47,7 @@ public class HomePage  extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.home);
 
-		
+		mConneDetect = new ConnectionDetector(getApplicationContext());
 		AppContext globalVariable = (AppContext) getApplicationContext();
 		
 		if(!globalVariable.isValid())
@@ -108,13 +110,19 @@ finish();
 				
 			}
 		});
+		
+		if(mConneDetect.isConnectingToInternet())
+		{
 
 		StoreListTaks storeListTaks=new StoreListTaks();
 		storeListTaks.execute();
 		
 		HomeInfoTaks homeInfoTaks=new HomeInfoTaks();
 		homeInfoTaks.execute();
-
+		}
+		else{
+			Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+		}
 
 	}
 
