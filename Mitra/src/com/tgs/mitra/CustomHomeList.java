@@ -34,6 +34,22 @@ public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 		txt_count.setText(list.get(position).getCount());
 		ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
 		txtTitle.setText(list.get(position).getDescription());
+		
+		if(list.get(position).getDescription().contains("Assigned"))
+		{
+			rowView.setTag("Assigned Tickets");
+		}
+		else if(list.get(position).getDescription().contains("Open All"))
+		{
+			rowView.setTag("Open");
+			
+		}else if(list.get(position).getDescription().contains("My Tickets"))
+		{
+			rowView.setTag("My Tickets");
+		}
+		else if(list.get(position).getDescription().contains("Closed Tickets")){
+			rowView.setTag("Close");
+		}
 		if(list.get(position).getImage()!=null )
 		{
 			if(!list.get(position).getImage().equals(""))

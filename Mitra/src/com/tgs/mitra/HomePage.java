@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,9 +24,11 @@ import android.widget.Toast;
 
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
+import com.tgs.mitra.homeinfo.HomeTicketInfo;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.HomeScreenInfo;
+import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
 
@@ -33,7 +36,7 @@ import com.tgs.mitra.util.UtilMethod;
 public class HomePage  extends Activity {
 
 
-	 Button create_btn,reply_btn;
+	Button create_btn,reply_btn;
 	private Button logout_btn;
 	private Context _activity=null;
 	private ListView homeListView;
@@ -49,30 +52,30 @@ public class HomePage  extends Activity {
 
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 		AppContext globalVariable = (AppContext) getApplicationContext();
-		
+
 		if(!globalVariable.isValid())
 		{
 			Toast.makeText(getApplicationContext(), getString(R.string.error), Toast.LENGTH_LONG).show();
-			
-			 finish();
-			
+
+			finish();
+
 		}
-		
-		
+
+
 		homeProgressBar=(ProgressBar)findViewById(R.id.progressBar1);
-		
+
 		homeProgressBar.setVisibility(View.VISIBLE);
-		
+
 		_activity=this;
 
 		homeListView = (ListView) findViewById(R.id.homelist);
 
-		 mSpinner = (Spinner) findViewById(R.id.store_spinner);
-	
-		 logout_btn=(Button)findViewById(R.id.logout);
-		 logout_btn.bringToFront();
-		  create_btn=(Button)findViewById(R.id.btn_create);
-		 reply_btn=(Button)findViewById(R.id.btn_reply);
+		mSpinner = (Spinner) findViewById(R.id.store_spinner);
+
+		logout_btn=(Button)findViewById(R.id.logout);
+		logout_btn.bringToFront();
+		create_btn=(Button)findViewById(R.id.btn_create);
+		reply_btn=(Button)findViewById(R.id.btn_reply);
 
 		create_btn.setOnClickListener(listener);
 		reply_btn.setOnClickListener(listener);
@@ -85,7 +88,7 @@ public class HomePage  extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-finish();
+				finish();
 
 				Intent i = new Intent(getApplicationContext(),
 						LoginActivity.class);
@@ -100,29 +103,59 @@ finish();
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 
-				 User.getInstance().setStoreName(((TextView)arg1).getText().toString());
-				
+				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 
-				
+
 			}
 		});
-		
+
 		if(mConneDetect.isConnectingToInternet())
 		{
 
-		StoreListTaks storeListTaks=new StoreListTaks();
-		storeListTaks.execute();
-		
-		HomeInfoTaks homeInfoTaks=new HomeInfoTaks();
-		homeInfoTaks.execute();
+			StoreListTaks storeListTaks=new StoreListTaks();
+			storeListTaks.execute();
+
+			HomeInfoTaks homeInfoTaks=new HomeInfoTaks();
+			homeInfoTaks.execute();
 		}
 		else{
 			Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
 		}
+
+
+		//Test code
+		/* new Thread(){
+			  public void run() {
+				  UtilMethod method=new UtilMethod();
+				  User user=User.getInstance();
+				  user.setUser("Balaji");
+				  user.setPassword("9balaji@");
+
+				ArrayList<MQTickets> tickets= method.getHomeTicketsInfo(user, "Close");
+				System.out.println("TEST LOGIN State open "+tickets.size());
+			  }
+		  }.start();*/
+		
+		homeListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				if(mConneDetect.isConnectingToInternet())
+				{
+					Toast.makeText(_activity, "this"+arg1.getTag().toString(), Toast.LENGTH_LONG).show();
+					Intent intent=new Intent(_activity,HomeTicketInfo.class);
+					intent.putExtra("TicketType", arg1.getTag().toString());
+					startActivity(intent);
+				}
+				
+			}
+		});
 
 	}
 
@@ -152,13 +185,13 @@ finish();
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			
-			
+
+
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
 					R.layout.listtext, storeList);
-				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-				mSpinner.setAdapter(dataAdapter);
-			
+			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			mSpinner.setAdapter(dataAdapter);
+
 			dialog.dismiss();
 		}
 	}
@@ -179,8 +212,8 @@ finish();
 
 			UtilMethod method=new UtilMethod();
 			homeInfoList= method.getHomeScreenInfoList(User.getInstance());
-			
-			
+
+
 			return null;
 		}
 
@@ -188,15 +221,15 @@ finish();
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
-			
+
+
 			homeProgressBar.setVisibility(View.GONE);
-			
-			 
+
+
 			CustomHomeList homelistAdapter = new CustomHomeList(HomePage.this,homeInfoList);
 			homeListView.setAdapter(homelistAdapter);
 			homeListView.invalidateViews();
-			
+
 		}
 	}
 
@@ -211,10 +244,10 @@ finish();
 			switch (v.getId()) {
 
 			case R.id.btn_create:
-				
+
 				Intent i = new Intent(getApplicationContext(),
 						CreateTicket.class);
-			//	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+				//	i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 
 

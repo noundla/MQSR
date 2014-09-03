@@ -60,17 +60,17 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		  DoBackground doBackground=new DoBackground();
 		  doBackground.execute();
 		  
-		 /* new Thread(){
+		  new Thread(){
 			  public void run() {
 				  UtilMethod method=new UtilMethod();
 				  User user=User.getInstance();
-				  user.setUser("Balaji");
+				 /* user.setUser("Balaji");
 				  user.setPassword("9balaji@");
-					
-				 boolean state=method.getLoginState(user);
-				System.out.println("TEST LOGIN State "+state);
+				*/	
+				 method.getHomeTicketsInfo(user, "Open");
+				System.out.println("TEST LOGIN State open ");
 			  }
-		  }.start();*/
+		  }.start();
 
 	}
 

@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * This calls is for MyTickets.
- *
  */
 public class MQTickets implements Serializable{
 
@@ -18,6 +17,9 @@ public class MQTickets implements Serializable{
 	private String TicketId="";
 	private String TicketTitle="";
 	private boolean hasReplay=false;
+	
+	private int replayCount=0;
+	
 	public String getDepartmentId() {
 		return DepartmentId;
 	}
@@ -71,5 +73,11 @@ public class MQTickets implements Serializable{
 	}
 	public void setHasReplay(boolean hasReplay) {
 		this.hasReplay = hasReplay;
+	}
+	public int getReplayCount() {
+		return replayCount;
+	}
+	public void setReplayCount(int replayCount) {
+		this.replayCount = replayCount;
 	}
 }
