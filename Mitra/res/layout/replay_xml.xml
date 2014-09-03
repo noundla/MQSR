@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/leavedet_txt_ht1"
         android:background="@color/blue_main"
-        android:gravity="center"
-        android:paddingLeft="10dp"
+        android:paddingLeft="40dp"
+        android:paddingTop="10dp"
         android:singleLine="true"
         android:text="Reply Ticket"
         android:textColor="@color/white_text"
@@ -26,6 +26,16 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/backbutton_48x48_in20x20" />
 
+    
+          <Spinner
+        android:id="@+id/department_spinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="10dp"
+              android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+    />
     
         <ListView
         android:id="@+id/reply_ListView"

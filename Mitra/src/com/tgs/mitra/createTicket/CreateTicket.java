@@ -33,8 +33,8 @@ public class CreateTicket extends Activity {
 
 	private ListView mainListView;
 	private ArrayAdapter<String> listAdapter;
-	Spinner spinnerOsversions;
-	 
+	Spinner depatment_spinner;
+	private String[] state= {"Andra Pradesh","Arunachal Pradesh","Assam","Bihar","Haryana","Himachal Pradesh", "Jammu and Kashmir", "Jharkhand","Karnataka", "Kerala","Tamil Nadu"};
 	private Context _activity=null;
 	ConnectionDetector mConneDetect=null;
 
@@ -49,6 +49,9 @@ public class CreateTicket extends Activity {
 		  mConneDetect =new ConnectionDetector(getApplicationContext());
 		
 		
+			StoreListTaks storeListTaks=new StoreListTaks();
+			storeListTaks.execute();
+		  
 		   if(mConneDetect.isConnectingToInternet())
 			{
 		DoBackground background=new DoBackground();
@@ -60,12 +63,14 @@ public class CreateTicket extends Activity {
 		   }
 		
 		
-		/*spinnerOsversions = (Spinner) findViewById(R.id.spinnerstate);
+		   
+		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+	
 
-		ArrayAdapter<String> adapter_state = new ArrayAdapter<String>(this,
+/*		ArrayAdapter<String> adapter_state = new ArrayAdapter<String>(this,
 				R.layout.spintext, state);
 		adapter_state.setDropDownViewResource(R.layout.spintext);
-		spinnerOsversions.setAdapter(adapter_state);*/
+		depatment_spinner.setAdapter(adapter_state);*/
 		TextView heder = (TextView) findViewById(R.id.main_img);
 
 		Button back = (Button) findViewById(R.id.back_btnn);
@@ -128,6 +133,43 @@ public class CreateTicket extends Activity {
 		
 	}
 	
+	
+	
+	class StoreListTaks extends AsyncTask<Void, Void, Void>
+	{
+		private ArrayList<String> storeList=null;
+		private ProgressDialog dialog=null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog=new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			UtilMethod method=new UtilMethod();
+			storeList= method.getUserallowedstoresList(User.getInstance());
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			
+			
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(CreateTicket.this,
+					R.layout.spintext, storeList);
+				dataAdapter.setDropDownViewResource(R.layout.spintext);
+				depatment_spinner.setAdapter(dataAdapter);
+			
+			dialog.dismiss();
+		}
+	}
 	
 	private OnClickListener listener = new OnClickListener() {
 

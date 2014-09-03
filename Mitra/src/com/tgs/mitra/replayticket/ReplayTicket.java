@@ -17,11 +17,13 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,13 +41,16 @@ public class ReplayTicket extends Activity   {
 	private ConnectionDetector mConneDetect = null;
 	private LinearLayout contentLayout = null;
 	ListView reply_list_view;
-
+Spinner depatment_spinner;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.replay_xml);
 		_activity = this;
+		
+		
+		
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 
 		if(mConneDetect.isConnectingToInternet())
@@ -58,6 +63,12 @@ public class ReplayTicket extends Activity   {
 			  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
 			  finish();
 		}
+		
+		StoreListTaks storeListTaks=new StoreListTaks();
+		storeListTaks.execute();
+		
+		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+		
 		Button back = (Button) findViewById(R.id.back_btnn);
 
 		back.setOnClickListener(new OnClickListener() {
@@ -101,6 +112,43 @@ public class ReplayTicket extends Activity   {
 		reply_btn.setOnClickListener(listener);
 	}
 
+	
+	class StoreListTaks extends AsyncTask<Void, Void, Void>
+	{
+		private ArrayList<String> storeList=null;
+		private ProgressDialog dialog=null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog=new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			UtilMethod method=new UtilMethod();
+			storeList= method.getUserallowedstoresList(User.getInstance());
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			
+			
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayTicket.this,
+					R.layout.spintext, storeList);
+				dataAdapter.setDropDownViewResource(R.layout.spintext);
+				depatment_spinner.setAdapter(dataAdapter);
+			
+			dialog.dismiss();
+		}
+	}
+	
 	private OnClickListener listener = new OnClickListener() {
 
 		@Override

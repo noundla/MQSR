@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="@drawable/table_sharep" >
+    android:layout_height="match_parent" >
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="@dimen/home_listvv_item_ht"
         android:layout_height="@dimen/home_listvv_item_ht"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/margin" />
+        android:padding="5dp"
+        android:background="@color/ash_clor"
+        android:layout_marginTop="@dimen/margin" />
 
     <TextView
         android:id="@+id/txt"
@@ -24,12 +26,12 @@
 
     <TextView
         android:id="@+id/txt_count"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:layout_toRightOf="@+id/txt"
-        android:background="@color/blue_main"
+        android:background="@color/green_home"
         android:gravity="center_horizontal"
         android:textColor="@android:color/white"
         android:textSize="13sp"

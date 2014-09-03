@@ -17,5 +17,10 @@
 	<color name="tabDark">#000000</color>
 	<color name="tabTransparent">#10ffffff</color>
 	<color name="but_focus">#a3334c</color>
+	
+	
+	<color name="green_home">#16a765</color>
+	
+
   
 </resources>

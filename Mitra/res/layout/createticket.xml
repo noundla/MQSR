@@ -26,6 +26,16 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/backbutton_48x48_in20x20" />
 
+    
+        <Spinner
+        android:id="@+id/department_spinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="10dp"
+              android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+    />
     <!-- <Spinner
         android:id="@+id/spinnerstate"
         android:layout_width="100dp"
