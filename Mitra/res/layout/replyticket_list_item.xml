@@ -4,16 +4,16 @@
     android:layout_margin="10dp"
     android:layout_height="wrap_content"
     
-    android:background="@drawable/table_sharep" >
+ >
 
     <RelativeLayout
         android:id="@+id/top_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
     android:layout_marginRight="@dimen/reply_ticket_txt_mag"
         android:orientation="horizontal"
-        android:weightSum="3" >
+  >
 
         <!-- android:id="@+id/depart_id" -->
 
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
        
-            android:layout_weight="1"
+        
             android:singleLine="true"
             android:text="101"
             
@@ -37,19 +37,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/department_name"
-            android:layout_weight="1"
+       
             android:singleLine="true"
             android:text="-Title"
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_ticket_txt"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/flag_popup"
-            android:layout_width="46dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:scaleType="fitXY" />
+
     </RelativeLayout>
 
     <TextView
@@ -57,11 +52,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/top_layout"
-        android:background="@android:color/white"
+
         android:maxLines="2"
             android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
     android:layout_marginRight="@dimen/reply_ticket_txt_mag"
-        android:padding="15dp"
+    
         android:text="This is test descrip "
         android:textColor="@android:color/black"
         android:textSize="@dimen/reply_ticket_txt" />
