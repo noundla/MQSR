@@ -2,10 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-      android:background="@drawable/background_wt" >
+    android:background="@drawable/background_wt" >
 
-    
-        <TextView
+    <TextView
         android:id="@+id/main_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/leavedet_txt_ht1"
@@ -17,20 +16,21 @@
         android:textColor="@color/white_text"
         android:textSize="@dimen/heading"
         android:textStyle="bold" />
-    
-                 <Button
+
+    <Button
         android:id="@+id/back_btnn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/backbutton_48x48_in20x20" />
-    <LinearLayout
+
+    <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
- android:layout_below="@id/main_img"
- android:layout_margin="10dp"
+        android:layout_below="@id/main_img"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         android:weightSum="3" >
 
@@ -41,9 +41,20 @@
             android:layout_weight="1"
             android:singleLine="true"
             android:text="101"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/leavedet_txt_ht1"
+            android:layout_alignParentRight="true"
+
+            android:singleLine="true"
+            android:text="Store name"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/heading" />
 
         <!--
              <TextView
@@ -64,9 +75,9 @@
             android:singleLine="true"
             android:text="Content Title"
             android:textColor="#FF0040"
-            android:textSize="14sp" />
+            android:textSize="14sp" />
         -->
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -74,7 +85,6 @@
         android:layout_below="@id/top_layout"
         android:layout_margin="10dp"
         android:layout_marginTop="5dp"
-   
         android:orientation="vertical" >
 
         <EditText
@@ -82,43 +92,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-          android:gravity="center_vertical"
+            android:background="@color/white_text"
+            android:gravity="center_vertical"
             android:hint="Ticket message"
             android:maxLines="5"
-            android:paddingLeft="10dp"
-            android:background="@color/white_text"
             android:minHeight="100dp"
-           
+            android:paddingLeft="10dp"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
-                <Button
+        <Button
             android:id="@+id/cancel_button"
             android:layout_width="100dp"
             android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/depart_desc_replay"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="@dimen/marg_lt"
             android:layout_marginRight="@dimen/marg_lt"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/depart_desc_replay"
-            android:layout_alignParentLeft="true"
             android:background="@drawable/bottom_ar"
             android:text="Cancel"
-                 android:layout_marginBottom="20dp"
             android:textColor="@color/white_text"
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
-        
+
         <Button
             android:id="@+id/reply_button"
             android:layout_width="100dp"
             android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/depart_desc_replay"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="@dimen/marg_lt"
             android:layout_marginRight="@dimen/marg_lt"
             android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-             android:background="@drawable/bottom_ar"
-                  android:layout_marginBottom="20dp"
-            android:layout_below="@id/depart_desc_replay"
+            android:background="@drawable/bottom_ar"
             android:text="Create ticket"
             android:textColor="@color/white_text"
             android:textSize="@dimen/text_size"

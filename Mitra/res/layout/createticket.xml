@@ -35,7 +35,23 @@
         android:layout_marginRight="10dp"
               android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+               android:visibility="gone" 
     />
+        
+            <TextView
+        android:id="@+id/store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/leavedet_txt_ht1"
+        android:background="@color/blue_main"
+ android:layout_alignParentRight="true"
+        android:paddingTop="10dp"
+        android:singleLine="true"
+            android:layout_marginRight="10dp"
+        android:text="Store name"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/heading"
+    
+        android:visibility="gone" />
     <!-- <Spinner
         android:id="@+id/spinnerstate"
         android:layout_width="100dp"

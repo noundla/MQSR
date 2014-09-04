@@ -56,6 +56,19 @@
             android:text="Content Title"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
+        
+                <TextView
+            android:id="@+id/store_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:text="store name"
+            android:layout_below="@id/depart_id"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/depart_name"
@@ -63,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_below="@id/depart_title"
+            android:layout_below="@id/store_id"
             android:text="Content Title"
             android:textColor="@android:color/black"
             android:textSize="14sp"

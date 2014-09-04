@@ -22,7 +22,7 @@
         android:layout_toRightOf="@+id/img"
         android:textColor="@android:color/black"
         android:textSize="@dimen/listtext_size"
-        android:textStyle="bold" />
+/>
 
     <TextView
         android:id="@+id/txt_count"

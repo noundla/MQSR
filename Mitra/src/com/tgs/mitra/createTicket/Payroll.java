@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class Payroll extends Activity {
 	private Context _activity=null;
 	ConnectionDetector mConneDetect=null;
 	public static String creat_message;
+	Spinner depatment_spinner;
+	TextView store_name;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,15 @@ public class Payroll extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.createticket);
 
+		
+		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+		
+		   depatment_spinner.setVisibility(View.GONE);
+				 store_name = (TextView) findViewById(R.id.store_name);
+			   
+				 store_name.setVisibility(View.VISIBLE);
+		
+		
 		_activity=this;
 		mConneDetect =new ConnectionDetector(getApplicationContext());
 		TextView heder= (TextView)findViewById(R.id.main_img);

@@ -34,6 +34,7 @@ public class CreateTicket extends Activity {
 	private ListView mainListView;
 	private ArrayAdapter<String> listAdapter;
 	Spinner depatment_spinner;
+	TextView store_name;
 	private String[] state= {"Andra Pradesh","Arunachal Pradesh","Assam","Bihar","Haryana","Himachal Pradesh", "Jammu and Kashmir", "Jharkhand","Karnataka", "Kerala","Tamil Nadu"};
 	private Context _activity=null;
 	ConnectionDetector mConneDetect=null;
@@ -66,7 +67,10 @@ public class CreateTicket extends Activity {
 		   
 		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
 	
-
+		   depatment_spinner.setVisibility(View.VISIBLE);
+			 store_name = (TextView) findViewById(R.id.store_name);
+		   
+			 store_name.setVisibility(View.GONE);
 /*		ArrayAdapter<String> adapter_state = new ArrayAdapter<String>(this,
 				R.layout.spintext, state);
 		adapter_state.setDropDownViewResource(R.layout.spintext);

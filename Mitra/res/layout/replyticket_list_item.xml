@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
     android:layout_height="wrap_content"
-    
- >
+    android:layout_margin="10dp" >
 
     <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
-    android:layout_marginRight="@dimen/reply_ticket_txt_mag"
-        android:orientation="horizontal"
-  >
+        android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
+        android:layout_marginRight="@dimen/reply_ticket_txt_mag"
+        android:orientation="horizontal" >
 
         <!-- android:id="@+id/depart_id" -->
 
@@ -22,11 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-       
-        
             android:singleLine="true"
             android:text="101"
-            
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_ticket_txt"
             android:textStyle="bold" />
@@ -37,14 +31,22 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/department_name"
-       
             android:singleLine="true"
             android:text="-Title"
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_ticket_txt"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
+            android:singleLine="true"
+            android:layout_alignParentRight="true"
+            android:text="11:30AM"
+            android:textColor="@android:color/black"
+            android:textSize="13dp" />
     </RelativeLayout>
 
     <TextView
@@ -52,21 +54,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/top_layout"
-
+        android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
+        android:layout_marginRight="@dimen/reply_ticket_txt_mag"
         android:maxLines="2"
-            android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
-    android:layout_marginRight="@dimen/reply_ticket_txt_mag"
-    
         android:text="This is test descrip "
         android:textColor="@android:color/black"
-        android:textSize="@dimen/reply_ticket_txt" />
+        android:textSize="@dimen/reply_ticket_txt2" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/depart_desc"
-            android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
-    android:layout_marginRight="@dimen/reply_ticket_txt_mag"
+        android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
+        android:layout_marginRight="@dimen/reply_ticket_txt_mag"
         android:orientation="horizontal" >
 
         <TextView
@@ -77,21 +77,19 @@
             android:layout_marginRight="10dp"
             android:singleLine="true"
             android:text="Created User-"
-              android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/reply_ticket_txt" />
+            android:textSize="@dimen/reply_ticket_txt2" />
 
         <TextView
             android:id="@+id/created_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@id/created_user"
+        
+     android:layout_alignParentRight="true"
             android:singleLine="true"
             android:text="Created date"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/reply_ticket_txt" />
+            android:textSize="@dimen/reply_ticket_txt2" />
     </RelativeLayout>
 
 </RelativeLayout>

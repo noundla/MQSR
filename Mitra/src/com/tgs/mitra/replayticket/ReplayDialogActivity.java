@@ -214,7 +214,7 @@ public class ReplayDialogActivity extends Activity {
 			if (replayList != null) {
 				for (int i = 0; i < replayList.size(); i++) {
 					replayText = new TextView(_activity);
-					replayText.setText(replayList.get(i).getReplayMessage().trim());
+					replayText.setText(replayList.get(i).getReplayMessage().trim()+" "+" Add Created datae and time and created by also");
 					replayText.setTextColor(getResources().getColor(android.R.color.black));
 					replayText.setTextSize(16);
 					System.out.println("TEST REP :"+replayList.get(i).getReplayMessage());

@@ -272,6 +272,7 @@ Spinner depatment_spinner;
 				holder.createdby = (TextView) view
 						.findViewById(R.id.created_user);
 				holder.date = (TextView) view.findViewById(R.id.created_date);
+				holder.time = (TextView) view.findViewById(R.id.time);
 				view.setTag(holder);
 			} else {
 				holder = (ViewHolder) view.getTag();
@@ -287,11 +288,42 @@ Spinner depatment_spinner;
 
 						holder.desc.setText(myTicketsList.get(position)
 								.getTicketDescription());
-						holder.createdby.setText(myTicketsList.get(position)
-								.getLastModifiedBy());
+					/*	holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+								.getLastModifiedBy()+" On "+ myTicketsList.get(position)
+								.getLastModified());*/
+					
 
-						holder.date.setText(myTicketsList.get(position)
-								.getLastModified());
+		//2014-09-01T09:17:18.05
+
+						String dt = myTicketsList.get(position)
+								.getLastModified();
+						String splitParts[] = dt.split("T");
+						
+						
+						String dates  = splitParts[0];
+						String times  = splitParts[1];
+						
+						String onlytime[]=times.split(":");
+						String hour=onlytime[0];
+						String minute=onlytime[1];
+						String second=onlytime[2];
+						
+						
+						String dateParts[] = dates.split("-");
+						String month  = dateParts[0];
+						String day  = dateParts[1];
+						String year = dateParts[2];
+						
+						
+						holder.time.setText(hour+":"+minute);
+						
+					
+						
+						//holder.date.setText(hour+":"+minute);
+						holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+								.getLastModifiedBy());
+						
+						holder.date.setText(dates);
 						holder.setMqTickets(myTicketsList.get(position));
 					//}
 			} catch (Exception e) {
@@ -310,6 +342,7 @@ Spinner depatment_spinner;
 		TextView desc;
 		TextView createdby;
 		TextView date;
+		TextView time;
 		MQTickets mqTickets=null;
 		public MQTickets getMqTickets() {
 			return mqTickets;
