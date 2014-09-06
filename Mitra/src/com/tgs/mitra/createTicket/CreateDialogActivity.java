@@ -1,24 +1,25 @@
 package com.tgs.mitra.createTicket;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
 import com.tgs.mitra.bean.Department;
 import com.tgs.mitra.bean.MQTicketing;
@@ -41,11 +42,13 @@ public class CreateDialogActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.create_ticket_dialog);
 
-		TextView titleText=(TextView)findViewById(R.id.main_img);
+		final TextView titleText=(TextView)findViewById(R.id.main_img);
 		
 		_activity=this;
 		mConneDetect =new ConnectionDetector(getApplicationContext());
 		Button back = (Button) findViewById(R.id.back_btnn);
+		
+		((TextView)findViewById(R.id.store_name)).setText(User.getInstance().getStoreName());
 
 		back.setOnClickListener(new OnClickListener() {
 
@@ -103,10 +106,9 @@ public class CreateDialogActivity extends Activity {
 				mqTicketing.setCreatedDate(formatter.format(javaUtilDate)); 
 				mqTicketing.setCreatedUser(User.getInstance().getUser());
 				mqTicketing.setDepartment(department.getDepartment());
-				mqTicketing.setDetails("");//replyText.getText().toString()
+				mqTicketing.setDetails(replyText.getText().toString());//replyText.getText().toString()
 				mqTicketing.setDueDate(formatter.format(javaUtilDate)); 
 				mqTicketing.setGuidfield(department.getGuidfield());
-				
 				 
               mqTicketing.setLastChange(formatter.format(javaUtilDate));
                mqTicketing.setLastChangeUser(User.getInstance().getUser());
@@ -115,7 +117,7 @@ public class CreateDialogActivity extends Activity {
                mqTicketing.setStoreId(User.getInstance().getStoreName());
                mqTicketing.setTicketId("0");
                mqTicketing.setTicketStatus("Open"); 
-               mqTicketing.setTitle(replyText.getText().toString());
+               mqTicketing.setTitle(titleText.getText().toString());
 				
 				
                
@@ -142,6 +144,7 @@ public class CreateDialogActivity extends Activity {
 	{
 		ProgressDialog dialog=null;
 		private boolean status=false;
+		int ticketId=0;
 
 
 		@Override
@@ -159,6 +162,7 @@ public class CreateDialogActivity extends Activity {
 			{
 				UtilMethod method=new UtilMethod();
 				status=method.replayTicket(User.getInstance(),arg0[0]);
+				ticketId=method.createdTicketId;
 			}
 			return null;
 		}
@@ -171,7 +175,24 @@ public class CreateDialogActivity extends Activity {
 			if(status)
 			{
 			 Toast.makeText(_activity, "Ticket created successfully", Toast.LENGTH_LONG).show();
-			 finish();
+			 AlertDialog alertDialog = new AlertDialog.Builder(
+					 CreateDialogActivity.this).create();
+					 alertDialog.setTitle(getString(R.string.app_name));
+					 alertDialog.setMessage("Created new ticket:"+ticketId+" successfully");
+					 alertDialog.setIcon(R.drawable.ic_launcher);
+					 
+					  alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+					 public void onClick(DialogInterface dialog, int which) {
+						 finish();
+						 Intent i = new Intent(_activity,
+									HomePage.class);
+							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+							startActivity(i);
+					 }
+					 }
+					  );
+					  alertDialog.show();
+			
 			}
 			else{
 				Toast.makeText(_activity, "Ticket created Fail!", Toast.LENGTH_LONG).show();

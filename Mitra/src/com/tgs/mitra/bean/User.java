@@ -1,5 +1,7 @@
 package com.tgs.mitra.bean;
 
+import java.util.ArrayList;
+
 public class User {
 
 	private String user="";
@@ -8,6 +10,8 @@ public class User {
 	private String storeName="";
 	
 	static User userObj=null;
+	private ArrayList<String> storeList=null; 
+	
 	public static User getInstance()
 	{
 		if(userObj==null)
@@ -37,6 +41,14 @@ public class User {
 
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
+	}
+
+	public ArrayList<String> getStoreList() {
+		return storeList;
+	}
+
+	public void setStoreList(ArrayList<String> storeList) {
+		this.storeList = storeList;
 	}
 	
 }

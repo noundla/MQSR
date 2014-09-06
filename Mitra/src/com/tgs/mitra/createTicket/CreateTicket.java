@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -32,10 +33,8 @@ import com.tgs.mitra.util.UtilMethod;
 public class CreateTicket extends Activity {
 
 	private ListView mainListView;
-	private ArrayAdapter<String> listAdapter;
-	Spinner depatment_spinner;
-	TextView store_name;
-	private String[] state= {"Andra Pradesh","Arunachal Pradesh","Assam","Bihar","Haryana","Himachal Pradesh", "Jammu and Kashmir", "Jharkhand","Karnataka", "Kerala","Tamil Nadu"};
+	private Spinner depatment_spinner;
+	private TextView store_name;
 	private Context _activity=null;
 	ConnectionDetector mConneDetect=null;
 
@@ -50,8 +49,22 @@ public class CreateTicket extends Activity {
 		  mConneDetect =new ConnectionDetector(getApplicationContext());
 		
 		
+		  depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+			
+		   depatment_spinner.setVisibility(View.VISIBLE);
+		   if(User.getInstance().getStoreList()==null)
+		   {
 			StoreListTaks storeListTaks=new StoreListTaks();
 			storeListTaks.execute();
+		   }
+		   else{
+				  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(CreateTicket.this,
+							R.layout.spintext, User.getInstance().getStoreList());
+						dataAdapter.setDropDownViewResource(R.layout.spintext);
+						depatment_spinner.setAdapter(dataAdapter);
+						
+						depatment_spinner.setSelection(dataAdapter.getPosition(User.getInstance().getStoreName()));
+			  }
 		  
 		   if(mConneDetect.isConnectingToInternet())
 			{
@@ -62,12 +75,29 @@ public class CreateTicket extends Activity {
 			   Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
 			   finish();
 		   }
-		
+		   
+		   
+		   
 		
 		   
-		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
-	
-		   depatment_spinner.setVisibility(View.VISIBLE);
+		   depatment_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		   
+		 
 			 store_name = (TextView) findViewById(R.id.store_name);
 		   
 			 store_name.setVisibility(View.GONE);
@@ -141,7 +171,7 @@ public class CreateTicket extends Activity {
 	
 	class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
-		private ArrayList<String> storeList=null;
+		
 		private ProgressDialog dialog=null;
 
 		@Override
@@ -156,8 +186,10 @@ public class CreateTicket extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 
+			  ArrayList<String> storeList=null;
 			UtilMethod method=new UtilMethod();
 			storeList= method.getUserallowedstoresList(User.getInstance());
+			User.getInstance().setStoreList(storeList);
 			return null;
 		}
 
@@ -167,7 +199,7 @@ public class CreateTicket extends Activity {
 			
 			
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(CreateTicket.this,
-					R.layout.spintext, storeList);
+					R.layout.spintext, User.getInstance().getStoreList());
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				depatment_spinner.setAdapter(dataAdapter);
 			

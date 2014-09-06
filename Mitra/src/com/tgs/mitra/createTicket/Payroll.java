@@ -50,15 +50,16 @@ public class Payroll extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.createticket);
 
-		
-		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
-		
-		   depatment_spinner.setVisibility(View.GONE);
-				 store_name = (TextView) findViewById(R.id.store_name);
-			   
-				 store_name.setVisibility(View.VISIBLE);
-		
-		
+
+		depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+
+		depatment_spinner.setVisibility(View.GONE);
+		store_name = (TextView) findViewById(R.id.store_name);
+		store_name.setVisibility(View.VISIBLE);
+
+		store_name.setText(User.getInstance().getStoreName());
+
+
 		_activity=this;
 		mConneDetect =new ConnectionDetector(getApplicationContext());
 		TextView heder= (TextView)findViewById(R.id.main_img);
@@ -69,12 +70,12 @@ public class Payroll extends Activity {
 
 		if(mConneDetect.isConnectingToInternet())
 		{
-		DoBackground background=new DoBackground();
-		background.execute(department);
+			DoBackground background=new DoBackground();
+			background.execute(department);
 		}
 		else{
-			  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
-			  finish();
+			Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+			finish();
 		}
 
 		back.setOnClickListener(new OnClickListener() {
@@ -110,14 +111,14 @@ public class Payroll extends Activity {
 
 			}
 		});
-		
-		 Button create_btn=(Button)findViewById(R.id.btn_create);
-			Button reply_btn=(Button)findViewById(R.id.btn_reply);
 
-			create_btn.setOnClickListener(listener);
-			reply_btn.setOnClickListener(listener);
+		Button create_btn=(Button)findViewById(R.id.btn_create);
+		Button reply_btn=(Button)findViewById(R.id.btn_reply);
+
+		create_btn.setOnClickListener(listener);
+		reply_btn.setOnClickListener(listener);
 	}
-	
+
 	private OnClickListener listener = new OnClickListener() {
 
 
@@ -153,7 +154,7 @@ public class Payroll extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
-	/*	Intent ir = new Intent(getApplicationContext(), CreateTicket.class);
+		/*	Intent ir = new Intent(getApplicationContext(), CreateTicket.class);
 
 		startActivity(ir);*/
 		finish();
@@ -202,19 +203,19 @@ public class Payroll extends Activity {
 				}
 				listAdapter = new ArrayAdapter<String>(Payroll.this, R.layout.listtext,
 						questionList);*/
-			
+
 			if(departQsnsList.size()==0)
 			{
 				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
 				finish();
 			}
-			
+
 			MyCustom myCustom=new MyCustom(Payroll.this, departQsnsList);
-				mainListView.setAdapter(myCustom);
+			mainListView.setAdapter(myCustom);
 
 
 
-			
+
 		}
 	}
 
@@ -231,7 +232,7 @@ public class Payroll extends Activity {
 			this.context = context;
 		}
 
-		
+
 		@Override
 		public View getView(int position, View view, ViewGroup parent) {
 			LayoutInflater inflater = context.getLayoutInflater();
@@ -239,14 +240,14 @@ public class Payroll extends Activity {
 			TextView txtTitle = (TextView) rowView.findViewById(R.id.txt);
 			ImageView imageView = (ImageView) rowView.findViewById(R.id.img);
 			txtTitle.setText(quationList.get(position).getQuestionTitle());
-		
-			 
-				imageView.setImageResource(R.drawable.hr);
-			
+
+
+			imageView.setImageResource(R.drawable.hr);
+
 			rowView.setTag(quationList.get(position));
 			return rowView;
 		}
-		
+
 
 
 

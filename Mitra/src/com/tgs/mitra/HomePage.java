@@ -28,7 +28,6 @@ import com.tgs.mitra.homeinfo.HomeTicketInfo;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.HomeScreenInfo;
-import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
 
@@ -61,7 +60,6 @@ public class HomePage  extends Activity {
 
 		}
 
-
 		homeProgressBar=(ProgressBar)findViewById(R.id.progressBar1);
 
 		homeProgressBar.setVisibility(View.VISIBLE);
@@ -81,13 +79,12 @@ public class HomePage  extends Activity {
 		reply_btn.setOnClickListener(listener);
 
 
-
 		logout_btn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 
+				 
 				finish();
 
 				Intent i = new Intent(getApplicationContext(),
@@ -104,7 +101,6 @@ public class HomePage  extends Activity {
 					int arg2, long arg3) {
 
 				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
-
 			}
 
 			@Override
@@ -116,10 +112,19 @@ public class HomePage  extends Activity {
 
 		if(mConneDetect.isConnectingToInternet())
 		{
-
+			
+			
+			  if(User.getInstance().getStoreList()==null)
+			   {
 			StoreListTaks storeListTaks=new StoreListTaks();
 			storeListTaks.execute();
-
+			   }
+			  else{
+				  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
+							R.layout.listtext, User.getInstance().getStoreList());
+					dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					mSpinner.setAdapter(dataAdapter);
+			  }
 			HomeInfoTaks homeInfoTaks=new HomeInfoTaks();
 			homeInfoTaks.execute();
 		}
@@ -162,7 +167,7 @@ public class HomePage  extends Activity {
 
 	class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
-		private ArrayList<String> storeList=null;
+		
 		private ProgressDialog dialog=null;
 
 		@Override
@@ -177,8 +182,10 @@ public class HomePage  extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 
+			  ArrayList<String> storeList=null;
 			UtilMethod method=new UtilMethod();
 			storeList= method.getUserallowedstoresList(User.getInstance());
+			User.getInstance().setStoreList(storeList);
 			return null;
 		}
 
@@ -188,7 +195,7 @@ public class HomePage  extends Activity {
 
 
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
-					R.layout.listtext, storeList);
+					R.layout.listtext, User.getInstance().getStoreList());
 			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			mSpinner.setAdapter(dataAdapter);
 

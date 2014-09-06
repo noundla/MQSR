@@ -41,34 +41,63 @@ public class ReplayTicket extends Activity   {
 	private ConnectionDetector mConneDetect = null;
 	private LinearLayout contentLayout = null;
 	ListView reply_list_view;
-Spinner depatment_spinner;
+	private Spinner depatment_spinner;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.replay_xml);
 		_activity = this;
-		
-		
-		
+
+
+
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 
 		if(mConneDetect.isConnectingToInternet())
 		{
-		DoBackground background = new DoBackground();
-		background.execute();
+			DoBackground background = new DoBackground();
+			background.execute();
 
 		}
 		else{
-			  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
-			  finish();
+			Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+			finish();
+		}
+
+
+		depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+		if(User.getInstance().getStoreList()==null)
+		{
+			StoreListTaks storeListTaks=new StoreListTaks();
+			storeListTaks.execute();
+		}
+		else{
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayTicket.this,
+					R.layout.spintext, User.getInstance().getStoreList());
+			dataAdapter.setDropDownViewResource(R.layout.spintext);
+			depatment_spinner.setAdapter(dataAdapter);
+			
+			depatment_spinner.setSelection(dataAdapter.getPosition(User.getInstance().getStoreName()));
 		}
 		
-		StoreListTaks storeListTaks=new StoreListTaks();
-		storeListTaks.execute();
-		
-		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
-		
+		depatment_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+
+
 		Button back = (Button) findViewById(R.id.back_btnn);
 
 		back.setOnClickListener(new OnClickListener() {
@@ -89,7 +118,7 @@ Spinner depatment_spinner;
 		// contentLayout=(LinearLayout)findViewById(R.id.content_layout);
 		reply_list_view = (ListView) findViewById(R.id.reply_ListView);
 
-		 
+
 		reply_list_view.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -101,10 +130,10 @@ Spinner depatment_spinner;
 				ViewHolder holder=(ViewHolder) view.getTag();
 				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
 				startActivity(intent);
-				
+
 			}
 		});
-		 
+
 		Button create_btn = (Button) findViewById(R.id.btn_create);
 		Button reply_btn = (Button) findViewById(R.id.btn_reply);
 
@@ -112,7 +141,7 @@ Spinner depatment_spinner;
 		reply_btn.setOnClickListener(listener);
 	}
 
-	
+
 	class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
 		private ArrayList<String> storeList=null;
@@ -138,17 +167,17 @@ Spinner depatment_spinner;
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			
-			
+
+
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayTicket.this,
 					R.layout.spintext, storeList);
-				dataAdapter.setDropDownViewResource(R.layout.spintext);
-				depatment_spinner.setAdapter(dataAdapter);
-			
+			dataAdapter.setDropDownViewResource(R.layout.spintext);
+			depatment_spinner.setAdapter(dataAdapter);
+
 			dialog.dismiss();
 		}
 	}
-	
+
 	private OnClickListener listener = new OnClickListener() {
 
 		@Override
@@ -165,7 +194,7 @@ Spinner depatment_spinner;
 				break;
 			case R.id.btn_reply:
 
-		/*		Intent intent = new Intent(getApplicationContext(),
+				/*		Intent intent = new Intent(getApplicationContext(),
 						ReplayTicket.class);
 				startActivity(intent);*/
 				break;
@@ -194,7 +223,7 @@ Spinner depatment_spinner;
 			if (mConneDetect.isConnectingToInternet()) {
 				UtilMethod method = new UtilMethod();
 				myTicketsList = method.getReplyTicketsList(User.getInstance()); // method.getMyTeckets(User.getInstance(),
-																				// "Open");
+				// "Open");
 			}
 			return null;
 		}
@@ -203,13 +232,13 @@ Spinner depatment_spinner;
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			
+
 			if(myTicketsList==null)
 			{
-			Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
-			finish();
+				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				finish();
 			}
-			
+
 			if(myTicketsList.size()==0)
 			{
 				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
@@ -272,7 +301,8 @@ Spinner depatment_spinner;
 				holder.createdby = (TextView) view
 						.findViewById(R.id.created_user);
 				holder.date = (TextView) view.findViewById(R.id.created_date);
-				holder.time = (TextView) view.findViewById(R.id.time);
+				holder.count = (TextView) view.findViewById(R.id.count);
+				holder.ticketID=(TextView) view.findViewById(R.id.ticket_id);
 				view.setTag(holder);
 			} else {
 				holder = (ViewHolder) view.getTag();
@@ -280,52 +310,53 @@ Spinner depatment_spinner;
 			try {
 				//if (myTicketsList != null)
 
-					//for (int i = 0; i < myTicketsList.size(); i++) {
-						holder.dep_title.setText(myTicketsList.get(position)
-								.getTicketTitle());
-						holder.dep_name.setText(myTicketsList.get(position)
-								.getDepartmentName());
+				//for (int i = 0; i < myTicketsList.size(); i++) {
+				holder.dep_title.setText(myTicketsList.get(position)
+						.getTicketTitle());
+				holder.dep_name.setText(myTicketsList.get(position)
+						.getDepartmentName());
 
-						holder.desc.setText(myTicketsList.get(position)
-								.getTicketDescription());
-					/*	holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+				holder.desc.setText(myTicketsList.get(position)
+						.getTicketDescription());
+				/*	holder.createdby.setText("Created by : "+ myTicketsList.get(position)
 								.getLastModifiedBy()+" On "+ myTicketsList.get(position)
 								.getLastModified());*/
-					
 
-		//2014-09-01T09:17:18.05
 
-						String dt = myTicketsList.get(position)
-								.getLastModified();
-						String splitParts[] = dt.split("T");
-						
-						
-						String dates  = splitParts[0];
-						String times  = splitParts[1];
-						
-						String onlytime[]=times.split(":");
-						String hour=onlytime[0];
-						String minute=onlytime[1];
-						String second=onlytime[2];
-						
-						
-						String dateParts[] = dates.split("-");
-						String month  = dateParts[0];
-						String day  = dateParts[1];
-						String year = dateParts[2];
-						
-						
-						holder.time.setText(hour+":"+minute);
-						
-					
-						
-						//holder.date.setText(hour+":"+minute);
-						holder.createdby.setText("Created by : "+ myTicketsList.get(position)
-								.getLastModifiedBy());
-						
-						holder.date.setText(dates);
-						holder.setMqTickets(myTicketsList.get(position));
-					//}
+				//2014-09-01T09:17:18.05
+
+				String dt = myTicketsList.get(position)
+						.getLastModified();
+				String splitParts[] = dt.split("T");
+
+
+				String dates  = splitParts[0];
+				String times  = splitParts[1];
+
+				String onlytime[]=times.split(":");
+				String hour=onlytime[0];
+				String minute=onlytime[1];
+				String second=onlytime[2];
+
+
+				String dateParts[] = dates.split("-");
+				String month  = dateParts[0];
+				String day  = dateParts[1];
+				String year = dateParts[2];
+
+
+				holder.count.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
+
+
+
+				//holder.date.setText(hour+":"+minute);
+				holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+						.getLastModifiedBy());
+
+				holder.date.setText(dates/*+":"+hour+":"+minute*/);
+				holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
+				holder.setMqTickets(myTicketsList.get(position));
+				//}
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -342,7 +373,8 @@ Spinner depatment_spinner;
 		TextView desc;
 		TextView createdby;
 		TextView date;
-		TextView time;
+		TextView count;
+		TextView ticketID;
 		MQTickets mqTickets=null;
 		public MQTickets getMqTickets() {
 			return mqTickets;
@@ -350,7 +382,7 @@ Spinner depatment_spinner;
 		public void setMqTickets(MQTickets mqTickets) {
 			this.mqTickets = mqTickets;
 		}
-		
+
 
 	}
 

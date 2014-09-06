@@ -19,7 +19,7 @@ public class UtilMethod {
 
 
 	public  final  String NAMESPACE = "http://tempuri.org/";
-	public final String URL = "http://76.31.161.97:808/MitraQSRAPI/MitraQSRService.svc?wsdl";
+	public final String URL = "http://73.166.145.211:808/MitraQSRAPI/MitraQSRService.svc?wsdl";
 
 	//Login
 	public final String METHOD_NAME_LOGIN = "Login";
@@ -71,13 +71,15 @@ public class UtilMethod {
 	//Home Ticket type
 		public final String METHOD_NAME_HOMESCREENINFO="HomeScreenInfo";
 		public final String SOAP_ACTION_HOMESCREENINFO="http://tempuri.org/IMitraQSRService/HomeScreenInfo";
+		
+		public static int createdTicketId=0;
 
 
 	/**
 	 * Crate object for Methods class.
 	 */
 	public UtilMethod() {
-		// TODO Auto-generated constructor stub
+		createdTicketId=0;
 	}
 
 
@@ -508,17 +510,19 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			//transport.debug=true;
+			transport.debug=true;
 			transport.call(SOAP_ACTION_CREATETICKET, envelope);
 
 			//System.out.println("TEST Request :"+transport.requestDump);
-			//System.out.println("Response :"+transport.responseDump);
+			System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 			//System.out.println("TEST RESULT :"+response);
 
 			SoapObject object=(SoapObject) response.getProperty(0);
 
+			System.out.println("TEST web service "+object.getProperty("ticketId").toString());
 			result=Boolean.valueOf(object.getProperty("ok").toString());
+			
 
 
 		}catch (Exception e) {
@@ -620,6 +624,7 @@ public class UtilMethod {
 	public boolean replayTicket(User curentUser,MQTicketing replayTicket )
 	{
 		boolean result=false;
+		createdTicketId=0;
 		try{
 			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_REPLYTICKET);
 
@@ -794,7 +799,7 @@ public class UtilMethod {
 			transport.debug=true;
 			transport.call(SOAP_ACTION_REPLYTICKET, envelope);
 
-			System.out.println("TEST Request :"+transport.requestDump);
+			//System.out.println("TEST Request :"+transport.requestDump);
 			System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
@@ -802,6 +807,10 @@ public class UtilMethod {
 
 			result=Boolean.valueOf(object.getProperty("ok").toString());
 
+			if(result)
+			{
+				createdTicketId=Integer.parseInt(object.getProperty("ticketId").toString());
+			}
 
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -1022,7 +1031,11 @@ public class UtilMethod {
 				myticket.setLastModified(depobj.getProperty("LastModified").toString());
 				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
 				myticket.setStatus(depobj.getProperty("Status").toString());
+				//anyType{}
+				if(!depobj.getProperty("TicketDescription").toString().equalsIgnoreCase("anyType{}"))
+				{
 				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
+				}
 				myticket.setTicketId(depobj.getProperty("TicketId").toString());
 				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
 				//hasReply

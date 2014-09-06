@@ -65,6 +65,8 @@ public class ReplayDialogActivity extends Activity {
 		deptId.setText("Ticket Id : " + replayTecket.getTicketId());
 		deptDes.setText(replayTecket.getTicketDescription());
 		deptName.setText(replayTecket.getTicketTitle());
+		
+		((TextView)findViewById(R.id.store_id)).setText(User.getInstance().getStoreName());
 
 		Button back = (Button) findViewById(R.id.back_btnn);
 
