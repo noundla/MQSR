@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:layout_marginLeft="5dp"
+         android:layout_marginTop="5dp"
+         android:layout_marginBottom="5dp"
+         android:background="@color/green_home"
+        android:orientation="vertical" android:layout_weight="0.8" >
+        
+        <TextView
+            android:id="@+id/ticket_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:gravity="center"
+            android:text="101"
+            android:maxLength="7"
+            android:textColor="@android:color/black"
+             android:textSize="10dp"
+            android:textStyle="bold" />
+        
+    </LinearLayout>
+    <RelativeLayout 
+        android:layout_weight="0.2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp" >
+    android:layout_margin="5dp" >
 
     <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
-        android:layout_marginRight="@dimen/reply_ticket_txt_mag"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal" >
 
         <!-- android:id="@+id/depart_id" -->
@@ -21,32 +49,34 @@
             android:layout_alignParentLeft="true"
             android:singleLine="true"
             android:text="101"
+            android:maxLength="8"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/reply_ticket_txt"
+             android:textSize="12dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/depart_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/department_name"
             android:singleLine="true"
-            android:text="-Title"
+            android:text="-Title  skdflksdjlkf dslkf lksdf lkds"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/reply_ticket_txt"
+            android:maxLength="28"
+            android:textSize="12dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:singleLine="true"
             android:layout_alignParentRight="true"
+            android:singleLine="true"
             android:text="11:30AM"
+            android:textStyle="italic"
             android:textColor="@android:color/black"
-            android:textSize="13dp" />
+            android:textSize="10dp" />
     </RelativeLayout>
 
     <TextView
@@ -59,14 +89,14 @@
         android:maxLines="2"
         android:text="This is test descrip "
         android:textColor="@android:color/black"
-        android:textSize="@dimen/reply_ticket_txt2" />
+        android:textSize="11dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/depart_desc"
-        android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
-        android:layout_marginRight="@dimen/reply_ticket_txt_mag"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -78,18 +108,20 @@
             android:singleLine="true"
             android:text="Created User-"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/reply_ticket_txt2" />
+            android:textSize="10dp"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/created_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-        
-     android:layout_alignParentRight="true"
+            android:layout_alignParentRight="true"
             android:singleLine="true"
             android:text="Created date"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/reply_ticket_txt2" />
+            android:textSize="10dp" />
     </RelativeLayout>
 
 </RelativeLayout>
+
+</LinearLayout>
