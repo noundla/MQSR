@@ -40,7 +40,7 @@ public class HomePage  extends Activity {
 	private Context _activity=null;
 	private ListView homeListView;
 	ProgressBar homeProgressBar=null;
-	private Spinner mSpinner=null;
+	//private Spinner mSpinner=null;
 	private ConnectionDetector mConneDetect;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class HomePage  extends Activity {
 
 		homeListView = (ListView) findViewById(R.id.homelist);
 
-		mSpinner = (Spinner) findViewById(R.id.store_spinner);
+		//mSpinner = (Spinner) findViewById(R.id.store_spinner);
 
 		logout_btn=(Button)findViewById(R.id.logout);
 		logout_btn.bringToFront();
@@ -94,7 +94,7 @@ public class HomePage  extends Activity {
 			}
 		});
 
-		mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		/*mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -108,7 +108,7 @@ public class HomePage  extends Activity {
 
 
 			}
-		});
+		});*/
 
 		if(mConneDetect.isConnectingToInternet())
 		{
@@ -120,10 +120,10 @@ public class HomePage  extends Activity {
 			storeListTaks.execute();
 			   }
 			  else{
-				  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
+				  /*ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
 							R.layout.listtext, User.getInstance().getStoreList());
 					dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-					mSpinner.setAdapter(dataAdapter);
+					mSpinner.setAdapter(dataAdapter);*/
 			  }
 			HomeInfoTaks homeInfoTaks=new HomeInfoTaks();
 			homeInfoTaks.execute();
@@ -194,10 +194,10 @@ public class HomePage  extends Activity {
 			super.onPostExecute(result);
 
 
-			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
+			/*ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomePage.this,
 					R.layout.listtext, User.getInstance().getStoreList());
 			dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			mSpinner.setAdapter(dataAdapter);
+			mSpinner.setAdapter(dataAdapter);*/
 
 			dialog.dismiss();
 		}

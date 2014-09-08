@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tgs.mitra.R;
+import com.tgs.mitra.R.color;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.util.ConnectionDetector;
@@ -42,6 +44,7 @@ public class ReplayTicket extends Activity   {
 	private LinearLayout contentLayout = null;
 	ListView reply_list_view;
 	private Spinner depatment_spinner;
+	private int REQUESTCODE=123;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -121,15 +124,20 @@ public class ReplayTicket extends Activity   {
 
 		reply_list_view.setOnItemClickListener(new OnItemClickListener() {
 
+		
+
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
 					long arg3) {
+				
+				//view.setBackgroundColor(color.ash_clor);
 
 				Intent intent = new Intent(ReplayTicket.this,
 						ReplayDialogActivity.class);
 				ViewHolder holder=(ViewHolder) view.getTag();
 				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
-				startActivity(intent);
+				//startActivity(intent);
+				startActivityForResult(intent, REQUESTCODE);
 
 			}
 		});
@@ -345,8 +353,16 @@ public class ReplayTicket extends Activity   {
 				String year = dateParts[2];
 
 
+				if(myTicketsList.get(position).getReplayCount()!=0)
+				{
 				holder.count.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
-
+				holder.count.setVisibility(View.VISIBLE);
+				view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+				}else{
+					holder.count.setVisibility(View.INVISIBLE);
+					view.setBackgroundColor(Color.WHITE);
+				}
+				
 
 
 				//holder.date.setText(hour+":"+minute);

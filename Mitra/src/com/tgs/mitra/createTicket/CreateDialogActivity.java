@@ -82,7 +82,7 @@ public class CreateDialogActivity extends Activity {
 			Toast.makeText(getApplicationContext(), "Faild to load!",Toast.LENGTH_LONG).show();
 			finish();
 		}
-		TextView deptId = (TextView) findViewById(R.id.tic_name);
+		final TextView deptId = (TextView) findViewById(R.id.tic_name);
 		
 		titleText.setText(department.getDepartment());
 
@@ -117,7 +117,8 @@ public class CreateDialogActivity extends Activity {
                mqTicketing.setStoreId(User.getInstance().getStoreName());
                mqTicketing.setTicketId("0");
                mqTicketing.setTicketStatus("Open"); 
-               mqTicketing.setTitle(titleText.getText().toString());
+               
+               mqTicketing.setTitle(deptId.getText().toString());
 				
 				
                
