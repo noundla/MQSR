@@ -9,12 +9,12 @@
         android:id="@+id/main_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/leavedet_txt_ht1"
-        android:background="@color/blue_main"
+        android:background="@drawable/bottom_ar"
         android:paddingLeft="40dp"
         android:paddingTop="10dp"
         android:singleLine="true"
         android:text="Reply Ticket"
-        android:textColor="@color/white_text"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/heading"
         android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="-5dp"
-        android:layout_marginRight="10dp"
+   android:layout_marginRight="-10dp"
               android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
     />
@@ -42,12 +42,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/main_img"
-         android:layout_marginLeft="5dp"
-         android:layout_marginRight="5dp"
+    
        android:cacheColorHint="@android:color/transparent" 
         android:layout_marginBottom="40dp"
-         android:divider="@android:color/transparent"
-            android:dividerHeight="3dp"
+        android:background="@android:color/white"
+         android:divider="@color/reply_color"
+            android:dividerHeight="1dp"
          >
     </ListView>
     

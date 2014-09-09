@@ -58,11 +58,11 @@ public class ReplayDialogActivity extends Activity {
 
 		TextView deptDes = (TextView) findViewById(R.id.depart_desc);
 		TextView deptName = (TextView) findViewById(R.id.depart_name);
-
+		//TextView store_id = (TextView) findViewById(R.id.store_id);
 		replayLayout = (LinearLayout) findViewById(R.id.replasys_layout);
 
-		title.setText("Department : " + replayTecket.getDepartmentName());
-		deptId.setText("Ticket Id : " + replayTecket.getTicketId());
+		title.setText(replayTecket.getDepartmentName());
+		deptId.setText( replayTecket.getTicketId());
 		deptDes.setText(replayTecket.getTicketDescription());
 		deptName.setText(replayTecket.getTicketTitle());
 		

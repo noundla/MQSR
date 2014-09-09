@@ -7,10 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         android:layout_marginLeft="5dp"
-         android:layout_marginTop="5dp"
-         android:layout_marginBottom="5dp"
-         android:background="@color/green_home"
+         android:paddingLeft="5dp"
+       android:layout_margin="7dp"
+         
         android:orientation="vertical" android:layout_weight="0.8" >
         
         <TextView
@@ -19,6 +18,7 @@
             android:layout_height="match_parent"
             android:singleLine="true"
             android:gravity="center"
+            android:background="@color/green_home"
             android:text="101"
             android:maxLength="7"
             android:textColor="@android:color/black"
@@ -30,14 +30,14 @@
         android:layout_weight="0.2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp" >
+    android:padding="5dp" >
 
     <RelativeLayout
         android:id="@+id/top_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+    
+              android:paddingRight="5dp"
         android:orientation="horizontal" >
 
         <!-- android:id="@+id/depart_id" -->
@@ -51,8 +51,8 @@
             android:text="101"
             android:maxLength="8"
             android:textColor="@android:color/black"
-             android:textSize="12dp"
-            android:textStyle="bold" />
+             android:textSize="15dp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/depart_title"
@@ -64,8 +64,8 @@
             android:text="-Title  skdflksdjlkf dslkf lksdf lkds"
             android:textColor="@android:color/black"
             android:maxLength="28"
-            android:textSize="12dp"
-            android:textStyle="bold" />
+            android:textSize="15dp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/count"
@@ -74,7 +74,7 @@
             android:layout_alignParentRight="true"
             android:singleLine="true"
             android:text="11:30AM"
-            android:textStyle="italic"
+            android:textStyle="normal"
             android:textColor="@android:color/black"
             android:textSize="10dp" />
     </RelativeLayout>
@@ -84,19 +84,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/top_layout"
-        android:layout_marginLeft="@dimen/reply_ticket_txt_mag"
-        android:layout_marginRight="@dimen/reply_ticket_txt_mag"
-        android:maxLines="2"
+      
+        android:layout_marginRight="@dimen/reply_ticket_txt_mag1"
+        android:maxLines="1"
+        android:layout_marginTop="-4dp"
         android:text="This is test descrip "
         android:textColor="@android:color/black"
-        android:textSize="11dp" />
+        android:textSize="@dimen/reply_tic_siz" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/depart_desc"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+     
+        android:paddingRight="5dp"
         android:orientation="horizontal" >
 
         <TextView
@@ -108,8 +109,8 @@
             android:singleLine="true"
             android:text="Created User-"
             android:textColor="@android:color/black"
-            android:textSize="10dp"
-            android:textStyle="italic" />
+            android:textSize="@dimen/reply_tic_siz"
+            />
 
         <TextView
             android:id="@+id/created_date"
@@ -119,7 +120,7 @@
             android:singleLine="true"
             android:text="Created date"
             android:textColor="@android:color/black"
-            android:textSize="10dp" />
+            android:textSize="@dimen/reply_tic_siz" />
     </RelativeLayout>
 
 </RelativeLayout>

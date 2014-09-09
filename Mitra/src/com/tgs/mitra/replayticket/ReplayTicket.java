@@ -319,7 +319,7 @@ public class ReplayTicket extends Activity   {
 				//if (myTicketsList != null)
 
 				//for (int i = 0; i < myTicketsList.size(); i++) {
-				holder.dep_title.setText(myTicketsList.get(position)
+				holder.dep_title.setText("-"+myTicketsList.get(position)
 						.getTicketTitle());
 				holder.dep_name.setText(myTicketsList.get(position)
 						.getDepartmentName());
@@ -369,7 +369,7 @@ public class ReplayTicket extends Activity   {
 				holder.createdby.setText("Created by : "+ myTicketsList.get(position)
 						.getLastModifiedBy());
 
-				holder.date.setText(dates/*+":"+hour+":"+minute*/);
+				holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
 				holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
 				holder.setMqTickets(myTicketsList.get(position));
 				//}

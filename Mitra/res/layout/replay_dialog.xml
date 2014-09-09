@@ -33,49 +33,114 @@
         android:orientation="horizontal"
         android:weightSum="3" >
 
+        
+               <TextView
+            android:id="@+id/depart_id1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:text="Ticket Id  :"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+        
         <TextView
             android:id="@+id/depart_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@+id/depart_id1"
             android:text="101"
-            android:textStyle="bold"
+
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
+
+        
         <TextView
             android:id="@+id/depart_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:textStyle="bold"
+
             android:layout_alignParentRight="true"
-            android:text="Content Title"
+            android:text="Department  : "
             android:textColor="@android:color/black"
             android:textSize="14sp" />
         
+                        <TextView
+            android:id="@+id/depart_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:textStyle="bold"
+            android:layout_toLeftOf="@id/depart_title"
+            android:text="Department  :"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+                        
+                        
+                              <Spinner
+            android:id="@+id/ticket_prority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/depart_title1"
+            android:layout_gravity="left"
+            android:layout_alignParentRight="true"
+            android:entries="@array/ticket_prority" />
+        
+                        
+                                   <TextView
+            android:id="@+id/store_id1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:text="Store  :"
+            android:layout_below="@id/depart_id"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
                 <TextView
             android:id="@+id/store_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_alignParentLeft="true"
-            android:text="store name"
+     android:layout_toRightOf="@id/store_id1"
+            android:text="Store name"
             android:layout_below="@id/depart_id"
-            android:textStyle="bold"
+        
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
+                 <TextView
+            android:id="@+id/depart_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/store_id"
+            android:text="Title  :"
+             android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+           />   
+                
         <TextView
             android:id="@+id/depart_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:singleLine="true"
+            android:layout_toRightOf="@id/depart_name1"
             android:layout_below="@id/store_id"
             android:text="Content Title"
             android:textColor="@android:color/black"
@@ -112,13 +177,7 @@
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
-        <Spinner
-            android:id="@+id/ticket_prority"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/depart_desc_replay"
-            android:layout_gravity="left"
-            android:entries="@array/ticket_prority" />
+  
 
       
 
@@ -155,6 +214,21 @@
             android:layout_below="@id/recent_reply"
             android:background="@drawable/square" />
 
+        
+ <!--                <ListView
+        android:id="@+id/replyed_ListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/line"
+    
+       android:cacheColorHint="@android:color/transparent" 
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/white"
+         android:divider="@color/reply_color"
+            android:dividerHeight="1dp"
+         >
+    </ListView> -->
+        
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -173,7 +247,7 @@
       
                 android:orientation="vertical" >
 
-                <!--
+                
      <TextView
             android:id="@+id/replay_sample"
             android:layout_width="wrap_content"
@@ -183,7 +257,7 @@
             android:text="Replay text"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
-                -->
+               
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

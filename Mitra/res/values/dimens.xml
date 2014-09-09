@@ -27,5 +27,8 @@
                 <dimen name="reply_ticket_txt2">14dp</dimen>
                      <dimen name="reply_ticket_txt">15dp</dimen>
                      <dimen name="reply_ticket_txt_mag">15dp</dimen>
+                     <dimen name="reply_ticket_txt_mag1">11dp</dimen>
                      <dimen name="buttom_btn_width">40dp</dimen>
+                     
+                                     <dimen name="reply_tic_siz">12dp</dimen>
 </resources>
