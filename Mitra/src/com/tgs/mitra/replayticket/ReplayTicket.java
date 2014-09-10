@@ -270,6 +270,8 @@ public class ReplayTicket extends Activity   {
 		LayoutInflater inflater;
 		Context context;
 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar cal = Calendar.getInstance();
 		public ReplyListviewAdapter(Context context) {
 			// TODO Auto-generated constructor stub
 			this.context = context;
@@ -362,13 +364,11 @@ public class ReplayTicket extends Activity   {
 
 				
 				
-				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-				Calendar cal = Calendar.getInstance();
+			
 				
 				String current_date=dateFormat.format(cal.getTime()).trim();
 				current_date=current_date.replace("/", "-");
-				System.out.println("uuu.."+current_date.replace("/", "-"));
-				System.out.println("uuu1.."+dates);
+				 
 			
 				if (current_date.toString().equalsIgnoreCase(dates.trim())) {
 					System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
@@ -412,7 +412,7 @@ public class ReplayTicket extends Activity   {
 			//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
 				
 				
-				//holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
+				 holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
 			//	holder.ticketID.setText();
 				holder.setMqTickets(myTicketsList.get(position));
 				//}

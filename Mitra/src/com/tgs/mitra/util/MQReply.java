@@ -10,6 +10,7 @@ public class MQReply {
 	private String ticketDescription="";
 	private String ticketId="";
 	private String ticketTitle="";
+	
 	public String getReplayMessage() {
 		return replayMessage;
 	}
