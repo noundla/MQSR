@@ -25,6 +25,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -315,6 +316,9 @@ public class ReplayTicket extends Activity   {
 				holder.date = (TextView) view.findViewById(R.id.created_date);
 				holder.count = (TextView) view.findViewById(R.id.count);
 				holder.ticketID=(TextView) view.findViewById(R.id.ticket_id);
+				
+				holder.arrow = (ImageView) view
+						.findViewById(R.id.arrow);
 				view.setTag(holder);
 			} else {
 				holder = (ViewHolder) view.getTag();
@@ -365,11 +369,13 @@ public class ReplayTicket extends Activity   {
 				current_date=current_date.replace("/", "-");
 				System.out.println("uuu.."+current_date.replace("/", "-"));
 				System.out.println("uuu1.."+dates);
-				if (current_date.toString().trim().equalsIgnoreCase(dates)) {
+			
+				if (current_date.toString().equalsIgnoreCase(dates.trim())) {
 					System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 					
 					holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 					holder.count.setVisibility(View.VISIBLE);
+	
 					
 				}else{
 					holder.count.setText(formatMonth(month).substring(0, 3)+" "+day/*+","+year */);
@@ -385,16 +391,18 @@ public class ReplayTicket extends Activity   {
 				
 				if(myTicketsList.get(position).getReplayCount()!=0)
 				{
-				holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
-				
-					
+				//holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
+				holder.dep_title.setText("-"+myTicketsList.get(position)
+						.getTicketTitle()+" ");
+				holder.date.setText("   "+myTicketsList.get(position).getReplayCount());
 				holder.date.setVisibility(View.VISIBLE);
+				holder.arrow .setVisibility(View.VISIBLE);
 				view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
 				}else{
 					holder.date.setVisibility(View.INVISIBLE);
+					holder.arrow .setVisibility(View.GONE);
 					view.setBackgroundColor(Color.WHITE);
-				}
-				
+				}				
 
 
 				//holder.date.setText(hour+":"+minute);
@@ -404,7 +412,8 @@ public class ReplayTicket extends Activity   {
 			//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
 				
 				
-				holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
+				//holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
+			//	holder.ticketID.setText();
 				holder.setMqTickets(myTicketsList.get(position));
 				//}
 			} catch (Exception e) {
@@ -425,6 +434,7 @@ public class ReplayTicket extends Activity   {
 		TextView date;
 		TextView count;
 		TextView ticketID;
+		ImageView arrow;
 		MQTickets mqTickets=null;
 		public MQTickets getMqTickets() {
 			return mqTickets;

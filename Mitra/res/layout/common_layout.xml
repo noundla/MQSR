@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:layout_alignParentBottom="true"
     android:background="@drawable/bottom_ar" >
 
     <Button
         android:id="@+id/btn_create"
         android:layout_width="@dimen/buttom_btn_width"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_alignParentLeft="true"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="5dp"
+
         android:layout_marginLeft="@dimen/padding"
         android:layout_marginRight="@dimen/padding"
-        android:layout_marginTop="6dp"
+  
         android:background="@drawable/addticket"
               android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -25,13 +25,11 @@
     <Button
         android:id="@+id/home_button"
         android:layout_width="@dimen/buttom_btn_width"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
          
          android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
-        
-        android:layout_marginTop="6dp"
+    
         android:background="@drawable/home"
               
         android:paddingRight="10dp"
@@ -42,15 +40,15 @@
     <Button
         android:id="@+id/btn_reply"
         android:layout_width="@dimen/buttom_btn_width"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="5dp"
+ 
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:layout_marginLeft="@dimen/padding"
         android:layout_marginRight="@dimen/padding"
-        android:layout_marginTop="6dp"
+     
         android:background="@drawable/replay_ticket"
          />
 
