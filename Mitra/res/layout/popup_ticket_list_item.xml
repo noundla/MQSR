@@ -19,7 +19,7 @@
         android:singleLine="true"
         android:text="IT"
         android:textColor="@android:color/white"
-        android:textSize="11dp"
+        android:textSize="10dp"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -64,23 +64,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/department_name"
-                android:maxLength="28"
+                android:maxLength="21"
                 android:maxWidth="110dp"
                 android:singleLine="true"
                 android:text="-Title  skdflksdjlkf dslkf lksdf lkds"
                 android:textColor="@android:color/black"
-                android:textSize="15dp"
+                android:textSize="13dp"
                 android:textStyle="normal" />
 
-            <TextView
-                android:id="@+id/created_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/depart_title"
-                android:singleLine="true"
-                android:text="Created date"
-                android:textColor="@android:color/black"
-                android:textSize="18dp" />
+            <!--
+        <TextView
+            android:id="@+id/created_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/depart_title"
+            android:singleLine="true"
+            android:text="Created date"
+
+            android:textColor="@android:color/black"
+            android:textSize="15dp" />
+            -->
 
             <TextView
                 android:id="@+id/count"

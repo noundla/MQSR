@@ -15,7 +15,7 @@
         <dimen name="marg_lt">20dp</dimen>
         <dimen name="leavedet_txt_ht1">48dp</dimen>
         <dimen name="heading">15dp</dimen>
-        <dimen name="sum_lv_btn">36dp</dimen>
+        <dimen name="sum_lv_btn">35dp</dimen>
         <dimen name="padding">10dp</dimen>
         <dimen name="login_img">50dp</dimen>
         <dimen name="login_img_mar">10dp</dimen>

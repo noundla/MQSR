@@ -102,7 +102,7 @@
             android:layout_weight="1"
             android:singleLine="true"
             android:layout_alignParentLeft="true"
-            android:text="Store  :"
+            android:text="Store :"
             android:layout_below="@id/depart_id"
             android:textStyle="bold"
             android:textColor="@android:color/black"
@@ -200,7 +200,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/reply_button"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
+           
             android:singleLine="true"
             android:text="Recent Replies"
             android:textColor="@android:color/black"
@@ -215,21 +215,21 @@
             android:background="@drawable/square" />
 
         
- <!--                <ListView
+                <ListView
         android:id="@+id/replyed_ListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/line"
     
        android:cacheColorHint="@android:color/transparent" 
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="3dp"
         android:background="@android:color/white"
-         android:divider="@color/reply_color"
-            android:dividerHeight="1dp"
+        android:divider="#E0E0E0"
+            android:dividerHeight=".5dp"
          >
-    </ListView> -->
+    </ListView>
         
-        <ScrollView
+        <!-- <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/line"
@@ -259,7 +259,7 @@
             android:textSize="14sp" />
                
             </LinearLayout>
-        </ScrollView>
+        </ScrollView> -->
     </RelativeLayout>
 
 </RelativeLayout>
