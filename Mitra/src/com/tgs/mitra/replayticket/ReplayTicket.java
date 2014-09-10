@@ -362,6 +362,7 @@ public class ReplayTicket extends Activity   {
 				Calendar cal = Calendar.getInstance();
 				
 				String current_date=dateFormat.format(cal.getTime()).trim();
+				current_date=current_date.replace("/", "-");
 				System.out.println("uuu.."+current_date.replace("/", "-"));
 				System.out.println("uuu1.."+dates);
 				if (current_date.toString().trim().equalsIgnoreCase(dates)) {
