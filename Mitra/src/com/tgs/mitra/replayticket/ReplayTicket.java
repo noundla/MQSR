@@ -1,7 +1,10 @@
 package com.tgs.mitra.replayticket;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -348,18 +352,45 @@ public class ReplayTicket extends Activity   {
 
 
 				String dateParts[] = dates.split("-");
-				String month  = dateParts[0];
-				String day  = dateParts[1];
-				String year = dateParts[2];
+				String year  = dateParts[0];
+				String month  = dateParts[1];
+				String day = dateParts[2];
 
-
+				
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+				Calendar cal = Calendar.getInstance();
+				
+				String current_date=dateFormat.format(cal.getTime()).trim();
+				System.out.println("uuu.."+current_date.replace("/", "-"));
+				System.out.println("uuu1.."+dates);
+				if (current_date.toString().trim().equalsIgnoreCase(dates)) {
+					System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+					
+					holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+					holder.count.setVisibility(View.VISIBLE);
+					
+				}else{
+					holder.count.setText(formatMonth(month).substring(0, 3)+" "+day/*+","+year */);
+					holder.count.setVisibility(View.VISIBLE);
+					System.out.println("hell.1."+formatMonth(month).substring(0, 3)+" "+day/*+","+year*/);
+				}
+				
+				
+				//formatMonth("2");
+			//	System.out.println("monyth is   "+formatMonth(month));
+			/*	holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+				holder.count.setVisibility(View.VISIBLE);*/
+				
 				if(myTicketsList.get(position).getReplayCount()!=0)
 				{
-				holder.count.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
-				holder.count.setVisibility(View.VISIBLE);
+				holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
+				
+					
+				holder.date.setVisibility(View.VISIBLE);
 				view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
 				}else{
-					holder.count.setVisibility(View.INVISIBLE);
+					holder.date.setVisibility(View.INVISIBLE);
 					view.setBackgroundColor(Color.WHITE);
 				}
 				
@@ -369,7 +400,9 @@ public class ReplayTicket extends Activity   {
 				holder.createdby.setText("Created by : "+ myTicketsList.get(position)
 						.getLastModifiedBy());
 
-				holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
+			//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
+				
+				
 				holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
 				holder.setMqTickets(myTicketsList.get(position));
 				//}
@@ -402,6 +435,18 @@ public class ReplayTicket extends Activity   {
 
 	}
 
+	public String formatMonth(String month)  {
+	    SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+	    SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
+	    try {
+			return monthDisplay.format(monthParse.parse(month));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return month;
+	}
+	
 	/*@Override
 	public void onClick(View arg0) {
 
