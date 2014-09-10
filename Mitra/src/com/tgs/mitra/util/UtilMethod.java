@@ -1196,6 +1196,15 @@ public class UtilMethod {
 				
 				System.out.println("TEST :::"+depobj.getProperty("ReplyMessages").toString());
 				replayObj.setReplayMessage(depobj.getProperty("ReplyMessages").toString());
+				replayObj.setDepartmentName(depobj.getProperty("DepartmentName").toString());
+				
+				replayObj.setLastModified(depobj.getProperty("LastModified").toString());
+				replayObj.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
+				replayObj.setStatus(depobj.getProperty("Status").toString());
+				replayObj.setTicketDescription(depobj.getProperty("TicketDescription").toString()); //same as ReplayMessage
+				replayObj.setTicketId(depobj.getProperty("TicketId").toString());
+				replayObj.setTicketTitle(depobj.getProperty("TicketTitle").toString());
+				
 				
 				mMQReplyList.add(replayObj);
 			}
