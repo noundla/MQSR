@@ -204,7 +204,7 @@
             android:layout_below="@id/reply_button"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:text="Recent Replays"
+            android:text="Recent Replies"
             android:textColor="@android:color/black"
             android:textSize="13dp"
             android:textStyle="bold" />
