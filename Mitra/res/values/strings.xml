@@ -17,5 +17,11 @@
         <item>Medium</item>
         <item>High</item>
     </string-array>
+    
+    
+    <string-array name="ticket_status">
+        <item>Close </item>
+        <item>Open</item>
+    </string-array>
 
 </resources>
