@@ -49,7 +49,7 @@ public class ReplayTicket extends Activity   {
 	private LinearLayout contentLayout = null;
 	ListView reply_list_view;
 	private Spinner depatment_spinner;
-	private int REQUESTCODE=123;
+//	private int REQUESTCODE=123;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -141,8 +141,8 @@ public class ReplayTicket extends Activity   {
 						ReplayDialogActivity.class);
 				ViewHolder holder=(ViewHolder) view.getTag();
 				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
-				//startActivity(intent);
-				startActivityForResult(intent, REQUESTCODE);
+				startActivity(intent);
+				//startActivityForResult(intent, REQUESTCODE);
 
 			}
 		});
@@ -371,7 +371,7 @@ public class ReplayTicket extends Activity   {
 				 
 			
 				if (current_date.toString().equalsIgnoreCase(dates.trim())) {
-					System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+					//System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 					
 					holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 					holder.count.setVisibility(View.VISIBLE);
@@ -380,7 +380,7 @@ public class ReplayTicket extends Activity   {
 				}else{
 					holder.count.setText(formatMonth(month).substring(0, 3)+" "+day/*+","+year */);
 					holder.count.setVisibility(View.VISIBLE);
-					System.out.println("hell.1."+formatMonth(month).substring(0, 3)+" "+day/*+","+year*/);
+					//System.out.println("hell.1."+formatMonth(month).substring(0, 3)+" "+day/*+","+year*/);
 				}
 				
 				

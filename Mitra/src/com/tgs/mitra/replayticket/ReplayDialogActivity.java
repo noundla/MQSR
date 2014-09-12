@@ -9,6 +9,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -215,7 +216,7 @@ public class ReplayDialogActivity extends Activity {
 		else{
 			listView.setVisibility(View.GONE);
 			TextView  recent_replay=(TextView)findViewById(R.id.recent_reply);
-			recent_replay.setText("No Replays on this");
+			recent_replay.setText("No Replay on this");//Recent Replies
 		}
 
 	}
@@ -489,6 +490,10 @@ public class ReplayDialogActivity extends Activity {
 				Toast.makeText(_activity, "Done successfully ",
 						Toast.LENGTH_LONG).show();
 				finish();
+				
+				Intent intent=new Intent(ReplayDialogActivity.this,ReplayTicket.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(intent);
 			} else {
 				Toast.makeText(_activity, "Not successfully Done! ",
 						Toast.LENGTH_LONG).show();

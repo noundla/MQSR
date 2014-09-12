@@ -104,11 +104,11 @@ String ticketType="";
 				//Toast.makeText(_activity, "Not implemented!", Toast.LENGTH_LONG).show();
 				 
 
-				Intent intent = new Intent(HomeTicketInfo.this,
+				/*Intent intent = new Intent(HomeTicketInfo.this,
 						HomeTicketInfo.class);
 				ViewHolder holder=(ViewHolder) view.getTag();
 				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
-				startActivity(intent);
+				startActivity(intent);*/
 				
 			}
 		});
