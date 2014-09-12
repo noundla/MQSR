@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -56,6 +57,8 @@ public class ReplayDialogActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		setContentView(R.layout.replay_dialog);
 		_activity = this;
 		mConneDetect = new ConnectionDetector(getApplicationContext());
@@ -454,6 +457,7 @@ public class ReplayDialogActivity extends Activity {
 			super.onPreExecute();
 			dialog = new ProgressDialog(_activity);
 			dialog.setTitle("Saving...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 

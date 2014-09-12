@@ -7,12 +7,12 @@
 
     <TextView
         android:id="@+id/ticket_id"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="7dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="17dp"
         android:background="#2093cd"
         android:gravity="center"
         android:maxLength="7"
@@ -105,6 +105,7 @@
             android:layout_marginRight="@dimen/reply_ticket_txt_mag1"
             android:layout_marginTop="-4dp"
             android:maxLines="1"
+     
             android:text="This is test descrip "
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_tic_siz" />
@@ -120,10 +121,10 @@
                 android:id="@+id/created_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_marginRight="10dp"
                 android:singleLine="true"
                 android:text="Created User-"
+                android:layout_alignParentRight="true"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/reply_tic_siz" />
 

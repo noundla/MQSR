@@ -180,6 +180,7 @@ public class CreateTicket extends Activity {
 			super.onPreExecute();
 			dialog=new ProgressDialog(_activity);
 			dialog.setTitle("Loading...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 
@@ -246,6 +247,7 @@ public class CreateTicket extends Activity {
 			super.onPreExecute();
 			dialog=new ProgressDialog(_activity);
 			dialog.setTitle("Loading Departments...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 		@Override
@@ -266,14 +268,14 @@ public class CreateTicket extends Activity {
 			
 			if(dpartmentList==null)
 			{
-				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 			
 			
 			if(dpartmentList.size()==0)
 			{
-				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 

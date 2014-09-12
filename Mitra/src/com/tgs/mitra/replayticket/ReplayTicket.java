@@ -248,13 +248,13 @@ public class ReplayTicket extends Activity   {
 
 			if(myTicketsList==null)
 			{
-				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 
 			if(myTicketsList.size()==0)
 			{
-				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 
@@ -398,16 +398,20 @@ public class ReplayTicket extends Activity   {
 				holder.date.setVisibility(View.VISIBLE);
 				holder.arrow .setVisibility(View.VISIBLE);
 				view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+				holder.createdby.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+				
 				}else{
 					holder.date.setVisibility(View.INVISIBLE);
 					holder.arrow .setVisibility(View.GONE);
 					view.setBackgroundColor(Color.WHITE);
+					holder.createdby.setBackgroundColor(Color.WHITE);
 				}				
 
 
 				//holder.date.setText(hour+":"+minute);
 				holder.createdby.setText("Created by : "+ myTicketsList.get(position)
 						.getLastModifiedBy());
+				holder.createdby.bringToFront();
 
 			//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
 				

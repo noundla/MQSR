@@ -13,7 +13,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="12dp"
-        android:background="#2093cd"
+        android:background="@color/app_theam_color"
         android:gravity="center"
         android:maxLength="7"
         android:singleLine="true"
@@ -101,12 +101,27 @@
             android:layout_below="@id/top_layout"
             android:layout_marginRight="@dimen/reply_ticket_txt_mag1"
             android:layout_marginTop="-4dp"
-            android:maxLines="1"
+            android:maxLines="2"
             android:text="This is test descrip "
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_tic_siz" />
 
-        <RelativeLayout
+        
+                    <TextView
+                android:id="@+id/created_user"
+                android:layout_width="wrap_content"
+                android:layout_height="17dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="14dp"
+                    android:layout_below="@id/top_layout"
+                android:singleLine="true"
+                android:paddingLeft="38dp"
+                android:text="Created User-"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/reply_tic_siz" />
+        
+<!--         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/depart_desc"
@@ -124,7 +139,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/reply_tic_siz" />
 
-            <!--
+            
              <TextView
             android:id="@+id/created_date"
             android:layout_width="wrap_content"
@@ -134,8 +149,8 @@
             android:text="Created date"
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_tic_siz" />
-            -->
-        </RelativeLayout>
+           
+        </RelativeLayout> -->
     </RelativeLayout>
 
 </LinearLayout>

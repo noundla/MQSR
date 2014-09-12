@@ -5,6 +5,7 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,10 +13,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +43,8 @@ public class CreateDialogActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		setContentView(R.layout.create_ticket_dialog);
 
 		final TextView titleText=(TextView)findViewById(R.id.main_img);
@@ -154,6 +159,7 @@ public class CreateDialogActivity extends Activity {
 			super.onPreExecute();
 			dialog=new ProgressDialog(_activity);
 			dialog.setTitle("Loading...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 		@Override
@@ -175,12 +181,42 @@ public class CreateDialogActivity extends Activity {
 
 			if(status)
 			{
-			 Toast.makeText(_activity, "Ticket created successfully", Toast.LENGTH_LONG).show();
+				
+				final Dialog dialog = new Dialog(CreateDialogActivity.this);
+				dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); 
+				dialog.setContentView(R.layout.custom_dialog);
+				dialog.setCancelable(false);
+			//	dialog.setTitle("Title...");
+	 
+				// set the custom dialog components - text, image and button
+				TextView text = (TextView) dialog.findViewById(R.id.text);
+				text.setText("Created new ticket:"+ticketId+" successfully");
+				ImageView image = (ImageView) dialog.findViewById(R.id.image);
+				image.setImageResource(R.drawable.logo);
+	 
+				Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+				// if button is clicked, close the custom dialog
+				dialogButton.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						 finish();
+						 Intent i = new Intent(_activity,
+									HomePage.class);
+							i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+							startActivity(i);
+						dialog.dismiss();
+					}
+				});
+	 
+				dialog.show();
+			  }
+				
+	/*		 Toast.makeText(_activity, "Ticket created successfully", Toast.LENGTH_LONG).show();
 			 AlertDialog alertDialog = new AlertDialog.Builder(
 					 CreateDialogActivity.this).create();
 					 alertDialog.setTitle(getString(R.string.app_name));
 					 alertDialog.setMessage("Created new ticket:"+ticketId+" successfully");
-					 alertDialog.setIcon(R.drawable.ic_launcher);
+					 alertDialog.setIcon(R.drawable.logo);
 					 
 					  alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
 					 public void onClick(DialogInterface dialog, int which) {
@@ -193,8 +229,8 @@ public class CreateDialogActivity extends Activity {
 					 }
 					  );
 					  alertDialog.show();
+			*/
 			
-			}
 			else{
 				Toast.makeText(_activity, "Ticket created Fail!", Toast.LENGTH_LONG).show();
 			}

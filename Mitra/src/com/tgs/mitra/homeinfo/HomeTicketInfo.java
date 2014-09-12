@@ -1,12 +1,16 @@
 package com.tgs.mitra.homeinfo;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +23,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -29,6 +34,7 @@ import android.widget.Toast;
 import com.tgs.mitra.R;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
+import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
@@ -94,7 +100,7 @@ String ticketType="";
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
 					long arg3) {
 				
-				Toast.makeText(_activity, "Not implemented!", Toast.LENGTH_LONG).show();
+				//Toast.makeText(_activity, "Not implemented!", Toast.LENGTH_LONG).show();
 
 				/*Intent intent = new Intent(HomeTicketInfo.this,
 						HomeTicketInfo.class);
@@ -165,9 +171,9 @@ String ticketType="";
 				break;
 			case R.id.btn_reply:
 
-		/*		Intent intent = new Intent(getApplicationContext(),
+				Intent intent = new Intent(getApplicationContext(),
 						ReplayTicket.class);
-				startActivity(intent);*/
+				startActivity(intent);
 				break;
 
 			}
@@ -205,13 +211,13 @@ String ticketType="";
 			
 			if(myTicketsList==null)
 			{
-			Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+			Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 			finish();
 			}
 			
 			if(myTicketsList.size()==0)
 			{
-				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 
@@ -223,7 +229,8 @@ String ticketType="";
 	}
 
 	public class ReplyListviewAdapter extends BaseAdapter {
-
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar cal = Calendar.getInstance();
 		LayoutInflater inflater;
 		Context context;
 
@@ -271,6 +278,11 @@ String ticketType="";
 				holder.createdby = (TextView) view
 						.findViewById(R.id.created_user);
 				holder.date = (TextView) view.findViewById(R.id.created_date);
+				holder.count = (TextView) view.findViewById(R.id.count);
+				holder.ticketID=(TextView) view.findViewById(R.id.ticket_id);
+				
+				holder.arrow = (ImageView) view
+						.findViewById(R.id.arrow);
 				view.setTag(holder);
 			} else {
 				holder = (ViewHolder) view.getTag();
@@ -278,21 +290,98 @@ String ticketType="";
 			try {
 				//if (myTicketsList != null)
 
-					//for (int i = 0; i < myTicketsList.size(); i++) {
-						holder.dep_title.setText(myTicketsList.get(position)
-								.getTicketTitle());
-						holder.dep_name.setText(myTicketsList.get(position)
-								.getDepartmentName());
+				//for (int i = 0; i < myTicketsList.size(); i++) {
+				holder.dep_title.setText("-"+myTicketsList.get(position)
+						.getTicketTitle());
+				holder.dep_name.setText(myTicketsList.get(position)
+						.getDepartmentName());
 
-						holder.desc.setText(myTicketsList.get(position)
-								.getTicketDescription());
-						holder.createdby.setText(myTicketsList.get(position)
-								.getLastModifiedBy());
+				holder.desc.setText(myTicketsList.get(position)
+						.getTicketDescription());
+				/*	holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+								.getLastModifiedBy()+" On "+ myTicketsList.get(position)
+								.getLastModified());*/
 
-						holder.date.setText(myTicketsList.get(position)
-								.getLastModified());
-						holder.setMqTickets(myTicketsList.get(position));
-					//}
+
+				//2014-09-01T09:17:18.05
+
+				String dt = myTicketsList.get(position)
+						.getLastModified();
+				String splitParts[] = dt.split("T");
+
+
+				String dates  = splitParts[0];
+				String times  = splitParts[1];
+
+				String onlytime[]=times.split(":");
+				String hour=onlytime[0];
+				String minute=onlytime[1];
+				String second=onlytime[2];
+
+
+				String dateParts[] = dates.split("-");
+				String year  = dateParts[0];
+				String month  = dateParts[1];
+				String day = dateParts[2];
+
+				
+				
+			
+				
+				String current_date=dateFormat.format(cal.getTime()).trim();
+				current_date=current_date.replace("/", "-");
+				 
+			
+				if (current_date.toString().equalsIgnoreCase(dates.trim())) {
+					System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+					
+					holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+					holder.count.setVisibility(View.VISIBLE);
+	
+					
+				}else{
+					holder.count.setText(formatMonth(month).substring(0, 3)+" "+day/*+","+year */);
+					holder.count.setVisibility(View.VISIBLE);
+					System.out.println("hell.1."+formatMonth(month).substring(0, 3)+" "+day/*+","+year*/);
+				}
+				
+				
+				//formatMonth("2");
+			//	System.out.println("monyth is   "+formatMonth(month));
+			/*	holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+				holder.count.setVisibility(View.VISIBLE);*/
+				
+				if(myTicketsList.get(position).getReplayCount()!=0)
+				{
+				//holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
+				holder.dep_title.setText("-"+myTicketsList.get(position)
+						.getTicketTitle()+" ");
+				holder.date.setText("   "+myTicketsList.get(position).getReplayCount());
+				holder.date.setVisibility(View.VISIBLE);
+				holder.arrow .setVisibility(View.VISIBLE);
+				view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+				holder.createdby.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+				
+				}else{
+					holder.date.setVisibility(View.INVISIBLE);
+					holder.arrow .setVisibility(View.GONE);
+					view.setBackgroundColor(Color.WHITE);
+					holder.createdby.setBackgroundColor(Color.WHITE);
+				}				
+
+
+				//holder.date.setText(hour+":"+minute);
+				holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+						.getLastModifiedBy());
+				holder.createdby.bringToFront();
+
+			//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
+				
+				
+				 holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
+			//	holder.ticketID.setText();
+				holder.setMqTickets(myTicketsList.get(position));
+				//}
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -302,13 +391,26 @@ String ticketType="";
 		}
 
 	}
-
+	public String formatMonth(String month)  {
+	    SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+	    SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
+	    try {
+			return monthDisplay.format(monthParse.parse(month));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return month;
+	}
 	class ViewHolder {
 		TextView dep_name;
 		TextView dep_title;
 		TextView desc;
 		TextView createdby;
 		TextView date;
+		TextView count;
+		TextView ticketID;
+		ImageView arrow;
 		MQTickets mqTickets=null;
 		public MQTickets getMqTickets() {
 			return mqTickets;

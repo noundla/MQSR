@@ -136,6 +136,7 @@ public class LoginActivity extends Activity {
 			super.onPreExecute();
 			dialog=new ProgressDialog(_activity);
 			dialog.setTitle("Loading...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 

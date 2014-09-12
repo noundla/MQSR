@@ -153,7 +153,7 @@ public class HomePage  extends Activity {
 					long arg3) {
 				if(mConneDetect.isConnectingToInternet())
 				{
-					Toast.makeText(_activity, "this"+arg1.getTag().toString(), Toast.LENGTH_LONG).show();
+				//	Toast.makeText(_activity, "this"+arg1.getTag().toString(), Toast.LENGTH_LONG).show();
 					Intent intent=new Intent(_activity,HomeTicketInfo.class);
 					intent.putExtra("TicketType", arg1.getTag().toString());
 					startActivity(intent);
@@ -176,6 +176,7 @@ public class HomePage  extends Activity {
 			super.onPreExecute();
 			dialog=new ProgressDialog(_activity);
 			dialog.setTitle("Loading...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 

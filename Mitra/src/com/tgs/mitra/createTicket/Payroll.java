@@ -173,6 +173,7 @@ public class Payroll extends Activity {
 			super.onPreExecute();
 			dialog=new ProgressDialog(_activity);
 			dialog.setTitle("Loading...");
+			dialog.setCancelable(false);
 			dialog.show();
 		}
 		@Override
@@ -206,7 +207,7 @@ public class Payroll extends Activity {
 
 			if(departQsnsList.size()==0)
 			{
-				Toast.makeText(_activity, "No results fond!", Toast.LENGTH_LONG).show();
+				Toast.makeText(_activity, "No results found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 

@@ -152,8 +152,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/top_layout"
-        android:layout_margin="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+         android:layout_marginTop="15dp"
+       
         android:orientation="vertical" >
 
         <TextView
@@ -172,7 +174,7 @@
             android:layout_marginTop="5dp"
             android:gravity="top"
             android:hint="Your reply"
-            android:maxLines="5"
+            android:maxLines="4"
             android:minHeight="100dp"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
@@ -222,7 +224,7 @@
         android:layout_below="@id/line"
     
        android:cacheColorHint="@android:color/transparent" 
-        android:layout_marginBottom="3dp"
+
         android:background="@android:color/white"
         android:divider="#E0E0E0"
             android:dividerHeight=".5dp"
