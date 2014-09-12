@@ -29,7 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/main_img"
-        android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+         android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="3" >
 
@@ -174,7 +176,10 @@
             android:layout_marginTop="5dp"
             android:gravity="top"
             android:hint="Your reply"
+            android:padding="10dp"
+
             android:maxLines="4"
+            android:background="@drawable/round_edittext"
             android:minHeight="100dp"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
