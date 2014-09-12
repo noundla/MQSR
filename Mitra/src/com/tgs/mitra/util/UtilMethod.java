@@ -1264,16 +1264,16 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			 transport.debug=true;
+			 //transport.debug=true;
 			transport.call(SOAP_ACTION_HOMESCREENINFO, envelope);
 
-			System.out.println("TEST Request :"+transport.requestDump);
-			System.out.println("Response :"+transport.responseDump);
+			//System.out.println("TEST Request :"+transport.requestDump);
+			//System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
 			SoapObject object=(SoapObject)response.getProperty(0);
 			
-			System.out.println("TEST obj :"+object.getPropertyCount());
+			//System.out.println("TEST obj :"+object.getPropertyCount());
 			
 			SoapObject depobj=null;
 			MQTickets myticket=null;

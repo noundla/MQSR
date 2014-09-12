@@ -1,6 +1,7 @@
 package com.tgs.mitra.homeinfo;
 
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -101,12 +102,13 @@ String ticketType="";
 					long arg3) {
 				
 				//Toast.makeText(_activity, "Not implemented!", Toast.LENGTH_LONG).show();
+				 
 
-				/*Intent intent = new Intent(HomeTicketInfo.this,
+				Intent intent = new Intent(HomeTicketInfo.this,
 						HomeTicketInfo.class);
 				ViewHolder holder=(ViewHolder) view.getTag();
 				intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
-				startActivity(intent);*/
+				startActivity(intent);
 				
 			}
 		});

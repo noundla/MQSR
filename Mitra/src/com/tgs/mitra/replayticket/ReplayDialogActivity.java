@@ -6,28 +6,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.R.color;
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +33,6 @@ import android.widget.Toast;
 import com.tgs.mitra.R;
 import com.tgs.mitra.bean.MQTicketing;
 import com.tgs.mitra.bean.User;
-import com.tgs.mitra.replayticket.ReplayTicket.ReplyListviewAdapter;
-import com.tgs.mitra.replayticket.ReplayTicket.ViewHolder;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQReply;
 import com.tgs.mitra.util.MQTickets;
@@ -51,6 +47,7 @@ public class ReplayDialogActivity extends Activity {
 	MQTicketing mqTicketing = new MQTicketing();
 	//private LinearLayout replayLayout;
 	private ListView listView=null;
+	private String status="Close";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +91,31 @@ public class ReplayDialogActivity extends Activity {
 			}
 		});
 
+		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
+		
+		Spinner status_spinner = (Spinner) findViewById(R.id.ticket_status);
+		
+		status_spinner.setSelection(dataAdapter.getPosition(replayTecket.getStatus()));
+		status_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+
+				status=((TextView)arg1).getText().toString();
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		Spinner priority = (Spinner) findViewById(R.id.ticket_prority);
 
 		priority.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -167,7 +189,7 @@ public class ReplayDialogActivity extends Activity {
 						mqTicketing.setStoreId(User.getInstance()
 								.getStoreName());
 						mqTicketing.setTicketId("0");
-						mqTicketing.setTicketStatus("Close");// We need to send
+						mqTicketing.setTicketStatus(status);// We need to send
 																// close
 						mqTicketing.setTitle(replayTecket.getTicketTitle());
 
@@ -190,17 +212,25 @@ public class ReplayDialogActivity extends Activity {
 			ReplayListTask listTask = new ReplayListTask();
 			listTask.execute(replayTecket.getTicketId());
 		}
+		else{
+			listView.setVisibility(View.GONE);
+			TextView  recent_replay=(TextView)findViewById(R.id.recent_reply);
+			recent_replay.setText("No Replays on this");
+		}
 
 	}
 
 	class ReplayListTask extends AsyncTask<String, Void, Void> {
 
 		private ArrayList<MQReply> replayList = null;
+		ProgressBar progressBar=null;
 
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
 			super.onPreExecute();
+			progressBar=(ProgressBar)findViewById(R.id.progressBar1);
+			progressBar.setVisibility(View.VISIBLE);
 		}
 
 		@Override
@@ -222,32 +252,16 @@ public class ReplayDialogActivity extends Activity {
 
 			 
 		 
-			if (replayList != null) {/*
-				for (int i = 0; i < replayList.size(); i++) {
-					replayText = new TextView(_activity);
-					replayText.setText(replayList.get(i).getReplayMessage().trim()+" "+" Add Created datae and time and created by also");
-					replayText.setTextColor(getResources().getColor(android.R.color.black));
-					replayText.setTextSize(16);
-					System.out.println("TEST REP :"+replayList.get(i).getReplayMessage());
-					//replayText.setBackgroundResource(R.drawable.table_sharep);
-
-					view=new View(_activity);
-					view.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
-					view.setMinimumHeight(1);
-					
-					//replayText.setText("SAMPLE");
-					replayLayout.addView(replayText, lp);
-					replayLayout.addView(view, lp);
-				}
-			*/
+			if (replayList != null) { 
 				//Added new UI
 				listView.setAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
 			}
+			
+			progressBar.setVisibility(View.GONE);
 		}
 
 		
-		//////////////////////////////////////////
 		public class ReplyListviewAdapter extends BaseAdapter {
 
 			LayoutInflater inflater;
@@ -344,9 +358,6 @@ public class ReplayDialogActivity extends Activity {
 					String year  = dateParts[0];
 					String month  = dateParts[1];
 					String day = dateParts[2];
-
-					
-					
 				
 					
 					String current_date=dateFormat.format(cal.getTime()).trim();
@@ -414,13 +425,9 @@ public class ReplayDialogActivity extends Activity {
 			}
 
 		}
-		/////////////////////////////////////////
 		
 	}
 
-	
-	
-	
 
 	class ViewHolder {
 		TextView dep_name;
