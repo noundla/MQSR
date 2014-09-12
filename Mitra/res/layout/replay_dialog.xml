@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   android:background="@drawable/background_wt" >
+    android:background="@drawable/background_wt" >
 
     <TextView
         android:id="@+id/main_img"
@@ -16,7 +16,8 @@
         android:textColor="@color/white_text"
         android:textSize="@dimen/heading"
         android:textStyle="bold" />
-        <Button
+
+    <Button
         android:id="@+id/back_btnn"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -29,135 +30,126 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/main_img"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-         android:layout_marginLeft="10dp"
-          android:layout_marginTop="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:weightSum="3" >
 
-        
-               <TextView
+        <TextView
             android:id="@+id/depart_id1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_alignParentLeft="true"
             android:text="Ticket Id  :"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/depart_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/depart_id1"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_toRightOf="@+id/depart_id1"
             android:text="101"
-
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
-
-        
         <TextView
             android:id="@+id/depart_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_weight="1"
             android:singleLine="true"
-
-            android:layout_alignParentRight="true"
             android:text="Department  : "
             android:textColor="@android:color/black"
             android:textSize="14sp" />
-        
-                        <TextView
+
+        <TextView
             android:id="@+id/depart_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/depart_title"
             android:layout_weight="1"
             android:singleLine="true"
-            android:textStyle="bold"
-            android:layout_toLeftOf="@id/depart_title"
             android:text="Department  :"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
-                        
-                        
-                              <Spinner
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
             android:id="@+id/ticket_prority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_below="@id/depart_title1"
             android:layout_gravity="left"
-            android:layout_alignParentRight="true"
             android:entries="@array/ticket_prority" />
-        
-                        
-                                   <TextView
+
+       
+        <TextView
             android:id="@+id/store_id1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/depart_id"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_alignParentLeft="true"
             android:text="Store :"
-            android:layout_below="@id/depart_id"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
-                <TextView
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/store_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/depart_id"
+            android:layout_toRightOf="@id/store_id1"
             android:layout_weight="1"
             android:singleLine="true"
-     android:layout_toRightOf="@id/store_id1"
             android:text="Store name"
-            android:layout_below="@id/depart_id"
-        
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
-                 <TextView
+        <TextView
             android:id="@+id/depart_name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:singleLine="true"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/store_id"
+            android:layout_weight="1"
+            android:singleLine="true"
             android:text="Title  :"
-             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="14sp"
-           />   
-                
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/depart_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/store_id"
+            android:layout_toRightOf="@id/depart_name1"
             android:layout_weight="1"
             android:singleLine="true"
-            android:layout_toRightOf="@id/depart_name1"
-            android:layout_below="@id/store_id"
             android:text="Content Title"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
-           />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/top_layout"
-        android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-         android:layout_marginTop="15dp"
-       
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical" >
 
         <TextView
@@ -174,19 +166,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/depart_desc"
             android:layout_marginTop="5dp"
+            android:background="@drawable/round_edittext"
             android:gravity="top"
             android:hint="Your reply"
-            android:padding="10dp"
-
             android:maxLines="4"
-            android:background="@drawable/round_edittext"
             android:minHeight="100dp"
+            android:padding="10dp"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
-
-  
-
-      
+        
+         <Spinner
+            android:id="@+id/ticket_status"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/depart_desc_replay"
+            android:layout_alignParentLeft="true"
+            android:entries="@array/ticket_status" />
+        
 
         <Button
             android:id="@+id/reply_button"
@@ -207,9 +203,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/reply_button"
             android:gravity="center_vertical"
-           
             android:singleLine="true"
-            android:text="Recent Replies"
+            android:text="Recent Replays"
             android:textColor="@android:color/black"
             android:textSize="13dp"
             android:textStyle="bold" />
@@ -221,22 +216,19 @@
             android:layout_below="@id/recent_reply"
             android:background="@drawable/square" />
 
-        
-                <ListView
-        android:id="@+id/replyed_ListView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/line"
-    
-       android:cacheColorHint="@android:color/transparent" 
+        <ListView
+            android:id="@+id/replyed_ListView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/line"
+            android:background="@android:color/white"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="#E0E0E0"
+            android:dividerHeight=".5dp" >
+        </ListView>
 
-        android:background="@android:color/white"
-        android:divider="#E0E0E0"
-            android:dividerHeight=".5dp"
-         >
-    </ListView>
-        
-        <!-- <ScrollView
+        <!--
+     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/line"
@@ -266,7 +258,16 @@
             android:textSize="14sp" />
                
             </LinearLayout>
-        </ScrollView> -->
+        </ScrollView>
+        -->
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/recent_reply"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
     </RelativeLayout>
 
 </RelativeLayout>

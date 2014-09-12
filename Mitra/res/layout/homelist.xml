@@ -31,7 +31,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
         android:layout_toRightOf="@+id/txt"
-        android:background="@color/green_home"
+        android:background="@color/app_theam_color"
         android:gravity="center_horizontal"
         android:textColor="@android:color/white"
         android:textSize="13sp"
