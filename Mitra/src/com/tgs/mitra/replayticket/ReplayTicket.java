@@ -13,10 +13,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnCloseListener;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import android.text.format.DateFormat;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -37,19 +42,20 @@ import com.tgs.mitra.R;
 import com.tgs.mitra.R.color;
 import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
+import com.tgs.mitra.homeinfo.HomeTicketInfo.ReplyListviewAdapter;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
 public class ReplayTicket extends Activity   {
 	public static final ListAdapter ReplyListviewAdapter = null;
-	// ArrayList<ContentObject> arrayList=new ArrayList<ContentObject>();
 	private Context _activity = null;
 	private ConnectionDetector mConneDetect = null;
-	private LinearLayout contentLayout = null;
 	ListView reply_list_view;
-	private Spinner depatment_spinner;
-//	private int REQUESTCODE=123;
+	boolean isRunning=false;
+	//private Spinner depatment_spinner;
+	boolean isReplayScreen=false;
+	String ticketType="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,23 +63,50 @@ public class ReplayTicket extends Activity   {
 		setContentView(R.layout.replay_xml);
 		_activity = this;
 
-
-
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 
-		if(mConneDetect.isConnectingToInternet())
-		{
-			DoBackground background = new DoBackground();
-			background.execute();
 
+
+		isReplayScreen=getIntent().getBooleanExtra("isReplayScreen", true);
+		if(isReplayScreen)
+		{
+			ticketType="Reply";
+			if(mConneDetect.isConnectingToInternet())
+			{
+				DoBackground background = new DoBackground();
+				background.execute();
+
+			}
+			else{
+				Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+				finish();
+			}
 		}
 		else{
-			Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
-			finish();
+			ticketType=getIntent().getStringExtra("TicketType");
+			//getIntent().getb
+			
+			((TextView)findViewById(R.id.main_img)).setText(ticketType);
+			
+			mConneDetect = new ConnectionDetector(getApplicationContext());
+
+			if(mConneDetect.isConnectingToInternet())
+			{
+			HomeScreenInfoTask homeTask = new HomeScreenInfoTask();
+			homeTask.execute();
+
+	/*
+			StoreListTaks storeListTaks=new StoreListTaks();
+			storeListTaks.execute();*/
+			
+			}
+			else{
+				  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+				  finish();
+			}
 		}
 
-
-		depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+		/*depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
 		if(User.getInstance().getStoreList()==null)
 		{
 			StoreListTaks storeListTaks=new StoreListTaks();
@@ -84,10 +117,10 @@ public class ReplayTicket extends Activity   {
 					R.layout.spintext, User.getInstance().getStoreList());
 			dataAdapter.setDropDownViewResource(R.layout.spintext);
 			depatment_spinner.setAdapter(dataAdapter);
-			
+
 			depatment_spinner.setSelection(dataAdapter.getPosition(User.getInstance().getStoreName()));
 		}
-		
+
 		depatment_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -100,7 +133,58 @@ public class ReplayTicket extends Activity   {
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				// TODO Auto-generated method stub
-				
+
+			}
+		});*/
+
+		final SearchView searchView=(SearchView)findViewById(R.id.search_view);
+
+		TextView textView = (TextView) searchView.findViewById(R.id.search_src_text);
+		textView.setTextColor(Color.WHITE);
+		searchView.setOnQueryTextListener(new OnQueryTextListener() {
+
+			@Override
+			public boolean onQueryTextSubmit(String arg0) {
+
+				//searchView.clearFocus();
+
+				if(arg0.trim().length()>0)
+				{
+
+					if(!isRunning)
+					{
+						SearchTask searchTask=new SearchTask();
+						searchTask.execute(ticketType,arg0);
+					}
+					else{
+						System.out.println("TEST alredy search done!");
+					}
+
+				}
+				return true;
+			}
+
+			@Override
+			public boolean onQueryTextChange(String arg0) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
+
+		searchView.setOnCloseListener(new OnCloseListener() {
+
+			@Override
+			public boolean onClose() {
+
+				if(mMainTempList!=null)
+				{
+					myTicketsList.clear();
+
+					myTicketsList.addAll(mMainTempList);
+					reply_list_view.invalidateViews();
+				}
+
+				return false;
 			}
 		});
 
@@ -115,12 +199,7 @@ public class ReplayTicket extends Activity   {
 				// TODO Auto-generated method stub
 
 				finish();
-				/*
-				 * Intent ir = new Intent(getApplicationContext(),
-				 * HomePage.class);
-				 * 
-				 * startActivity(ir);
-				 */
+
 			}
 		});
 		// contentLayout=(LinearLayout)findViewById(R.id.content_layout);
@@ -129,12 +208,12 @@ public class ReplayTicket extends Activity   {
 
 		reply_list_view.setOnItemClickListener(new OnItemClickListener() {
 
-		
+
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
 					long arg3) {
-				
+
 				//view.setBackgroundColor(color.ash_clor);
 
 				Intent intent = new Intent(ReplayTicket.this,
@@ -153,9 +232,127 @@ public class ReplayTicket extends Activity   {
 		create_btn.setOnClickListener(listener);
 		reply_btn.setOnClickListener(listener);
 	}
+	
+	
+	class HomeScreenInfoTask extends AsyncTask<Void, Void, Void>
+	{
+
+		ProgressDialog dialog = null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog = new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
+
+			if (mConneDetect.isConnectingToInternet()) {
+				UtilMethod method = new UtilMethod();
+				mMainTempList = method.getHomeTicketsInfo(User.getInstance(), ticketType);
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			 
+			if(mMainTempList==null)
+			{
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
+				finish();
+			}
+
+			if(mMainTempList.size()==0)
+			{
+				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
+				finish();
+			}
+
+			else{
+				myTicketsList.addAll(mMainTempList);
+				reply_list_view.setAdapter(new ReplyListviewAdapter(
+						getApplicationContext()));
+			}
+
+			dialog.dismiss();
+		}
+	
+	}
 
 
-	class StoreListTaks extends AsyncTask<Void, Void, Void>
+	class SearchTask extends AsyncTask<String, Void, Void>
+	{
+
+		ProgressDialog dialog = null;
+		ArrayList<MQTickets> searchList=null;
+		
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog = new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(String... arg0) {
+
+			isRunning=true;
+			if (mConneDetect.isConnectingToInternet()) {
+				UtilMethod method = new UtilMethod();
+				searchList = method.getSearchTicketsList(User.getInstance(), arg0[0], arg0[1]);
+				
+				// "Open");
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			isRunning=false;
+
+			if(searchList!=null)
+			{
+
+				if(searchList.size()!=0)
+				{
+
+					Toast.makeText(_activity, "Search Results Apply!", Toast.LENGTH_LONG).show();
+
+
+					//Clearing existing results
+					myTicketsList.clear();
+					myTicketsList.addAll(searchList);
+
+					reply_list_view.invalidateViews();
+				}
+				else{
+					Toast.makeText(_activity, "Zero Results Found!", Toast.LENGTH_LONG).show();
+				}
+			}
+			else{
+				Toast.makeText(_activity, "Empty Results Found!", Toast.LENGTH_LONG).show();
+
+
+			}
+
+			dialog.dismiss();
+		}
+
+	}
+
+	/*class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
 		private ArrayList<String> storeList=null;
 		private ProgressDialog dialog=null;
@@ -189,7 +386,7 @@ public class ReplayTicket extends Activity   {
 
 			dialog.dismiss();
 		}
-	}
+	}*/
 
 	private OnClickListener listener = new OnClickListener() {
 
@@ -216,7 +413,9 @@ public class ReplayTicket extends Activity   {
 
 		}
 	};
-	private ArrayList<MQTickets> myTicketsList = null;
+	private ArrayList<MQTickets> myTicketsList = new ArrayList<MQTickets>();
+
+	private ArrayList<MQTickets> mMainTempList = null;
 
 	class DoBackground extends AsyncTask<Void, Void, Void> {
 		ProgressDialog dialog = null;
@@ -235,8 +434,8 @@ public class ReplayTicket extends Activity   {
 
 			if (mConneDetect.isConnectingToInternet()) {
 				UtilMethod method = new UtilMethod();
-				myTicketsList = method.getReplyTicketsList(User.getInstance()); // method.getMyTeckets(User.getInstance(),
-				// "Open");
+				mMainTempList = method.getReplyTicketsList(User.getInstance());  
+
 			}
 			return null;
 		}
@@ -246,20 +445,23 @@ public class ReplayTicket extends Activity   {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 
-			if(myTicketsList==null)
+			if(mMainTempList==null)
 			{
 				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 
-			if(myTicketsList.size()==0)
+			if(mMainTempList.size()==0)
 			{
 				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
 				finish();
 			}
 
-			reply_list_view.setAdapter(new ReplyListviewAdapter(
-					getApplicationContext()));
+			else{
+				myTicketsList.addAll(mMainTempList);
+				reply_list_view.setAdapter(new ReplyListviewAdapter(
+						getApplicationContext()));
+			}
 
 			dialog.dismiss();
 		}
@@ -318,7 +520,7 @@ public class ReplayTicket extends Activity   {
 				holder.date = (TextView) view.findViewById(R.id.created_date);
 				holder.count = (TextView) view.findViewById(R.id.count);
 				holder.ticketID=(TextView) view.findViewById(R.id.ticket_id);
-				
+
 				holder.arrow = (ImageView) view
 						.findViewById(R.id.arrow);
 				view.setTag(holder);
@@ -362,44 +564,44 @@ public class ReplayTicket extends Activity   {
 				String month  = dateParts[1];
 				String day = dateParts[2];
 
-				
-				
-			
-				
+
+
+
+
 				String current_date=dateFormat.format(cal.getTime()).trim();
 				current_date=current_date.replace("/", "-");
-				 
-			
+
+
 				if (current_date.toString().equalsIgnoreCase(dates.trim())) {
 					//System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
-					
+
 					holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 					holder.count.setVisibility(View.VISIBLE);
-	
-					
+
+
 				}else{
 					holder.count.setText(formatMonth(month).substring(0, 3)+" "+day/*+","+year */);
 					holder.count.setVisibility(View.VISIBLE);
 					//System.out.println("hell.1."+formatMonth(month).substring(0, 3)+" "+day/*+","+year*/);
 				}
-				
-				
+
+
 				//formatMonth("2");
-			//	System.out.println("monyth is   "+formatMonth(month));
-			/*	holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
+				//	System.out.println("monyth is   "+formatMonth(month));
+				/*	holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 				holder.count.setVisibility(View.VISIBLE);*/
-				
+
 				if(myTicketsList.get(position).getReplayCount()!=0)
 				{
-				//holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
-				holder.dep_title.setText("-"+myTicketsList.get(position)
-						.getTicketTitle()+" ");
-				holder.date.setText("   "+myTicketsList.get(position).getReplayCount());
-				holder.date.setVisibility(View.VISIBLE);
-				holder.arrow .setVisibility(View.VISIBLE);
-				view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
-				holder.createdby.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
-				
+					//holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
+					holder.dep_title.setText("-"+myTicketsList.get(position)
+							.getTicketTitle()+" ");
+					holder.date.setText("   "+myTicketsList.get(position).getReplayCount());
+					holder.date.setVisibility(View.VISIBLE);
+					holder.arrow .setVisibility(View.VISIBLE);
+					view.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+					holder.createdby.setBackgroundColor(_activity.getResources().getColor(R.color.reply_color));
+
 				}else{
 					holder.date.setVisibility(View.INVISIBLE);
 					holder.arrow .setVisibility(View.GONE);
@@ -413,11 +615,11 @@ public class ReplayTicket extends Activity   {
 						.getLastModifiedBy());
 				holder.createdby.bringToFront();
 
-			//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
-				
-				
-				 holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
-			//	holder.ticketID.setText();
+				//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
+
+
+				holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
+				//	holder.ticketID.setText();
 				holder.setMqTickets(myTicketsList.get(position));
 				//}
 			} catch (Exception e) {
@@ -451,9 +653,9 @@ public class ReplayTicket extends Activity   {
 	}
 
 	public String formatMonth(String month)  {
-	    SimpleDateFormat monthParse = new SimpleDateFormat("MM");
-	    SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
-	    try {
+		SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+		SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
+		try {
 			return monthDisplay.format(monthParse.parse(month));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -461,7 +663,7 @@ public class ReplayTicket extends Activity   {
 		}
 		return month;
 	}
-	
+
 	/*@Override
 	public void onClick(View arg0) {
 
@@ -473,5 +675,8 @@ public class ReplayTicket extends Activity   {
 		intent.putExtra("MQT_OBJ", (Serializable) (MQTickets) holder.getMqTickets());
 		startActivity(intent);
 	}*/
+
+
+
 
 }

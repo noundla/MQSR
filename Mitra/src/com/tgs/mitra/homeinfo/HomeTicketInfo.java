@@ -47,7 +47,7 @@ public class HomeTicketInfo extends Activity   {
 	private ConnectionDetector mConneDetect = null;
 	private LinearLayout contentLayout = null;
 	ListView reply_list_view;
-Spinner depatment_spinner;
+//Spinner depatment_spinner;
 String ticketType="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ String ticketType="";
 		_activity = this;
 		
 		ticketType=getIntent().getStringExtra("TicketType");
+		//getIntent().getb
 		
 		((TextView)findViewById(R.id.main_img)).setText(ticketType);
 		
@@ -67,9 +68,9 @@ String ticketType="";
 		DoBackground background = new DoBackground();
 		background.execute();
 
-
+/*
 		StoreListTaks storeListTaks=new StoreListTaks();
-		storeListTaks.execute();
+		storeListTaks.execute();*/
 		
 		}
 		else{
@@ -77,7 +78,7 @@ String ticketType="";
 			  finish();
 		}
 		
-		   depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
+		  // depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
 		
 		Button back = (Button) findViewById(R.id.back_btnn);
 
@@ -121,7 +122,7 @@ String ticketType="";
 	}
 
 	
-	class StoreListTaks extends AsyncTask<Void, Void, Void>
+	/*class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
 		private ArrayList<String> storeList=null;
 		private ProgressDialog dialog=null;
@@ -147,15 +148,16 @@ String ticketType="";
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			
-			
+			if(storeList!=null)
+			{
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(HomeTicketInfo.this,
 					R.layout.spintext, storeList);
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				depatment_spinner.setAdapter(dataAdapter);
-			
+			}
 			dialog.dismiss();
 		}
-	}
+	}*/
 	
 	private OnClickListener listener = new OnClickListener() {
 

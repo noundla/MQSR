@@ -72,6 +72,16 @@ public class UtilMethod {
 		public final String METHOD_NAME_HOMESCREENINFO="HomeScreenInfo";
 		public final String SOAP_ACTION_HOMESCREENINFO="http://tempuri.org/IMitraQSRService/HomeScreenInfo";
 		
+		
+	//AssignedToUsers
+		public final String METHOD_NAME_AssignedToUsers="AssignedToUsers";
+		public final String SOAP_ACTION_AssignedToUsers="http://tempuri.org/IMitraQSRService/AssignedToUsers";
+		
+		//SearchTickets
+				public final String METHOD_NAME_SearchTickets="SearchTickets";
+				public final String SOAP_ACTION_SearchTickets="http://tempuri.org/IMitraQSRService/SearchTickets";
+			
+		
 		public static int createdTicketId=0;
 
 
@@ -1302,6 +1312,160 @@ public class UtilMethod {
 
 		}
 		return mQTicketsList;
+	}
+
+	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public ArrayList<String> getAssignedToUsersList(User user)
+	{
+
+		ArrayList<String> assignedUserList=new ArrayList<String>();
+
+		try{
+
+
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_AssignedToUsers);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(user.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(user.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			//transport.debug=true;
+			transport.call(SOAP_ACTION_AssignedToUsers, envelope);
+
+			// System.out.println("Request :"+transport.requestDump);
+			// System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+			SoapObject object=(SoapObject) response.getProperty(0);
+			
+			
+
+			for (int i = 0; i < object.getPropertyCount(); i++) {
+
+				assignedUserList.add(object.getProperty(i).toString());
+			}
+
+		}
+
+		catch(Exception e){
+			e.printStackTrace();
+
+		}
+		return assignedUserList;
+
+	}
+	
+	
+	public ArrayList<MQTickets> getSearchTicketsList(User user,String pageType,String searchString)
+	{
+
+		ArrayList<MQTickets> mQTicketsList=new ArrayList<MQTickets>();
+
+		try{
+
+
+			SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME_SearchTickets);
+
+			PropertyInfo propertyPassword = new PropertyInfo();
+			propertyPassword.setName("password");
+			propertyPassword.setNamespace(MOCK_SERVICE);
+			propertyPassword.setValue(user.getPassword());
+			propertyPassword.setType(null);
+
+
+			PropertyInfo propertyusername = new PropertyInfo();
+			propertyusername.setName("userName");
+			propertyusername.setNamespace(MOCK_SERVICE);
+			propertyusername.setValue(user.getUser());
+			propertyusername.setType(null);
+
+
+			SoapObject userObject=new SoapObject(NAMESPACE, "authorization");
+			userObject.addProperty(propertyPassword);
+			userObject.addProperty(propertyusername);
+
+			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+			request.addProperty("authorization",userObject);
+			
+			request.addPropertyIfValue("searchString",searchString);
+			request.addPropertyIfValue("pageType",pageType);
+
+			envelope.setOutputSoapObject(request);
+			envelope.implicitTypes = true;
+			envelope.dotNet = true;
+
+
+			HttpTransportSE transport = new HttpTransportSE(URL);
+			//transport.debug=true;
+			transport.call(SOAP_ACTION_SearchTickets, envelope);
+
+			//System.out.println("Request :"+transport.requestDump);
+			//System.out.println("Response :"+transport.responseDump);
+			SoapObject response = (SoapObject) envelope.bodyIn;
+			SoapObject object=(SoapObject) response.getProperty(0);
+
+			SoapObject depobj=null;
+			MQTickets myticket=null;
+			for (int i = 0; i < object.getPropertyCount(); i++) {
+				depobj=(SoapObject)(object).getProperty(i);
+				myticket=new MQTickets();
+				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
+				myticket.setLastModified(depobj.getProperty("LastModified").toString());
+				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
+				myticket.setStatus(depobj.getProperty("Status").toString());
+				//anyType{}
+				if(!depobj.getProperty("TicketDescription").toString().equalsIgnoreCase("anyType{}"))
+				{
+				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
+				}
+				myticket.setTicketId(depobj.getProperty("TicketId").toString());
+				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
+				//hasReply
+				myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
+				//new field Replyscount
+				myticket.setReplayCount(Integer.parseInt(depobj.getProperty("Replyscount").toString()));
+				mQTicketsList.add(myticket); 
+			}
+
+
+		}
+
+		catch(Exception e){
+			e.printStackTrace();
+
+		}
+		return mQTicketsList;
+
 	}
 
 }

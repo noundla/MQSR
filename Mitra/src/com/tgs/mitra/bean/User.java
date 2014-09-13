@@ -12,6 +12,8 @@ public class User {
 	static User userObj=null;
 	private ArrayList<String> storeList=null; 
 	
+	private ArrayList<String> assignedUsers=null; 
+	
 	public static User getInstance()
 	{
 		if(userObj==null)
@@ -49,6 +51,14 @@ public class User {
 
 	public void setStoreList(ArrayList<String> storeList) {
 		this.storeList = storeList;
+	}
+
+	public ArrayList<String> getAssignedUsers() {
+		return assignedUsers;
+	}
+
+	public void setAssignedUsers(ArrayList<String> assignedUsers) {
+		this.assignedUsers = assignedUsers;
 	}
 	
 }

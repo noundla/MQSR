@@ -24,6 +24,7 @@ import com.tgs.mitra.homeinfo.HomeTicketInfo;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
 import com.tgs.mitra.util.HomeScreenInfo;
+import com.tgs.mitra.util.MQTickets;
 import com.tgs.mitra.util.UtilMethod;
 
 
@@ -90,21 +91,7 @@ public class HomePage  extends Activity {
 			}
 		});
 
-		/*mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-
-				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-
-
-			}
-		});*/
+		 
 
 		if(mConneDetect.isConnectingToInternet())
 		{
@@ -129,15 +116,14 @@ public class HomePage  extends Activity {
 		}
 
 
-		//Test code
-		/* new Thread(){
+		/*//Test code
+		 new Thread(){
 			  public void run() {
 				  UtilMethod method=new UtilMethod();
 				  User user=User.getInstance();
-				  user.setUser("Balaji");
-				  user.setPassword("9balaji@");
+				  
 
-				ArrayList<MQTickets> tickets= method.getHomeTicketsInfo(user, "Close");
+				    ArrayList<MQTickets> tickets = method.getSearchTicketsList(user, "MyTickets", "a");
 				System.out.println("TEST LOGIN State open "+tickets.size());
 			  }
 		  }.start();*/
@@ -150,8 +136,13 @@ public class HomePage  extends Activity {
 				if(mConneDetect.isConnectingToInternet())
 				{
 				//	Toast.makeText(_activity, "this"+arg1.getTag().toString(), Toast.LENGTH_LONG).show();
-					Intent intent=new Intent(_activity,HomeTicketInfo.class);
+					/*Intent intent=new Intent(_activity,HomeTicketInfo.class);
 					intent.putExtra("TicketType", arg1.getTag().toString());
+					startActivity(intent);*/
+					
+					Intent intent=new Intent(_activity,ReplayTicket.class);
+					intent.putExtra("TicketType", arg1.getTag().toString());
+					intent.putExtra("isReplayScreen", false);
 					startActivity(intent);
 				}
 				

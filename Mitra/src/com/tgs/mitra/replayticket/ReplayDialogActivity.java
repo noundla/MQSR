@@ -49,6 +49,8 @@ public class ReplayDialogActivity extends Activity {
 	//private LinearLayout replayLayout;
 	private ListView listView=null;
 	private String status="Close";
+	Spinner userSpinner=null;
+	private Spinner store_spinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +73,50 @@ public class ReplayDialogActivity extends Activity {
 		//TextView store_id = (TextView) findViewById(R.id.store_id);
 		//replayLayout = (LinearLayout) findViewById(R.id.replasys_layout);
 		listView=(ListView)findViewById(R.id.replyed_ListView);
+		userSpinner=(Spinner)findViewById(R.id.user_list_spinner);
 
 		title.setText(replayTecket.getDepartmentName());
 		deptId.setText( replayTecket.getTicketId());
 		deptDes.setText(replayTecket.getTicketDescription());
 		deptName.setText(replayTecket.getTicketTitle());
 		
-		((TextView)findViewById(R.id.store_id)).setText(User.getInstance().getStoreName());
+		
+		////////////////////////////////////
+		store_spinner = (Spinner) findViewById(R.id.department_spinner);
+		if(User.getInstance().getStoreList()==null)
+		{
+			StoreListTaks storeListTaks=new StoreListTaks();
+			storeListTaks.execute();
+		}
+		else{
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
+					android.R.layout.simple_spinner_item, User.getInstance().getStoreList());
+			//dataAdapter.setDropDownViewResource(R.layout.spintext);
+			store_spinner.setAdapter(dataAdapter);
+
+			store_spinner.setSelection(dataAdapter.getPosition(User.getInstance().getStoreName()));
+		}
+
+		store_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		
+		
+		
+		
+		//((TextView)findViewById(R.id.store_id)).setText(User.getInstance().getStoreName());
 
 		Button back = (Button) findViewById(R.id.back_btnn);
 
@@ -91,6 +130,21 @@ public class ReplayDialogActivity extends Activity {
 
 			}
 		});
+		
+		if(mConneDetect.isConnectingToInternet())
+		{
+			if( User.getInstance().getAssignedUsers()==null)
+			{
+			AssignedUserTask assignedUserTask=new AssignedUserTask();
+			assignedUserTask.execute();
+			}else
+			{
+				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
+						android.R.layout.simple_spinner_item, User.getInstance().getAssignedUsers());
+				dataAdapter.setDropDownViewResource(R.layout.spintext);
+				userSpinner.setAdapter(dataAdapter);
+			}
+		}
 
 		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
@@ -185,8 +239,10 @@ public class ReplayDialogActivity extends Activity {
 						mqTicketing.setLastChangeUser(User.getInstance()
 								.getUser());
 						mqTicketing.setPriority(ticket_prority);
-						mqTicketing.setReplyId(replayTecket.getTicketId());// NO
+						//mqTicketing.setReplyId(replayTecket.getTicketId());// NO
 																			// need
+						mqTicketing.setReplyId("0");
+						//mqTicketing.setReplyId(replayTecket.getTicketId());
 						mqTicketing.setStoreId(User.getInstance()
 								.getStoreName());
 						mqTicketing.setTicketId("0");
@@ -216,11 +272,42 @@ public class ReplayDialogActivity extends Activity {
 		else{
 			listView.setVisibility(View.GONE);
 			TextView  recent_replay=(TextView)findViewById(R.id.recent_reply);
-			recent_replay.setText("No Replay on this");//Recent Replies
+			recent_replay.setText("No Reply on this");//Recent Replies
 		}
 
 	}
 
+	class AssignedUserTask extends AsyncTask<Void, Void, Void>
+	{
+
+		 
+		private ArrayList<String> userList;
+
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			 
+			 UtilMethod method=new UtilMethod();
+			  User user=User.getInstance();
+			 userList= method.getAssignedToUsersList(user);
+			return null;
+		}
+		@Override
+		protected void onPostExecute(Void result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(userList!=null)
+			{
+				User.getInstance().setAssignedUsers(userList);
+				
+				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
+						android.R.layout.simple_spinner_item, User.getInstance().getAssignedUsers());
+				dataAdapter.setDropDownViewResource(R.layout.spintext);
+				userSpinner.setAdapter(dataAdapter);
+			}
+		}
+	}
+	
 	class ReplayListTask extends AsyncTask<String, Void, Void> {
 
 		private ArrayList<MQReply> replayList = null;
@@ -498,6 +585,42 @@ public class ReplayDialogActivity extends Activity {
 				Toast.makeText(_activity, "Not successfully Done! ",
 						Toast.LENGTH_LONG).show();
 			}
+			dialog.dismiss();
+		}
+	}
+	
+	class StoreListTaks extends AsyncTask<Void, Void, Void>
+	{
+		private ArrayList<String> storeList=null;
+		private ProgressDialog dialog=null;
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog=new ProgressDialog(_activity);
+			dialog.setTitle("Loading...");
+			dialog.show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			UtilMethod method=new UtilMethod();
+			storeList= method.getUserallowedstoresList(User.getInstance());
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+
+
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
+					android.R.layout.simple_spinner_item, storeList);
+			//dataAdapter.setDropDownViewResource(R.layout.spintext);
+			store_spinner.setAdapter(dataAdapter);
+
 			dialog.dismiss();
 		}
 	}
