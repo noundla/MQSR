@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:background="@drawable/background_wt"
+    android:background="@drawable/background_wt"
     android:orientation="vertical" >
 
     <TextView
@@ -26,39 +26,44 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/backbutton_48x48_in20x20" />
 
-    
-          <Spinner
+    <!-- <Spinner
         android:id="@+id/department_spinner"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-5dp"
-   android:layout_marginRight="-10dp"
-              android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-    />
-    
-        <ListView
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="-10dp"
+        android:layout_marginTop="-5dp" /> -->
+        
+        <android.support.v7.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textDirection="firstStrong"
+        android:background="@drawable/bottom_ar"
+         
+        />
+
+    <ListView
         android:id="@+id/reply_ListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/main_img"
-    
-       android:cacheColorHint="@android:color/transparent" 
         android:layout_marginBottom="@dimen/bottom_ht"
         android:background="@android:color/white"
-         android:divider="#E0E0E0"
-            android:dividerHeight=".5dp"
-         >
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="#E0E0E0"
+        android:dividerHeight=".5dp" >
     </ListView>
-    
-        
-          <com.tgs.mitra.BottomLayout
+
+    <com.tgs.mitra.BottomLayout
         android:id="@+id/bottem"
-      
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       />
-    <!-- <ScrollView
+        android:layout_height="wrap_content" />
+    <!--
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -73,6 +78,7 @@
             android:dividerHeight="4dp"
             android:orientation="vertical" >
         </LinearLayout>
-    </ScrollView> -->
+    </ScrollView>
+    -->
 
 </RelativeLayout>
