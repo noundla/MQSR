@@ -241,7 +241,7 @@ public class ReplayDialogActivity extends Activity {
 						mqTicketing.setPriority(ticket_prority);
 						//mqTicketing.setReplyId(replayTecket.getTicketId());// NO
 																			// need
-						mqTicketing.setReplyId("0");
+						mqTicketing.setReplyId(replayTecket.getTicketId());
 						//mqTicketing.setReplyId(replayTecket.getTicketId());
 						mqTicketing.setStoreId(User.getInstance()
 								.getStoreName());

@@ -809,7 +809,7 @@ public class UtilMethod {
 			transport.debug=true;
 			transport.call(SOAP_ACTION_REPLYTICKET, envelope);
 
-			//System.out.println("TEST Request :"+transport.requestDump);
+			System.out.println("TEST Request :"+transport.requestDump);
 			System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
