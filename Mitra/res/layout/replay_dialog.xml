@@ -224,12 +224,14 @@
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
+        <TextView android:id="@+id/status_text" android:layout_marginTop="10dp" android:layout_alignParentLeft="true" android:layout_below="@id/depart_desc_replay"  android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Status :"/>
         <Spinner
             android:id="@+id/ticket_status"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@id/status_text"
             android:layout_below="@id/depart_desc_replay"
+            android:layout_marginLeft="2dp"
             android:entries="@array/ticket_status" />
 
         <Button
