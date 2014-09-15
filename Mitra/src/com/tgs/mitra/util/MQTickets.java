@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class MQTickets implements Serializable{
 
-	private String DepartmentId="";
+	//private String DepartmentId="";
 	
 	private String DepartmentName="";
 	private String LastModified="";
@@ -20,12 +20,12 @@ public class MQTickets implements Serializable{
 	
 	private int replayCount=0;
 	
-	public String getDepartmentId() {
+	/*public String getDepartmentId() {
 		return DepartmentId;
 	}
 	public void setDepartmentId(String departmentId) {
 		DepartmentId = departmentId;
-	}
+	}*/
 	public String getDepartmentName() {
 		return DepartmentName;
 	}

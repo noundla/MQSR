@@ -889,7 +889,7 @@ public class UtilMethod {
 			for (int i = 0; i < object.getPropertyCount(); i++) {
 				depobj=(SoapObject)(object).getProperty(i);
 				myticket=new MQTickets();
-				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				//myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
 				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
 				myticket.setLastModified(depobj.getProperty("LastModified").toString());
 				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
@@ -1036,7 +1036,7 @@ public class UtilMethod {
 			for (int i = 0; i < object.getPropertyCount(); i++) {
 				depobj=(SoapObject)(object).getProperty(i);
 				myticket=new MQTickets();
-				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				//myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
 				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
 				myticket.setLastModified(depobj.getProperty("LastModified").toString());
 				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
@@ -1438,7 +1438,7 @@ public class UtilMethod {
 			for (int i = 0; i < object.getPropertyCount(); i++) {
 				depobj=(SoapObject)(object).getProperty(i);
 				myticket=new MQTickets();
-				myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
+				//myticket.setDepartmentId(depobj.getProperty("DepartmentId").toString());
 				myticket.setDepartmentName(depobj.getProperty("DepartmentName").toString());
 				myticket.setLastModified(depobj.getProperty("LastModified").toString());
 				myticket.setLastModifiedBy(depobj.getProperty("LastModifiedBy").toString());
