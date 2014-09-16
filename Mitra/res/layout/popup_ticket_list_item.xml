@@ -13,7 +13,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="17dp"
-        android:background="@color/app_theam_color"
+        android:background="@drawable/ticket_bg_shape"
         android:gravity="center"
         android:maxLength="7"
         android:singleLine="true"
