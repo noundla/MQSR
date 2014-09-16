@@ -70,8 +70,8 @@ public class ReplayDialogActivity extends Activity {
 		replayTecket = (MQTickets) getIntent().getSerializableExtra("MQT_OBJ");
 
 		
-	/*	slideButton = (Button) findViewById(R.id.slideButton);
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.SlidingDrawer);
+	slideButton = (Button) findViewById(R.id.slideButton);
+	/*	  slidingDrawer = (SlidingDrawer) findViewById(R.id.SlidingDrawer);
        
  
         slidingDrawer.setOnDrawerOpenListener(new OnDrawerOpenListener() {
@@ -324,10 +324,13 @@ public class ReplayDialogActivity extends Activity {
 			listTask.execute(replayTecket.getTicketId());
 		}
 		else{
+			slideButton.setText("No Reply on this");
+			slideButton.setEnabled(false);
+			/*
 			listView.setVisibility(View.GONE);
 			TextView  recent_replay=(TextView)findViewById(R.id.recent_reply);
 			recent_replay.setText("No Reply on this");//Recent Replies
-		}
+		*/}
 
 	}
 
