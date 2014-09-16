@@ -56,6 +56,7 @@ public class ReplayDialogActivity extends Activity {
 	private Spinner store_spinner;
 	SlidingDrawer slidingDrawer;
 	  Button slideButton;
+	  private String assignedUser="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -169,6 +170,24 @@ public class ReplayDialogActivity extends Activity {
 				userSpinner.setAdapter(dataAdapter);
 			}
 		}
+		
+		userSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				assignedUser=((TextView)arg1).getText().toString();
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
@@ -237,7 +256,7 @@ public class ReplayDialogActivity extends Activity {
 					if (mConneDetect.isConnectingToInternet()) {
 						// Creating MQTicketing objecct from MQTicket
 
-						mqTicketing.setAssignedOwner("");
+						mqTicketing.setAssignedOwner(assignedUser);
 						mqTicketing.setCopyToEmail("");
 						mqTicketing.setCreatedDate(replayTecket
 								.getLastModified()); // Maybe we need to send
