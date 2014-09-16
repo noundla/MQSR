@@ -9,7 +9,7 @@
         android:layout_height="@dimen/home_listvv_item_ht"
         android:layout_centerVertical="true"
         android:padding="5dp"
-        android:background="@color/ash_clor"
+        android:background="@drawable/ticket_bg_shape"
         android:layout_marginTop="@dimen/margin" />
 
     <TextView
