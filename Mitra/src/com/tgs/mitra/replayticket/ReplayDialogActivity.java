@@ -27,6 +27,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SlidingDrawer;
+import android.widget.SlidingDrawer.OnDrawerCloseListener;
+import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +54,8 @@ public class ReplayDialogActivity extends Activity {
 	private String status="Close";
 	Spinner userSpinner=null;
 	private Spinner store_spinner;
-
+	SlidingDrawer slidingDrawer;
+	  Button slideButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -64,6 +68,25 @@ public class ReplayDialogActivity extends Activity {
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 		replayTecket = (MQTickets) getIntent().getSerializableExtra("MQT_OBJ");
 
+		
+	/*	slideButton = (Button) findViewById(R.id.slideButton);
+        slidingDrawer = (SlidingDrawer) findViewById(R.id.SlidingDrawer);
+       
+ 
+        slidingDrawer.setOnDrawerOpenListener(new OnDrawerOpenListener() {
+            @Override
+            public void onDrawerOpened() {
+                slideButton.setBackgroundResource(R.drawable.closeticket);
+            }
+        });
+ 
+        slidingDrawer.setOnDrawerCloseListener(new OnDrawerCloseListener() {
+            @Override
+            public void onDrawerClosed() {
+                slideButton.setBackgroundResource(R.drawable.openall);
+            }
+        });*/
+		
 		TextView title = (TextView) findViewById(R.id.depart_title);
 
 		TextView deptId = (TextView) findViewById(R.id.depart_id);
@@ -92,6 +115,7 @@ public class ReplayDialogActivity extends Activity {
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
 					android.R.layout.simple_spinner_item, User.getInstance().getStoreList());
 			//dataAdapter.setDropDownViewResource(R.layout.spintext);
+			dataAdapter.setDropDownViewResource(R.layout.spintext);
 			store_spinner.setAdapter(dataAdapter);
 
 			store_spinner.setSelection(dataAdapter.getPosition(User.getInstance().getStoreName()));
@@ -149,9 +173,17 @@ public class ReplayDialogActivity extends Activity {
 		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
 		
-		Spinner status_spinner = (Spinner) findViewById(R.id.ticket_status);
+		final ArrayAdapter<String> priorttydapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_prority));
 		
-		status_spinner.setSelection(dataAdapter.getPosition(replayTecket.getStatus()));
+		final ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
+		
+		
+		Spinner status_spinner = (Spinner) findViewById(R.id.ticket_status);
+		statusAdapter.setDropDownViewResource(R.layout.spintext);
+		status_spinner.setAdapter(statusAdapter);
+		status_spinner.setSelection(statusAdapter.getPosition(replayTecket.getStatus()));
 		status_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			
@@ -172,7 +204,10 @@ public class ReplayDialogActivity extends Activity {
 		});
 		
 		Spinner priority = (Spinner) findViewById(R.id.ticket_prority);
-
+		priorttydapter.setDropDownViewResource(R.layout.spintext);
+		
+		priority.setAdapter(priorttydapter);
+		
 		priority.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
