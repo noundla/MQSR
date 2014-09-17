@@ -52,9 +52,9 @@
         android:layout_height="fill_parent"
         android:layout_below="@id/main_img"
         android:layout_marginBottom="@dimen/bottom_ht"
-        android:background="@android:color/white"
+        android:background="@color/reply_color"
         android:cacheColorHint="@android:color/transparent"
-        android:divider="#E0E0E0"
+        android:divider="@color/divder_color"
         android:dividerHeight=".5dp" >
     </ListView>
 

@@ -5,7 +5,7 @@
     <color name="log_btnn">#225dab</color>
     <color name="lightblue">#D3DEE2</color>
  <color name="white_text">#FFFFFF</color>
-
+<color name="divder_color">#E0E0E0</color>
    <color name="blue_main">#5a100b</color>
   <color name="reject_color">#DD011F</color>
    <color name="approve_color">#6EB018</color>

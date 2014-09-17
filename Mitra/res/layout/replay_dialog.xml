@@ -5,7 +5,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_wt" >
+        android:background="@color/reply_color" >
 
           
         <TextView
@@ -298,7 +298,7 @@
         android:id="@+id/SlidingDrawer"
         android:handle="@+id/slideButton"
         android:content="@+id/contentLayout"
-        android:padding="5dip"
+   
         android:layout_alignParentBottom="true"
         android:layout_height="300dip"
         
@@ -338,6 +338,7 @@
                 android:id="@+id/progressBar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_alignBottom="@+id/recent_reply"
                 android:layout_centerHorizontal="true"
                 android:visibility="invisible" />
