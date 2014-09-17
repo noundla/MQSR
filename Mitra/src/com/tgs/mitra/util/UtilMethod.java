@@ -229,6 +229,9 @@ public class UtilMethod {
 				department.setGuidfield(departObject.getProperty("guidfield").toString());
 				department.setLastChange(departObject.getProperty("lastChange").toString());
 				department.setLastChangeUser(departObject.getProperty("lastChangeUser").toString());
+				department.setMobileImage(departObject.getProperty("mobileImage").toString());
+				
+				//mobileImage
 
 				departments.add(department);
 			}

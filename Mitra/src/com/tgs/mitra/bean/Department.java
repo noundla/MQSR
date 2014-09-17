@@ -23,6 +23,8 @@ public class Department implements Serializable{
 	private String lastChange="";
 	
 	private String lastChangeUser="";
+	
+	private String mobileImage="";
 
 	public boolean isAllowTicketing() {
 		return allowTicketing;
@@ -62,6 +64,14 @@ public class Department implements Serializable{
 
 	public void setLastChangeUser(String lastChangeUser) {
 		this.lastChangeUser = lastChangeUser;
+	}
+
+	public String getMobileImage() {
+		return mobileImage;
+	}
+
+	public void setMobileImage(String mobileImage) {
+		this.mobileImage = mobileImage;
 	}
 	 
 
