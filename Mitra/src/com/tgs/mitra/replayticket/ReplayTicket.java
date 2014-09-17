@@ -338,6 +338,11 @@ public class ReplayTicket extends Activity   {
 					reply_list_view.invalidateViews();
 				}
 				else{
+					//Clearing existing results
+					myTicketsList.clear();
+					myTicketsList.addAll(searchList);
+
+					reply_list_view.invalidateViews();
 					Toast.makeText(_activity, "Zero Results Found!", Toast.LENGTH_LONG).show();
 				}
 			}

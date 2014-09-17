@@ -65,6 +65,7 @@ public class LoginActivity extends Activity {
 		saveLogin = loginPreferences.getBoolean("saveLogin", false);
 		if (saveLogin == true) {
 			user.setText(loginPreferences.getString("username", ""));
+			user.setSelection(user.getText().length());
 			password.setText(loginPreferences.getString("password", ""));
 			remember_cbox.setChecked(true);
 		}

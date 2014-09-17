@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -286,8 +287,9 @@ public class ReplayDialogActivity extends Activity {
 
 						Date javaUtilDate = new Date();
 						SimpleDateFormat formatter = new SimpleDateFormat(
-								"yyyy-MM-dd'T'HH:mm:ss"); // Soap required
+								"yyyy-MM-dd'T'HH:mm:ss.SSS",Locale.getDefault()); // Soap required
 															// format
+						 
 						mqTicketing.setLastChange(formatter
 								.format(javaUtilDate));
 						mqTicketing.setLastChangeUser(User.getInstance()
