@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:textDirection="firstStrong"
+         
         android:background="@drawable/bottom_ar"
          
         />
