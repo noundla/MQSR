@@ -154,6 +154,7 @@
                     android:text="Ticket priority : "
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
                     android:textStyle="bold" />
 
                 <Spinner
