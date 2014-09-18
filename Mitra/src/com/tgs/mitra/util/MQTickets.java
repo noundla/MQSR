@@ -17,6 +17,8 @@ public class MQTickets implements Serializable{
 	private String TicketId="";
 	private String TicketTitle="";
 	private boolean hasReplay=false;
+	private String assignedOwner="";
+	private String priority="";
 	
 	private int replayCount=0;
 	
@@ -79,5 +81,17 @@ public class MQTickets implements Serializable{
 	}
 	public void setReplayCount(int replayCount) {
 		this.replayCount = replayCount;
+	}
+	public String getAssignedOwner() {
+		return assignedOwner;
+	}
+	public void setAssignedOwner(String assignedOwner) {
+		this.assignedOwner = assignedOwner;
+	}
+	public String getPriority() {
+		return priority;
+	}
+	public void setPriority(String priority) {
+		this.priority = priority;
 	}
 }

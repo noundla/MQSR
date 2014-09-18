@@ -105,7 +105,8 @@ public class ReplayDialogActivity extends Activity {
 		deptDes.setText(replayTecket.getTicketDescription());
 		deptName.setText(replayTecket.getTicketTitle());
 		
-		
+		assignedUser=replayTecket.getAssignedOwner();
+		ticket_prority=replayTecket.getPriority();
 		////////////////////////////////////
 		store_spinner = (Spinner) findViewById(R.id.department_spinner);
 		if(User.getInstance().getStoreList()==null)
@@ -169,6 +170,7 @@ public class ReplayDialogActivity extends Activity {
 						android.R.layout.simple_spinner_item, User.getInstance().getAssignedUsers());
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				userSpinner.setAdapter(dataAdapter);
+				userSpinner.setSelection(dataAdapter.getPosition(assignedUser));
 			}
 		}
 		
@@ -227,6 +229,7 @@ public class ReplayDialogActivity extends Activity {
 		priorttydapter.setDropDownViewResource(R.layout.spintext);
 		
 		priority.setAdapter(priorttydapter);
+		priority.setSelection(priorttydapter.getPosition(ticket_prority));
 		
 		priority.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -364,6 +367,8 @@ public class ReplayDialogActivity extends Activity {
 						android.R.layout.simple_spinner_item, User.getInstance().getAssignedUsers());
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				userSpinner.setAdapter(dataAdapter);
+				userSpinner.setSelection(dataAdapter.getPosition(assignedUser));
+				
 			}
 		}
 	}

@@ -1056,6 +1056,17 @@ public class UtilMethod {
 				myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
 				//new field Replyscount
 				myticket.setReplayCount(Integer.parseInt(depobj.getProperty("Replyscount").toString()));
+				
+				System.out.println("TEST RSJ"+depobj.getProperty("assignedOwner"));
+				if(depobj.getProperty("assignedOwner")!=null)
+				if(!depobj.getProperty("assignedOwner").toString().equalsIgnoreCase("anyType{}"))
+				{
+					myticket.setAssignedOwner(depobj.getProperty("assignedOwner").toString());
+					
+					System.out.println("TEST ENTEr:"+myticket.getAssignedOwner() +myticket.getTicketId());
+				}
+				myticket.setPriority(depobj.getProperty("priority").toString());
+				
 				mQTicketsList.add(myticket); 
 			}
 
@@ -1328,6 +1339,7 @@ public class UtilMethod {
 	{
 
 		ArrayList<String> assignedUserList=new ArrayList<String>();
+		assignedUserList.add("-Select-");
 
 		try{
 
@@ -1458,7 +1470,17 @@ public class UtilMethod {
 				myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
 				//new field Replyscount
 				myticket.setReplayCount(Integer.parseInt(depobj.getProperty("Replyscount").toString()));
-				mQTicketsList.add(myticket); 
+				
+				
+				if(depobj.getProperty("assignedOwner")!=null)
+					if(!depobj.getProperty("assignedOwner").toString().equalsIgnoreCase("anyType{}"))
+					{
+						myticket.setAssignedOwner(depobj.getProperty("assignedOwner").toString());
+						
+					}
+					myticket.setPriority(depobj.getProperty("priority").toString());
+					
+					mQTicketsList.add(myticket); 
 			}
 
 
