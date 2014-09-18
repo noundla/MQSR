@@ -15,7 +15,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.tgs.mitra.R;
-import com.tgs.mitra.bean.Department;
+import com.tgs.qsr.support.Department;
 
 public class CustomList extends ArrayAdapter<Department> {
 	private final Activity context;

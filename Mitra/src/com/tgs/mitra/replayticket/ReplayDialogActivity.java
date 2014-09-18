@@ -29,19 +29,17 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SlidingDrawer;
-import android.widget.SlidingDrawer.OnDrawerCloseListener;
-import android.widget.SlidingDrawer.OnDrawerOpenListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tgs.mitra.R;
-import com.tgs.mitra.bean.MQTicketing;
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.MQReply;
-import com.tgs.mitra.util.MQTickets;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.MQReply;
+import com.tgs.qsr.support.MQTicketing;
+import com.tgs.qsr.support.MQTickets;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class ReplayDialogActivity extends Activity {
 

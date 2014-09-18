@@ -2,7 +2,6 @@ package com.tgs.mitra.createTicket;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,8 +11,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,12 +25,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tgs.mitra.R;
-import com.tgs.mitra.bean.Department;
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.MQDetQsn;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.Department;
+import com.tgs.qsr.support.MQDetQsn;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class Payroll extends Activity {
 

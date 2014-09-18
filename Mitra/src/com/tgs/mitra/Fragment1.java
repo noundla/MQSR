@@ -20,9 +20,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tgs.mitra.bean.User;
-import com.tgs.mitra.util.HomeScreenInfo;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.HomeScreenInfo;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class Fragment1 extends Fragment{
 	private TextView text;

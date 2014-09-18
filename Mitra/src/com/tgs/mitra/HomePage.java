@@ -18,14 +18,12 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
-import com.tgs.mitra.homeinfo.HomeTicketInfo;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.HomeScreenInfo;
-import com.tgs.mitra.util.MQTickets;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.HomeScreenInfo;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 
 

@@ -1,8 +1,5 @@
 package com.tgs.mitra;
 
-import com.tgs.mitra.createTicket.CreateTicket;
-import com.tgs.mitra.replayticket.ReplayTicket;
-
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+
+import com.tgs.mitra.createTicket.CreateTicket;
+import com.tgs.mitra.replayticket.ReplayTicket;
 
 public class MainTabsActivity extends  TabActivity {
 

@@ -12,11 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.ui.BaseActionBarActivity;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.MQDetQsn;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.MQDetQsn;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class MainActivity extends BaseActionBarActivity implements
 NavigationDrawerFragment.NavigationDrawerCallbacks {

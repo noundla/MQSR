@@ -1,7 +1,6 @@
 package com.tgs.mitra.homeinfo;
 
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,24 +20,22 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tgs.mitra.R;
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.MQTickets;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.MQTickets;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class HomeTicketInfo extends Activity   {
 	public static final ListAdapter ReplyListviewAdapter = null;

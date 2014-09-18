@@ -4,18 +4,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,12 +22,12 @@ import android.widget.Toast;
 
 import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
-import com.tgs.mitra.bean.Department;
-import com.tgs.mitra.bean.MQTicketing;
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.MQDetQsn;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.Department;
+import com.tgs.qsr.support.MQDetQsn;
+import com.tgs.qsr.support.MQTicketing;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class CreateDialogActivity extends Activity {
 

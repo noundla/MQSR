@@ -18,9 +18,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class LoginActivity extends Activity {
 	private ConnectionDetector mConneDetect=null;

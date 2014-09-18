@@ -22,13 +22,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tgs.mitra.HomePage;
 import com.tgs.mitra.R;
-import com.tgs.mitra.bean.Department;
-import com.tgs.mitra.bean.User;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
-import com.tgs.mitra.util.UtilMethod;
+import com.tgs.qsr.support.Department;
+import com.tgs.qsr.support.User;
+import com.tgs.qsr.support.UtilMethod;
 
 public class CreateTicket extends Activity {
 
