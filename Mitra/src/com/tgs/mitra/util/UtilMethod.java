@@ -401,14 +401,13 @@ public class UtilMethod {
 
 			//ticket.addPropertyIfValue("copyToEmail", replayTicket.getCopyToEmail());
 
-			PropertyInfo createdDate = new PropertyInfo();
+			/*PropertyInfo createdDate = new PropertyInfo();
 			createdDate.setName("createdDate");
 			createdDate.setNamespace(MOBSERVICE);
 			createdDate.setValue(createTicket.getCreatedDate());
 			createdDate.setType(null);
-
-			newTicket.addProperty(createdDate);
-			//ticket.addPropertyIfValue("createdDate", replayTicket.getCreatedDate());
+			newTicket.addProperty(createdDate);*/
+			
 
 			PropertyInfo createdUser = new PropertyInfo();
 			createdUser.setName("createdUser");
@@ -436,12 +435,13 @@ public class UtilMethod {
 			newTicket.addProperty(details);
 			//ticket.addPropertyIfValue("details", replayTicket.getDetails());
 
-			PropertyInfo dueDate = new PropertyInfo();
+			/*PropertyInfo dueDate = new PropertyInfo();
 			dueDate.setName("dueDate");
 			dueDate.setNamespace(MOBSERVICE);
 			dueDate.setValue( createTicket.getDueDate());
 			dueDate.setType(null);
-			newTicket.addProperty(dueDate);
+			newTicket.addProperty(dueDate);*/
+			
 			//ticket.addPropertyIfValue("dueDate", replayTicket.getDueDate());
 			PropertyInfo guidfield = new PropertyInfo();
 			guidfield.setName("guidfield");
@@ -451,12 +451,12 @@ public class UtilMethod {
 			newTicket.addProperty(guidfield);
 
 			//ticket.addPropertyIfValue("guidfield", replayTicket.getGuidfield());
-			PropertyInfo lastChange = new PropertyInfo();
+			/*PropertyInfo lastChange = new PropertyInfo();
 			lastChange.setName("lastChange");
 			lastChange.setNamespace(MOBSERVICE);
 			lastChange.setValue(createTicket.getLastChange());
 			lastChange.setType(null);
-			newTicket.addProperty(lastChange);
+			newTicket.addProperty(lastChange);*/
 			//ticket.addPropertyIfValue("lastChange", replayTicket.getLastChange());
 
 			PropertyInfo lastChangeUser = new PropertyInfo();
@@ -523,20 +523,24 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			transport.debug=true;
+			//transport.debug=true;
 			transport.call(SOAP_ACTION_CREATETICKET, envelope);
 
 			//System.out.println("TEST Request :"+transport.requestDump);
-			System.out.println("Response :"+transport.responseDump);
+			//System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 			//System.out.println("TEST RESULT :"+response);
 
 			SoapObject object=(SoapObject) response.getProperty(0);
 
-			System.out.println("TEST web service "+object.getProperty("ticketId").toString());
+			//System.out.println("TEST web service "+object.getProperty("ticketId").toString());
 			result=Boolean.valueOf(object.getProperty("ok").toString());
 			
 
+			if(result)
+			{
+				createdTicketId=Integer.parseInt(object.getProperty("ticketId").toString());
+			}
 
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -685,15 +689,13 @@ public class UtilMethod {
 
 			ticket.addProperty(copyToEmail);
 
-			//ticket.addPropertyIfValue("copyToEmail", replayTicket.getCopyToEmail());
 
-			PropertyInfo createdDate = new PropertyInfo();
+			/*PropertyInfo createdDate = new PropertyInfo();
 			createdDate.setName("createdDate");
 			createdDate.setNamespace(MOBSERVICE);
 			createdDate.setValue(replayTicket.getCreatedDate());
 			createdDate.setType(null);
-
-			ticket.addProperty(createdDate);
+			ticket.addProperty(createdDate);*/
 			//ticket.addPropertyIfValue("createdDate", replayTicket.getCreatedDate());
 
 			PropertyInfo createdUser = new PropertyInfo();
@@ -722,12 +724,13 @@ public class UtilMethod {
 			ticket.addProperty(details);
 			//ticket.addPropertyIfValue("details", replayTicket.getDetails());
 
-			PropertyInfo dueDate = new PropertyInfo();
+			/*PropertyInfo dueDate = new PropertyInfo();
 			dueDate.setName("dueDate");
 			dueDate.setNamespace(MOBSERVICE);
 			dueDate.setValue( replayTicket.getDueDate());
 			dueDate.setType(null);
-			ticket.addProperty(dueDate);
+			ticket.addProperty(dueDate);*/
+			
 			//ticket.addPropertyIfValue("dueDate", replayTicket.getDueDate());
 			PropertyInfo guidfield = new PropertyInfo();
 			guidfield.setName("guidfield");
@@ -736,14 +739,12 @@ public class UtilMethod {
 			guidfield.setType(null);
 			ticket.addProperty(guidfield);
 
-			//ticket.addPropertyIfValue("guidfield", replayTicket.getGuidfield());
-			PropertyInfo lastChange = new PropertyInfo();
+			/*PropertyInfo lastChange = new PropertyInfo();
 			lastChange.setName("lastChange");
 			lastChange.setNamespace(MOBSERVICE);
 			lastChange.setValue(replayTicket.getLastChange());
 			lastChange.setType(Date.class);
-			ticket.addProperty(lastChange);
-			//ticket.addPropertyIfValue("lastChange", replayTicket.getLastChange());
+			ticket.addProperty(lastChange);*/
 
 			PropertyInfo lastChangeUser = new PropertyInfo();
 			lastChangeUser.setName("lastChangeUser");
@@ -809,11 +810,11 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			//transport.debug=true;
+			transport.debug=true;
 			transport.call(SOAP_ACTION_REPLYTICKET, envelope);
 
-			//System.out.println("TEST Request :"+transport.requestDump);
-			//System.out.println("Response :"+transport.responseDump);
+			System.out.println("TEST Request :"+transport.requestDump);
+			System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
 			SoapObject object=(SoapObject) response.getProperty(0);

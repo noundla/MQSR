@@ -168,7 +168,7 @@ public class CreateDialogActivity extends Activity {
 			if(mConneDetect.isConnectingToInternet())
 			{
 				UtilMethod method=new UtilMethod();
-				status=method.replayTicket(User.getInstance(),arg0[0]);
+				status=method.createTicket(User.getInstance(),arg0[0]);//method.replayTicket(User.getInstance(),arg0[0]);
 				ticketId=method.createdTicketId;
 			}
 			return null;

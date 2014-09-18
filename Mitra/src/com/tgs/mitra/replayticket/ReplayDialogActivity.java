@@ -290,8 +290,9 @@ public class ReplayDialogActivity extends Activity {
 								"yyyy-MM-dd'T'HH:mm:ss.SSS",Locale.getDefault()); // Soap required
 															// format
 						 
-						mqTicketing.setLastChange(formatter
-								.format(javaUtilDate));
+						/*mqTicketing.setLastChange(formatter
+								.format(javaUtilDate));*/
+						mqTicketing.setLastChange("");
 						mqTicketing.setLastChangeUser(User.getInstance()
 								.getUser());
 						mqTicketing.setPriority(ticket_prority);
@@ -620,8 +621,7 @@ public class ReplayDialogActivity extends Activity {
 
 			if (mConneDetect.isConnectingToInternet()) {
 				UtilMethod method = new UtilMethod();
-				status = /* method.createTicket(User.getInstance(), mqTicketing); */method
-						.replayTicket(User.getInstance(), mqTicketing);
+				status =  method.createTicket(User.getInstance(), mqTicketing); /*method.replayTicket(User.getInstance(), mqTicketing);*/
 				// method.g
 				// method.replayTicket(User.getInstance(), replayTecket);
 			}
@@ -676,8 +676,8 @@ public class ReplayDialogActivity extends Activity {
 
 
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
-					android.R.layout.simple_spinner_item, storeList);
-			//dataAdapter.setDropDownViewResource(R.layout.spintext);
+					R.layout.spintext, storeList);
+			dataAdapter.setDropDownViewResource(R.layout.spintext);
 			store_spinner.setAdapter(dataAdapter);
 
 			dialog.dismiss();
