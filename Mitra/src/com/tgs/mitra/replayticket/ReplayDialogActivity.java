@@ -55,7 +55,7 @@ public class ReplayDialogActivity extends Activity {
 	private Spinner store_spinner;
 	SlidingDrawer slidingDrawer;
 	  Button slideButton;
-	  private String assignedUser="";
+	  private String assignedUser=""; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
