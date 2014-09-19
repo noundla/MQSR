@@ -55,7 +55,8 @@ public class ReplayDialogActivity extends Activity {
 	private Spinner store_spinner;
 	SlidingDrawer slidingDrawer;
 	  Button slideButton;
-	  private String assignedUser=""; 
+	  private String assignedUser="";
+	private String user_store=""; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -105,6 +106,7 @@ public class ReplayDialogActivity extends Activity {
 		
 		assignedUser=replayTecket.getAssignedOwner();
 		ticket_prority=replayTecket.getPriority();
+		user_store=replayTecket.getStoreId();
 		////////////////////////////////////
 		store_spinner = (Spinner) findViewById(R.id.department_spinner);
 		if(User.getInstance().getStoreList()==null)
@@ -119,7 +121,7 @@ public class ReplayDialogActivity extends Activity {
 			dataAdapter.setDropDownViewResource(R.layout.spintext);
 			store_spinner.setAdapter(dataAdapter);
 
-			store_spinner.setSelection(dataAdapter.getPosition(User.getInstance().getStoreName()));
+			store_spinner.setSelection(dataAdapter.getPosition(user_store));
 		}
 
 		store_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -128,7 +130,8 @@ public class ReplayDialogActivity extends Activity {
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				// TODO Auto-generated method stub
-				User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+				//User.getInstance().setStoreName(((TextView)arg1).getText().toString());
+				user_store=((TextView)arg1).getText().toString();
 			}
 
 			@Override
@@ -301,8 +304,7 @@ public class ReplayDialogActivity extends Activity {
 																			// need
 						mqTicketing.setReplyId(replayTecket.getTicketId());
 						//mqTicketing.setReplyId(replayTecket.getTicketId());
-						mqTicketing.setStoreId(User.getInstance()
-								.getStoreName());
+						mqTicketing.setStoreId(user_store);
 						mqTicketing.setTicketId("0");
 						mqTicketing.setTicketStatus(status);// We need to send
 																// close
@@ -682,6 +684,7 @@ public class ReplayDialogActivity extends Activity {
 					R.layout.spintext, storeList);
 			dataAdapter.setDropDownViewResource(R.layout.spintext);
 			store_spinner.setAdapter(dataAdapter);
+			store_spinner.setSelection(dataAdapter.getPosition(user_store));
 
 			dialog.dismiss();
 		}

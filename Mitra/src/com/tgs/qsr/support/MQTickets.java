@@ -23,6 +23,7 @@ public class MQTickets implements Serializable{
 	private boolean hasReplay=false;
 	private String assignedOwner="";
 	private String priority="";
+	private String storeId="";
 	
 	private int replayCount=0;
 	
@@ -97,5 +98,11 @@ public class MQTickets implements Serializable{
 	}
 	public void setPriority(String priority) {
 		this.priority = priority;
+	}
+	public String getStoreId() {
+		return storeId;
+	}
+	public void setStoreId(String storeId) {
+		this.storeId = storeId;
 	}
 }

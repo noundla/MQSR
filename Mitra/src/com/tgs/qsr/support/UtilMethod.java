@@ -1052,15 +1052,15 @@ public class UtilMethod {
 				//new field Replyscount
 				myticket.setReplayCount(Integer.parseInt(depobj.getProperty("Replyscount").toString()));
 				
-				System.out.println("TEST RSJ"+depobj.getProperty("assignedOwner"));
 				if(depobj.getProperty("assignedOwner")!=null)
 				if(!depobj.getProperty("assignedOwner").toString().equalsIgnoreCase("anyType{}"))
 				{
 					myticket.setAssignedOwner(depobj.getProperty("assignedOwner").toString());
 					
-					System.out.println("TEST ENTEr:"+myticket.getAssignedOwner() +myticket.getTicketId());
 				}
 				myticket.setPriority(depobj.getProperty("priority").toString());
+				//a:storeId
+				myticket.setStoreId(depobj.getProperty("storeId").toString());
 				
 				mQTicketsList.add(myticket); 
 			}
@@ -1475,6 +1475,8 @@ public class UtilMethod {
 						
 					}
 					myticket.setPriority(depobj.getProperty("priority").toString());
+					
+					myticket.setStoreId(depobj.getProperty("storeId").toString());
 					
 					mQTicketsList.add(myticket); 
 			}
