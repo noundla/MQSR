@@ -31,6 +31,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.haarman.listviewanimations.swinginadapters.AnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.AlphaInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.ScaleInAnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.tgs.mitra.R;
 import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.util.ConnectionDetector;
@@ -268,8 +272,14 @@ public class ReplayTicket extends Activity   {
 
 			else{
 				myTicketsList.addAll(mMainTempList);
-				reply_list_view.setAdapter(new ReplyListviewAdapter(
+				
+				AnimationAdapter animAdapter = new ScaleInAnimationAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
+				
+				
+				animAdapter.setAbsListView(reply_list_view);
+				
+				reply_list_view.setAdapter(animAdapter);
 			}
 
 			dialog.dismiss();
@@ -455,8 +465,18 @@ public class ReplayTicket extends Activity   {
 
 			else{
 				myTicketsList.addAll(mMainTempList);
-				reply_list_view.setAdapter(new ReplyListviewAdapter(
+				/*reply_list_view.setAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
+				*/
+				 
+				
+				AnimationAdapter animAdapter = new ScaleInAnimationAdapter(new ReplyListviewAdapter(
+						getApplicationContext()));
+				
+				
+				animAdapter.setAbsListView(reply_list_view);
+				
+				reply_list_view.setAdapter(animAdapter);
 			}
 
 			dialog.dismiss();

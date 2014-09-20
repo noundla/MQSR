@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.haarman.listviewanimations.swinginadapters.AnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.ScaleInAnimationAdapter;
 import com.tgs.mitra.R;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
@@ -282,9 +284,13 @@ public class CreateTicket extends Activity {
 			
 			CustomList listAdapter = new CustomList(CreateTicket.this,dpartmentList);
 
+			AnimationAdapter animAdapter = new ScaleInAnimationAdapter(listAdapter);
+			
+			
+			animAdapter.setAbsListView(mainListView);
 			 
 
-			mainListView.setAdapter(listAdapter);
+			mainListView.setAdapter(animAdapter);
 			
 			
 			dialog.dismiss();

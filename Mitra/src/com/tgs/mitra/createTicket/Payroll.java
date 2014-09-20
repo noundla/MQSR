@@ -24,6 +24,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.haarman.listviewanimations.swinginadapters.AnimationAdapter;
+import com.haarman.listviewanimations.swinginadapters.prepared.ScaleInAnimationAdapter;
 import com.tgs.mitra.R;
 import com.tgs.mitra.replayticket.ReplayTicket;
 import com.tgs.mitra.util.ConnectionDetector;
@@ -211,7 +213,14 @@ public class Payroll extends Activity {
 			}
 
 			MyCustom myCustom=new MyCustom(Payroll.this, departQsnsList);
-			mainListView.setAdapter(myCustom);
+			
+			
+			AnimationAdapter animAdapter = new ScaleInAnimationAdapter(myCustom);
+			
+			
+			animAdapter.setAbsListView(mainListView);
+			
+			mainListView.setAdapter(animAdapter);
 
 
 
