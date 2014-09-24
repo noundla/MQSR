@@ -12,7 +12,7 @@
         android:gravity="center"
         android:paddingLeft="10dp"
         android:singleLine="true"
-        android:text="Create Ticket for Payroll"
+        android:text="@string/create_ticket_payroll_text"
         android:textColor="@color/white_text"
         android:textSize="@dimen/heading"
         android:textStyle="bold" />
@@ -31,32 +31,29 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/main_img"
         android:layout_margin="10dp"
+        android:background="@android:color/white"
         android:orientation="horizontal"
-        android:weightSum="3" >
+        android:padding="15dp" >
 
         <TextView
             android:id="@+id/tic_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:singleLine="true"
-            android:text="101"
+            android:text="@string/transaction_id"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/store_name"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/leavedet_txt_ht1"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-
             android:singleLine="true"
-            android:text="Store name"
+            android:text="@string/store_name_text"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/heading" />
-
-        
+            android:textSize="@dimen/listtext_size" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -71,15 +68,17 @@
             android:id="@+id/depart_desc_replay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:background="@color/white_text"
             android:gravity="center_vertical"
-            android:hint="Ticket message"
+            android:hint="@string/ticket_message_text"
             android:maxLines="5"
             android:minHeight="100dp"
             android:paddingLeft="10dp"
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/cancel_button"
@@ -91,10 +90,10 @@
             android:layout_marginLeft="@dimen/marg_lt"
             android:layout_marginRight="@dimen/marg_lt"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bottom_ar"
-            android:text="Cancel"
+            android:background="@drawable/button_corner_maroon_shape"
+            android:text="@string/cancel_button_text"
             android:textColor="@color/white_text"
-            android:textSize="@dimen/text_size"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <Button
@@ -107,10 +106,10 @@
             android:layout_marginLeft="@dimen/marg_lt"
             android:layout_marginRight="@dimen/marg_lt"
             android:layout_marginTop="10dp"
-            android:background="@drawable/bottom_ar"
-            android:text="Create ticket"
+            android:background="@drawable/button_corner_maroon_shape"
+            android:text="@string/create_ticket_text"
             android:textColor="@color/white_text"
-            android:textSize="@dimen/text_size"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </RelativeLayout>
 

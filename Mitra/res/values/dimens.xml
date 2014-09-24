@@ -33,4 +33,9 @@
                                      <dimen name="reply_tic_siz">12dp</dimen>
                                      
                                      <dimen name="bottom_ht">40dp</dimen>
+                                     
+                                     
+                                     
+                                     <dimen name="rep_wid">100dp</dimen>
+                                          <dimen name="rep_ht">32dp</dimen>
 </resources>

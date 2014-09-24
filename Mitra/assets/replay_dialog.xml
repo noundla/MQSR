@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AAAAAA" >
+    <TextView
+        android:id="@+id/main_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/leavedet_txt_ht1"
+        android:background="@drawable/bottom_ar"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="Reply"
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/heading"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/back_btnn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/backbutton_48x48_in20x20" />
+
+    <ScrollView android:layout_width="wrap_content" android:layout_below="@+id/main_img" 
+                android:layout_height="wrap_content" android:fillViewport="true" >
+    
+    <RelativeLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+          <RelativeLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+           
+                android:layout_margin="8dp"
+                android:background="@drawable/layout_round_background"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/depart_id1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:singleLine="true"
+                    android:text="@string/ticket_id_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/depart_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:singleLine="true"
+                    android:text="@string/ticket_id_display_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/depart_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/depart_id1"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:text="@string/department_static_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/depart_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/depart_id1"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:text="@string/department_display_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/depart_name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/depart_title"
+                    android:layout_marginTop="10dp"
+                    android:singleLine="true"
+                    android:text="@string/title_static_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/empty_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/depart_name1"
+                    android:layout_below="@+id/depart_title"
+                    android:layout_toRightOf="@+id/depart_name1"
+                    android:text="@string/empty_view_text"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/depart_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/store_id1"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/empty_view"
+                    android:singleLine="true"
+                    android:text="@string/title_display_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/store_id1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/depart_name1"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@+id/depart_name1"
+                    android:singleLine="true"
+                    android:text="@string/store_static_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/department_spinner"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/depart_name"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/user_Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/department_spinner"
+                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/ticket_priority_static_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/ticket_prority"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/department_spinner"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/department_spinner"
+                    android:entries="@array/ticket_prority" />
+
+                <TextView
+                    android:id="@+id/assign_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/ticket_prority"
+                    android:layout_gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/assignTo_static_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/user_list_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/ticket_prority"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ticket_prority" />
+
+                <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@id/user_list_spinner"
+                    android:text="@string/status_static_text"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/ticket_status"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/user_list_spinner"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/user_list_spinner"
+                    android:entries="@array/ticket_status" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/depart_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/linearLayout1"
+                android:layout_marginLeft="15dp"
+                android:text="This is test descrip "
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/depart_desc"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" >
+
+                <RelativeLayout
+                    android:id="@+id/replay_report_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/layout_round_background"
+                    android:padding="10dp" >
+
+                    <EditText
+                        android:id="@+id/depart_desc_replay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/round_edittext"
+                        android:gravity="top"
+                        android:hint="Your reply"
+                        android:maxLines="4"
+                        android:minHeight="100dp"
+                        android:padding="10dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <Button
+                        android:id="@+id/reply_button"
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/sum_lv_btn"
+                        android:layout_below="@id/depart_desc_replay"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/button_corner_shape"
+                        android:text="Submit"
+                        android:textColor="@color/white_text"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <SlidingDrawer
+                    android:id="@+id/SlidingDrawer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dip"
+                    android:layout_below="@+id/replay_report_layout"
+                    android:content="@+id/contentLayout"
+                    android:handle="@+id/slideButton"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/slideButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/sum_lv_btn"
+                        android:background="@drawable/button_corner_shape"
+                        android:text="Recent Replies"
+                        android:textColor="@color/white_text"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" >
+                    </Button>
+
+                    
+                    <LinearLayout
+                        android:id="@+id/contentLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white_text"
+                        android:gravity="top"
+                        android:orientation="vertical" >
+
+                        <ListView
+                            android:id="@+id/replyed_ListView"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:background="@android:color/white"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:divider="#E0E0E0"
+                            android:dividerHeight="1dp" >
+                        </ListView>
+
+                        <ProgressBar
+                            android:id="@+id/progressBar1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/recent_reply"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:visibility="invisible" />
+                    </LinearLayout>
+                </SlidingDrawer>
+            </RelativeLayout>
+    </RelativeLayout>
+    
+</ScrollView>
+          
+
+</RelativeLayout>

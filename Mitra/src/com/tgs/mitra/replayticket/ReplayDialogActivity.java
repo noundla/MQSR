@@ -52,7 +52,7 @@ public class ReplayDialogActivity extends Activity {
 	private ListView listView=null;
 	private String status="Close";
 	Spinner userSpinner=null;
-	private Spinner store_spinner;
+	private TextView store_spinner;
 	SlidingDrawer slidingDrawer;
 	  Button slideButton;
 	  private String assignedUser="";
@@ -99,17 +99,19 @@ public class ReplayDialogActivity extends Activity {
 		listView=(ListView)findViewById(R.id.replyed_ListView);
 		userSpinner=(Spinner)findViewById(R.id.user_list_spinner);
 
-		title.setText(replayTecket.getDepartmentName());
-		deptId.setText( replayTecket.getTicketId());
-		deptDes.setText(replayTecket.getTicketDescription());
-		deptName.setText(replayTecket.getTicketTitle());
+		title.setText(": "+replayTecket.getDepartmentName());
+		deptId.setText(": "+ replayTecket.getTicketId());
+		deptDes.setText(" "+replayTecket.getTicketDescription());
+		deptName.setText(":"+replayTecket.getTicketTitle());
 		
 		assignedUser=replayTecket.getAssignedOwner();
 		ticket_prority=replayTecket.getPriority();
 		user_store=replayTecket.getStoreId();
 		////////////////////////////////////
-		store_spinner = (Spinner) findViewById(R.id.department_spinner);
-		if(User.getInstance().getStoreList()==null)
+		store_spinner = (TextView) findViewById(R.id.department_spinner);
+		
+		store_spinner.setText(": "+replayTecket.getStoreId());
+	/*	if(User.getInstance().getStoreList()==null)
 		{
 			StoreListTaks storeListTaks=new StoreListTaks();
 			storeListTaks.execute();
@@ -140,7 +142,7 @@ public class ReplayDialogActivity extends Activity {
 
 			}
 		});
-		
+		*/
 		
 		
 		
@@ -251,6 +253,7 @@ public class ReplayDialogActivity extends Activity {
 		final EditText replyText = (EditText) findViewById(R.id.depart_desc_replay);
 
 		Button replay = (Button) findViewById(R.id.reply_button);
+		replay.bringToFront();
 		replay.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -653,7 +656,7 @@ public class ReplayDialogActivity extends Activity {
 		}
 	}
 	
-	class StoreListTaks extends AsyncTask<Void, Void, Void>
+/*	class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
 		private ArrayList<String> storeList=null;
 		private ProgressDialog dialog=null;
@@ -688,5 +691,5 @@ public class ReplayDialogActivity extends Activity {
 
 			dialog.dismiss();
 		}
-	}
+	}*/
 }

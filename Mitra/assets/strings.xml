@@ -24,9 +24,7 @@
         <item>Open</item>
     </string-array>
     
-    
-    
-    <!-- Ui Modifiction related strings -->
+<!-- Ui Modifiction related strings -->
 <string name="store_display_text">Store :</string>
 <string name="ticket_id_text">Ticket Id</string>
 <string name="colon_display_text">:</string>
@@ -35,7 +33,7 @@
 <string name="department_display_text">Operations </string>
 <string name="title_static_text">Title </string>
 <string name="title_display_text">Others </string>
-<string name="store_static_text">Store </string>
+<string name="store_static_text">User Store </string>
 <string name="ticket_priority_static_text">Ticket priority </string>
 <string name="assignTo_static_text">Assigned To</string>
 <string name="status_static_text">Status</string>
@@ -54,5 +52,4 @@
 <string name="date_display_text">Sep 23</string>
 <string name="user_name_display_text">Balaji</string>
 <string name="img_content_descirption_text">Content Description</string>
-
 </resources>
