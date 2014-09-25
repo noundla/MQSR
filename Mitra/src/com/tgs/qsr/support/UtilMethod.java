@@ -805,11 +805,11 @@ public class UtilMethod {
 
 
 			HttpTransportSE transport = new HttpTransportSE(URL);
-			transport.debug=true;
+			//transport.debug=true;
 			transport.call(SOAP_ACTION_REPLYTICKET, envelope);
 
-			System.out.println("TEST Request :"+transport.requestDump);
-			System.out.println("Response :"+transport.responseDump);
+			//System.out.println("TEST Request :"+transport.requestDump);
+			//System.out.println("Response :"+transport.responseDump);
 			SoapObject response = (SoapObject) envelope.bodyIn;
 
 			SoapObject object=(SoapObject) response.getProperty(0);
@@ -1309,8 +1309,11 @@ public class UtilMethod {
 				myticket.setTicketDescription(depobj.getProperty("TicketDescription").toString());
 				myticket.setTicketId(depobj.getProperty("TicketId").toString());
 				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
+				
 				//hasReply
-				//myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
+				 myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
+				 //count
+				 myticket.setReplayCount(Integer.parseInt(depobj.getProperty("Replyscount").toString()));
 				mQTicketsList.add(myticket); 
 			}
 			
