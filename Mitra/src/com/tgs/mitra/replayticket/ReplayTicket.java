@@ -80,24 +80,24 @@ public class ReplayTicket extends Activity   {
 		else{
 			ticketType=getIntent().getStringExtra("TicketType");
 			//getIntent().getb
-			
+
 			((TextView)findViewById(R.id.main_img)).setText(ticketType);
-			
+
 			mConneDetect = new ConnectionDetector(getApplicationContext());
 
 			if(mConneDetect.isConnectingToInternet())
 			{
-			HomeScreenInfoTask homeTask = new HomeScreenInfoTask();
-			homeTask.execute();
+				HomeScreenInfoTask homeTask = new HomeScreenInfoTask();
+				homeTask.execute();
 
-	/*
+				/*
 			StoreListTaks storeListTaks=new StoreListTaks();
 			storeListTaks.execute();*/
-			
+
 			}
 			else{
-				  Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
-				  finish();
+				Toast.makeText(_activity, R.string.connection_error, Toast.LENGTH_LONG).show();
+				finish();
 			}
 		}
 
@@ -227,8 +227,8 @@ public class ReplayTicket extends Activity   {
 		create_btn.setOnClickListener(listener);
 		reply_btn.setOnClickListener(listener);
 	}
-	
-	
+
+
 	class HomeScreenInfoTask extends AsyncTask<Void, Void, Void>
 	{
 
@@ -257,7 +257,7 @@ public class ReplayTicket extends Activity   {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			 
+
 			if(mMainTempList==null)
 			{
 				Toast.makeText(_activity, "No Results Found!", Toast.LENGTH_LONG).show();
@@ -272,19 +272,19 @@ public class ReplayTicket extends Activity   {
 
 			else{
 				myTicketsList.addAll(mMainTempList);
-				
+
 				AnimationAdapter animAdapter = new ScaleInAnimationAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
-				
-				
+
+
 				animAdapter.setAbsListView(reply_list_view);
-				
+
 				reply_list_view.setAdapter(animAdapter);
 			}
 
 			dialog.dismiss();
 		}
-	
+
 	}
 
 
@@ -293,7 +293,7 @@ public class ReplayTicket extends Activity   {
 
 		ProgressDialog dialog = null;
 		ArrayList<MQTickets> searchList=null;
-		
+
 
 		@Override
 		protected void onPreExecute() {
@@ -311,7 +311,7 @@ public class ReplayTicket extends Activity   {
 			if (mConneDetect.isConnectingToInternet()) {
 				UtilMethod method = new UtilMethod();
 				searchList = method.getSearchTicketsList(User.getInstance(), arg0[0], arg0[1]);
-				
+
 				// "Open");
 			}
 			return null;
@@ -467,15 +467,15 @@ public class ReplayTicket extends Activity   {
 				myTicketsList.addAll(mMainTempList);
 				/*reply_list_view.setAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
-				*/
-				 
-				
+				 */
+
+
 				AnimationAdapter animAdapter = new ScaleInAnimationAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
-				
-				
+
+
 				animAdapter.setAbsListView(reply_list_view);
-				
+
 				reply_list_view.setAdapter(animAdapter);
 			}
 
@@ -536,6 +536,7 @@ public class ReplayTicket extends Activity   {
 				holder.date = (TextView) view.findViewById(R.id.created_date);
 				holder.count = (TextView) view.findViewById(R.id.count);
 				holder.ticketID=(TextView) view.findViewById(R.id.ticket_id);
+				holder.store=(TextView) view.findViewById(R.id.store_name);
 
 				holder.arrow = (ImageView) view
 						.findViewById(R.id.arrow);
@@ -633,7 +634,7 @@ public class ReplayTicket extends Activity   {
 
 				//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
 
-
+				holder.store.setText(/*"Store :"+*/myTicketsList.get(position).getStoreId());
 				holder.ticketID.setText(""+myTicketsList.get(position).getTicketId().toString());
 				//	holder.ticketID.setText();
 				holder.setMqTickets(myTicketsList.get(position));
@@ -654,6 +655,7 @@ public class ReplayTicket extends Activity   {
 		TextView desc;
 		TextView createdby;
 		TextView date;
+		TextView store;
 		TextView count;
 		TextView ticketID;
 		ImageView arrow;

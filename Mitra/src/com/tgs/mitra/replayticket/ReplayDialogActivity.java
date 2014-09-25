@@ -89,11 +89,13 @@ public class ReplayDialogActivity extends Activity {
         });*/
 		
 		TextView title = (TextView) findViewById(R.id.depart_title);
+		
+		TextView title_desc = (TextView) findViewById(R.id.des_text);
 
 		TextView deptId = (TextView) findViewById(R.id.depart_id);
 
 		TextView deptDes = (TextView) findViewById(R.id.depart_desc);
-		TextView deptName = (TextView) findViewById(R.id.depart_name);
+		//TextView deptName = (TextView) findViewById(R.id.depart_name);
 		//TextView store_id = (TextView) findViewById(R.id.store_id);
 		//replayLayout = (LinearLayout) findViewById(R.id.replasys_layout);
 		listView=(ListView)findViewById(R.id.replyed_ListView);
@@ -102,7 +104,9 @@ public class ReplayDialogActivity extends Activity {
 		title.setText(replayTecket.getDepartmentName());
 		deptId.setText(replayTecket.getTicketId());
 		deptDes.setText(replayTecket.getTicketDescription());
-		deptName.setText(replayTecket.getTicketTitle());
+		//deptName.setText(replayTecket.getTicketTitle());
+		
+		title_desc.setText(replayTecket.getTicketTitle());
 		
 		assignedUser=replayTecket.getAssignedOwner();
 		ticket_prority=replayTecket.getPriority();

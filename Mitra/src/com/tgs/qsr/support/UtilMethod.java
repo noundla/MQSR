@@ -1058,6 +1058,7 @@ public class UtilMethod {
 					myticket.setAssignedOwner(depobj.getProperty("assignedOwner").toString());
 					
 				}
+				if(depobj.getProperty("priority")!=null)
 				myticket.setPriority(depobj.getProperty("priority").toString());
 				//a:storeId
 				myticket.setStoreId(depobj.getProperty("storeId").toString());
@@ -1310,6 +1311,8 @@ public class UtilMethod {
 				myticket.setTicketId(depobj.getProperty("TicketId").toString());
 				myticket.setTicketTitle(depobj.getProperty("TicketTitle").toString());
 				
+				if(depobj.getProperty("storeId")!=null)
+				myticket.setStoreId(depobj.getProperty("storeId").toString());
 				//hasReply
 				 myticket.setHasReplay(Boolean.valueOf(depobj.getProperty("hasReply").toString()));
 				 //count
@@ -1477,6 +1480,7 @@ public class UtilMethod {
 						myticket.setAssignedOwner(depobj.getProperty("assignedOwner").toString());
 						
 					}
+				if(depobj.getProperty("priority")!=null)
 					myticket.setPriority(depobj.getProperty("priority").toString());
 					
 					myticket.setStoreId(depobj.getProperty("storeId").toString());
