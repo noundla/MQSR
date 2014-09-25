@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/arrow"
-                android:maxLength="8"
+                android:maxLength="7"
                 android:singleLine="true"
                 android:text="101"
                 android:textColor="@android:color/black"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/department_name"
-                android:maxLength="28"
+                android:maxLength="20"
                 android:maxWidth="110dp"
                 android:singleLine="true"
                 android:text="-Title  skdflksdjlkf dslkf lksdf lkds"
@@ -105,6 +105,19 @@
             android:text="This is test descrip "
             android:textColor="@android:color/black"
             android:textSize="@dimen/reply_tic_siz" />
+         <TextView
+                android:id="@+id/store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="2dp"
+                    android:layout_below="@id/depart_desc"
+                android:singleLine="true"
+                
+                android:text="Store :"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/reply_tic_siz" />
 
         
                     <TextView
@@ -116,7 +129,7 @@
                 android:layout_marginTop="14dp"
                     android:layout_below="@id/top_layout"
                 android:singleLine="true"
-                android:paddingLeft="38dp"
+                android:paddingLeft="32dp"
                 android:text="Created User-"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/reply_tic_siz" />
