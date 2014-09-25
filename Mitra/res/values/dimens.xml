@@ -38,4 +38,5 @@
                                      
                                      <dimen name="rep_wid">100dp</dimen>
                                           <dimen name="rep_ht">32dp</dimen>
+                                          <dimen name="rep_pad">10dp</dimen>
 </resources>

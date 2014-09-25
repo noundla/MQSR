@@ -99,10 +99,10 @@ public class ReplayDialogActivity extends Activity {
 		listView=(ListView)findViewById(R.id.replyed_ListView);
 		userSpinner=(Spinner)findViewById(R.id.user_list_spinner);
 
-		title.setText(": "+replayTecket.getDepartmentName());
-		deptId.setText(": "+ replayTecket.getTicketId());
-		deptDes.setText(" "+replayTecket.getTicketDescription());
-		deptName.setText(":"+replayTecket.getTicketTitle());
+		title.setText(replayTecket.getDepartmentName());
+		deptId.setText(replayTecket.getTicketId());
+		deptDes.setText(replayTecket.getTicketDescription());
+		deptName.setText(replayTecket.getTicketTitle());
 		
 		assignedUser=replayTecket.getAssignedOwner();
 		ticket_prority=replayTecket.getPriority();
@@ -110,7 +110,7 @@ public class ReplayDialogActivity extends Activity {
 		////////////////////////////////////
 		store_spinner = (TextView) findViewById(R.id.department_spinner);
 		
-		store_spinner.setText(": "+replayTecket.getStoreId());
+		store_spinner.setText(replayTecket.getStoreId());
 	/*	if(User.getInstance().getStoreList()==null)
 		{
 			StoreListTaks storeListTaks=new StoreListTaks();
@@ -170,7 +170,7 @@ public class ReplayDialogActivity extends Activity {
 			}else
 			{
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
-						android.R.layout.simple_spinner_item, User.getInstance().getAssignedUsers());
+						R.layout.spinnertext1, User.getInstance().getAssignedUsers());
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				userSpinner.setAdapter(dataAdapter);
 				userSpinner.setSelection(dataAdapter.getPosition(assignedUser));
@@ -196,13 +196,13 @@ public class ReplayDialogActivity extends Activity {
 		});
 
 		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
+				R.layout.spinnertext1, getResources().getStringArray(R.array.ticket_status));
 		
 		final ArrayAdapter<String> priorttydapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_prority));
+				R.layout.spinnertext1, getResources().getStringArray(R.array.ticket_prority));
 		
 		final ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.ticket_status));
+				R.layout.spinnertext1, getResources().getStringArray(R.array.ticket_status));
 		
 		
 		Spinner status_spinner = (Spinner) findViewById(R.id.ticket_status);
@@ -367,7 +367,7 @@ public class ReplayDialogActivity extends Activity {
 				User.getInstance().setAssignedUsers(userList);
 				
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
-						android.R.layout.simple_spinner_item, User.getInstance().getAssignedUsers());
+					R.layout.spinnertext1, User.getInstance().getAssignedUsers());
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				userSpinner.setAdapter(dataAdapter);
 				userSpinner.setSelection(dataAdapter.getPosition(assignedUser));
