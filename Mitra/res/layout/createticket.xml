@@ -30,7 +30,7 @@
         <Spinner
         android:id="@+id/department_spinner"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp"
         android:background="@color/reject_color"
@@ -42,11 +42,12 @@
             <TextView
         android:id="@+id/store_name"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/leavedet_txt_ht1"
-        android:background="@color/blue_main"
+        android:layout_height="38dp"
+ android:background="@color/reject_color"
  android:layout_alignParentRight="true"
-        android:paddingTop="10dp"
+     
         android:singleLine="true"
+        android:padding="10dp"
             android:layout_marginRight="10dp"
         android:text="Store name"
         android:textColor="@color/white_text"

@@ -51,7 +51,7 @@ public class CreateDialogActivity extends Activity {
 		mConneDetect =new ConnectionDetector(getApplicationContext());
 		Button back = (Button) findViewById(R.id.back_btnn);
 		
-		((TextView)findViewById(R.id.store_name)).setText(User.getInstance().getStoreName());
+		((TextView)findViewById(R.id.store_name)).setText("Store        :"+User.getInstance().getStoreName());
 
 		back.setOnClickListener(new OnClickListener() {
 
@@ -89,7 +89,7 @@ public class CreateDialogActivity extends Activity {
 		
 		titleText.setText(department.getDepartment());
 
-		deptId.setText(detQsn.getQuestionTitle());
+		deptId.setText("Catagery  :"+detQsn.getQuestionTitle());
 
 		Button replay = (Button) findViewById(R.id.reply_button);
 		replay.setOnClickListener(new OnClickListener() {

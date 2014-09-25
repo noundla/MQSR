@@ -627,7 +627,7 @@ public class ReplayTicket extends Activity   {
 
 
 				//holder.date.setText(hour+":"+minute);
-				holder.createdby.setText("Created by : "+ myTicketsList.get(position)
+				holder.createdby.setText("By : "+ myTicketsList.get(position)
 						.getLastModifiedBy());
 				holder.createdby.bringToFront();
 

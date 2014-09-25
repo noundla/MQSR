@@ -551,7 +551,7 @@ public class ReplayDialogActivity extends Activity {
 
 
 					//holder.date.setText(hour+":"+minute);
-					holder.createdby.setText("Created by : "+ replayList.get(position)
+					holder.createdby.setText("By : "+ replayList.get(position)
 							.getLastModifiedBy());
 
 				//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);

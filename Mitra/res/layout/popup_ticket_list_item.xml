@@ -104,7 +104,7 @@
             android:layout_below="@id/top_layout"
             android:layout_marginRight="@dimen/reply_ticket_txt_mag1"
             android:layout_marginTop="-4dp"
-            android:maxLines="1"
+    
      
             android:text="This is test descrip "
             android:textColor="@android:color/black"

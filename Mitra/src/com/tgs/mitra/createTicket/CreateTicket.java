@@ -51,7 +51,7 @@ public class CreateTicket extends Activity {
 		
 		
 		  depatment_spinner = (Spinner) findViewById(R.id.department_spinner);
-			
+		  depatment_spinner.bringToFront();
 		   depatment_spinner.setVisibility(View.VISIBLE);
 		   if(User.getInstance().getStoreList()==null)
 		   {

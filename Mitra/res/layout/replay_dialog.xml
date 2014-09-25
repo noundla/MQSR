@@ -296,6 +296,7 @@
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 </RelativeLayout>
+
    <!--          <TextView
                 android:id="@+id/recent_reply"
                 android:layout_width="match_parent"
