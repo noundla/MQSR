@@ -138,10 +138,13 @@ public class HomePage  extends Activity {
 					intent.putExtra("TicketType", arg1.getTag().toString());
 					startActivity(intent);*/
 					
+					  String fullname =arg1.getTag().toString();
+					System.out.println("full name  "+fullname);
 					Intent intent=new Intent(_activity,ReplayTicket.class);
 					intent.putExtra("TicketType", arg1.getTag().toString());
 					intent.putExtra("isReplayScreen", false);
 					startActivity(intent);
+					
 				}
 				
 			}

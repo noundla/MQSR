@@ -79,6 +79,8 @@ public class ReplayTicket extends Activity   {
 		}
 		else{
 			ticketType=getIntent().getStringExtra("TicketType");
+			
+			System.out.println("yyyy---"+ticketType);
 			//getIntent().getb
 
 			((TextView)findViewById(R.id.main_img)).setText(ticketType);

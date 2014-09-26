@@ -101,11 +101,11 @@
         <TextView
             android:id="@+id/des_text"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/rep_ht"
-            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+         android:layout_toRightOf="@id/depart_name1"
             android:layout_marginRight="@dimen/rep_pad"
             android:gravity="center_vertical"
-            android:singleLine="true"
+             android:layout_centerVertical="true"
             android:text="Content Title"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
@@ -340,7 +340,7 @@
         <SlidingDrawer
             android:id="@+id/SlidingDrawer"
             android:layout_width="wrap_content"
-            android:layout_height="300dip"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:content="@+id/contentLayout"
             android:handle="@+id/slideButton"
