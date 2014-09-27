@@ -62,7 +62,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		  
 		  new Thread(){
 			  public void run() {
-				  UtilMethod method=new UtilMethod();
+				  UtilMethod method=new UtilMethod(_activity);
 				  User user=User.getInstance();
 				 /* user.setUser("Balaji");
 				  user.setPassword("9balaji@");
@@ -96,7 +96,7 @@ NavigationDrawerFragment.NavigationDrawerCallbacks {
 		 
 			if(mConneDetect.isConnectingToInternet())
 			{
-				UtilMethod method=new UtilMethod();
+				UtilMethod method=new UtilMethod(_activity);
 				/*MQTicketing replayTicket=new MQTicketing();
 				replayTicket.setAssignedOwner("Appaji");
 				replayTicket.setCopyToEmail("harini@pravastech.com");

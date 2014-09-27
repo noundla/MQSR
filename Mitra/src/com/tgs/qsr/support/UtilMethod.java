@@ -8,13 +8,16 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.tgs.mitra.R;
 
 public class UtilMethod {
 
 
 	public  final  String NAMESPACE = "http://tempuri.org/";
-	public final String URL = "http://73.166.145.211:808/MitraQSRAPI/MitraQSRService.svc?wsdl";
+	public String URL = "";
 
 	//Login
 	public final String METHOD_NAME_LOGIN = "Login";
@@ -83,8 +86,9 @@ public class UtilMethod {
 	/**
 	 * Crate object for Methods class.
 	 */
-	public UtilMethod() {
+	public UtilMethod(Context context) {
 		createdTicketId=0;
+		  URL = context.getString(R.string.url);
 	}
 
 

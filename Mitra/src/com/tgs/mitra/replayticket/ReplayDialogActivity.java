@@ -54,8 +54,8 @@ public class ReplayDialogActivity extends Activity {
 	Spinner userSpinner=null;
 	private TextView store_spinner;
 	SlidingDrawer slidingDrawer;
-	  Button slideButton;
-	  private String assignedUser="";
+	Button slideButton;
+	private String assignedUser="";
 	private String user_store=""; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,27 +69,12 @@ public class ReplayDialogActivity extends Activity {
 		mConneDetect = new ConnectionDetector(getApplicationContext());
 		replayTecket = (MQTickets) getIntent().getSerializableExtra("MQT_OBJ");
 
-		
-	slideButton = (Button) findViewById(R.id.slideButton);
-	/*	  slidingDrawer = (SlidingDrawer) findViewById(R.id.SlidingDrawer);
-       
- 
-        slidingDrawer.setOnDrawerOpenListener(new OnDrawerOpenListener() {
-            @Override
-            public void onDrawerOpened() {
-                slideButton.setBackgroundResource(R.drawable.closeticket);
-            }
-        });
- 
-        slidingDrawer.setOnDrawerCloseListener(new OnDrawerCloseListener() {
-            @Override
-            public void onDrawerClosed() {
-                slideButton.setBackgroundResource(R.drawable.openall);
-            }
-        });*/
-		
+
+		slideButton = (Button) findViewById(R.id.slideButton);
+
+
 		TextView title = (TextView) findViewById(R.id.depart_title);
-		
+
 		TextView title_desc = (TextView) findViewById(R.id.des_text);
 
 		TextView deptId = (TextView) findViewById(R.id.depart_id);
@@ -105,17 +90,17 @@ public class ReplayDialogActivity extends Activity {
 		deptId.setText(replayTecket.getTicketId());
 		deptDes.setText(replayTecket.getTicketDescription());
 		//deptName.setText(replayTecket.getTicketTitle());
-		
+
 		title_desc.setText(replayTecket.getTicketTitle());
-		
+
 		assignedUser=replayTecket.getAssignedOwner();
 		ticket_prority=replayTecket.getPriority();
 		user_store=replayTecket.getStoreId();
 		////////////////////////////////////
 		store_spinner = (TextView) findViewById(R.id.department_spinner);
-		
+
 		store_spinner.setText(replayTecket.getStoreId());
-	/*	if(User.getInstance().getStoreList()==null)
+		/*	if(User.getInstance().getStoreList()==null)
 		{
 			StoreListTaks storeListTaks=new StoreListTaks();
 			storeListTaks.execute();
@@ -146,10 +131,10 @@ public class ReplayDialogActivity extends Activity {
 
 			}
 		});
-		*/
-		
-		
-		
+		 */
+
+
+
 		//((TextView)findViewById(R.id.store_id)).setText(User.getInstance().getStoreName());
 
 		Button back = (Button) findViewById(R.id.back_btnn);
@@ -164,13 +149,13 @@ public class ReplayDialogActivity extends Activity {
 
 			}
 		});
-		
+
 		if(mConneDetect.isConnectingToInternet())
 		{
 			if( User.getInstance().getAssignedUsers()==null)
 			{
-			AssignedUserTask assignedUserTask=new AssignedUserTask();
-			assignedUserTask.execute();
+				AssignedUserTask assignedUserTask=new AssignedUserTask();
+				assignedUserTask.execute();
 			}else
 			{
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
@@ -180,64 +165,64 @@ public class ReplayDialogActivity extends Activity {
 				userSpinner.setSelection(dataAdapter.getPosition(assignedUser));
 			}
 		}
-		
+
 		userSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-			
+
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 				assignedUser=((TextView)arg1).getText().toString();
-				
+
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 
 		final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				R.layout.spinnertext1, getResources().getStringArray(R.array.ticket_status));
-		
+
 		final ArrayAdapter<String> priorttydapter = new ArrayAdapter<String>(this,
 				R.layout.spinnertext1, getResources().getStringArray(R.array.ticket_prority));
-		
+
 		final ArrayAdapter<String> statusAdapter = new ArrayAdapter<String>(this,
 				R.layout.spinnertext1, getResources().getStringArray(R.array.ticket_status));
-		
-		
+
+
 		Spinner status_spinner = (Spinner) findViewById(R.id.ticket_status);
 		statusAdapter.setDropDownViewResource(R.layout.spintext);
 		status_spinner.setAdapter(statusAdapter);
 		status_spinner.setSelection(statusAdapter.getPosition(replayTecket.getStatus()));
 		status_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-			
+
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
 
 				status=((TextView)arg1).getText().toString();
-				
+
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		Spinner priority = (Spinner) findViewById(R.id.ticket_prority);
 		priorttydapter.setDropDownViewResource(R.layout.spintext);
-		
+
 		priority.setAdapter(priorttydapter);
 		priority.setSelection(priorttydapter.getPosition(ticket_prority));
-		
+
 		priority.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -272,35 +257,35 @@ public class ReplayDialogActivity extends Activity {
 						mqTicketing.setCopyToEmail("");
 						mqTicketing.setCreatedDate(replayTecket
 								.getLastModified()); // Maybe we need to send
-														// Defauld date
+						// Defauld date
 						mqTicketing
-								.setCreatedUser(User.getInstance().getUser());
+						.setCreatedUser(User.getInstance().getUser());
 						mqTicketing.setDepartment(replayTecket
 								.getDepartmentName());
 						mqTicketing.setDetails(replyText.getText().toString());
 						mqTicketing.setDueDate(replayTecket.getLastModified());// No
-																				// need
-																				// to
-																				// pass
-																				// //Maybe
-																				// we
-																				// need
-																				// to
-																				// send
-																				// Defauld
-																				// date
+						// need
+						// to
+						// pass
+						// //Maybe
+						// we
+						// need
+						// to
+						// send
+						// Defauld
+						// date
 						mqTicketing
-								.setGuidfield("99999999-9999-9999-9999-999999999999");// No
-																						// need
-																						// it's
-																						// generate
-																						// automatically.
+						.setGuidfield("99999999-9999-9999-9999-999999999999");// No
+						// need
+						// it's
+						// generate
+						// automatically.
 
 						Date javaUtilDate = new Date();
 						SimpleDateFormat formatter = new SimpleDateFormat(
 								"yyyy-MM-dd'T'HH:mm:ss.SSS",Locale.getDefault()); // Soap required
-															// format
-						 
+						// format
+
 						/*mqTicketing.setLastChange(formatter
 								.format(javaUtilDate));*/
 						mqTicketing.setLastChange("");
@@ -308,13 +293,13 @@ public class ReplayDialogActivity extends Activity {
 								.getUser());
 						mqTicketing.setPriority(ticket_prority);
 						//mqTicketing.setReplyId(replayTecket.getTicketId());// NO
-																			// need
+						// need
 						mqTicketing.setReplyId(replayTecket.getTicketId());
 						//mqTicketing.setReplyId(replayTecket.getTicketId());
 						mqTicketing.setStoreId(user_store);
 						mqTicketing.setTicketId("0");
 						mqTicketing.setTicketStatus(status);// We need to send
-																// close
+						// close
 						mqTicketing.setTitle(replayTecket.getTicketTitle());
 
 						DoBackground mBackground = new DoBackground();
@@ -343,23 +328,23 @@ public class ReplayDialogActivity extends Activity {
 			listView.setVisibility(View.GONE);
 			TextView  recent_replay=(TextView)findViewById(R.id.recent_reply);
 			recent_replay.setText("No Reply on this");//Recent Replies
-		*/}
+			 */}
 
 	}
 
 	class AssignedUserTask extends AsyncTask<Void, Void, Void>
 	{
 
-		 
+
 		private ArrayList<String> userList;
 
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			 
-			 UtilMethod method=new UtilMethod();
-			  User user=User.getInstance();
-			 userList= method.getAssignedToUsersList(user);
+
+			UtilMethod method=new UtilMethod(_activity);
+			User user=User.getInstance();
+			userList= method.getAssignedToUsersList(user);
 			return null;
 		}
 		@Override
@@ -369,17 +354,17 @@ public class ReplayDialogActivity extends Activity {
 			if(userList!=null)
 			{
 				User.getInstance().setAssignedUsers(userList);
-				
+
 				ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ReplayDialogActivity.this,
-					R.layout.spinnertext1, User.getInstance().getAssignedUsers());
+						R.layout.spinnertext1, User.getInstance().getAssignedUsers());
 				dataAdapter.setDropDownViewResource(R.layout.spintext);
 				userSpinner.setAdapter(dataAdapter);
 				userSpinner.setSelection(dataAdapter.getPosition(assignedUser));
-				
+
 			}
 		}
 	}
-	
+
 	class ReplayListTask extends AsyncTask<String, Void, Void> {
 
 		private ArrayList<MQReply> replayList = null;
@@ -397,7 +382,7 @@ public class ReplayDialogActivity extends Activity {
 		protected Void doInBackground(String... arg0) {
 
 			if (mConneDetect.isConnectingToInternet()) {
-				UtilMethod method = new UtilMethod();
+				UtilMethod method = new UtilMethod(_activity);
 
 				replayList = method.getTicketPopup(User.getInstance(), arg0[0]);
 			}
@@ -410,18 +395,18 @@ public class ReplayDialogActivity extends Activity {
 
 			super.onPostExecute(result);
 
-			 
-		 
+
+
 			if (replayList != null) { 
 				//Added new UI
 				listView.setAdapter(new ReplyListviewAdapter(
 						getApplicationContext()));
 			}
-			
+
 			progressBar.setVisibility(View.GONE);
 		}
 
-		
+
 		public class ReplyListviewAdapter extends BaseAdapter {
 
 			LayoutInflater inflater;
@@ -475,7 +460,7 @@ public class ReplayDialogActivity extends Activity {
 					//holder.date = (TextView) view.findViewById(R.id.created_date);
 					holder.count = (TextView) view.findViewById(R.id.count);
 					holder.ticketID=(TextView) view.findViewById(R.id.ticket_id);
-					
+
 					holder.arrow = (ImageView) view
 							.findViewById(R.id.arrow);
 					view.setTag(holder);
@@ -518,26 +503,26 @@ public class ReplayDialogActivity extends Activity {
 					String year  = dateParts[0];
 					String month  = dateParts[1];
 					String day = dateParts[2];
-				
-					
+
+
 					String current_date=dateFormat.format(cal.getTime()).trim();
 					current_date=current_date.replace("/", "-");
-					 
-				
+
+
 					if (current_date.toString().equalsIgnoreCase(dates.trim())) {
 						//System.out.println("hell.."+Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
-						
+
 						holder.count.setText(Integer.valueOf(hour)%12 + ":" + minute + " " + ((Integer.valueOf(hour)>=12) ? "PM" : "AM"));
 						holder.count.setVisibility(View.VISIBLE);
-		
-						
+
+
 					}else{
 						holder.count.setText(formatMonth(month).substring(0, 3)+" "+day/*+","+year */);
 						holder.count.setVisibility(View.VISIBLE);
 						//System.out.println("hell.1."+formatMonth(month).substring(0, 3)+" "+day/*+","+year*/);
 					}
-					
-				 		
+
+
 					/*if(replayList.get(position).getReplayCount()!=0)
 					{
 					//holder.date.setText("Replays("+myTicketsList.get(position).getReplayCount()+")");
@@ -558,11 +543,11 @@ public class ReplayDialogActivity extends Activity {
 					holder.createdby.setText("By : "+ replayList.get(position)
 							.getLastModifiedBy());
 
-				//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
-					
-					
-					 holder.ticketID.setText(""+replayList.get(position).getTicketId().toString());
-				//	holder.ticketID.setText();
+					//	holder.date.setText(hour+":"+minute+"  "+dates/*+":"+hour+":"+minute*/);
+
+
+					holder.ticketID.setText(""+replayList.get(position).getTicketId().toString());
+					//	holder.ticketID.setText();
 					holder.setMqTickets(replayList.get(position));
 					//}
 				} catch (Exception e) {
@@ -573,9 +558,9 @@ public class ReplayDialogActivity extends Activity {
 				return view;
 			}
 			public String formatMonth(String month)  {
-			    SimpleDateFormat monthParse = new SimpleDateFormat("MM");
-			    SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
-			    try {
+				SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+				SimpleDateFormat monthDisplay = new SimpleDateFormat("MMMM");
+				try {
 					return monthDisplay.format(monthParse.parse(month));
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -585,7 +570,7 @@ public class ReplayDialogActivity extends Activity {
 			}
 
 		}
-		
+
 	}
 
 
@@ -609,9 +594,9 @@ public class ReplayDialogActivity extends Activity {
 
 	}
 
-	
-	
-	
+
+
+
 	class DoBackground extends AsyncTask<String, Void, Void> {
 		ProgressDialog dialog = null;
 		private ArrayList<MQTickets> myTicketsList = null;
@@ -632,7 +617,7 @@ public class ReplayDialogActivity extends Activity {
 		protected Void doInBackground(String... params) {
 
 			if (mConneDetect.isConnectingToInternet()) {
-				UtilMethod method = new UtilMethod();
+				UtilMethod method = new UtilMethod(_activity);
 				status =  method.createTicket(User.getInstance(), mqTicketing); /*method.replayTicket(User.getInstance(), mqTicketing);*/
 				// method.g
 				// method.replayTicket(User.getInstance(), replayTecket);
@@ -648,7 +633,7 @@ public class ReplayDialogActivity extends Activity {
 				Toast.makeText(_activity, "Done successfully ",
 						Toast.LENGTH_LONG).show();
 				finish();
-				
+
 				Intent intent=new Intent(ReplayDialogActivity.this,ReplayTicket.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
@@ -659,8 +644,8 @@ public class ReplayDialogActivity extends Activity {
 			dialog.dismiss();
 		}
 	}
-	
-/*	class StoreListTaks extends AsyncTask<Void, Void, Void>
+
+	/*	class StoreListTaks extends AsyncTask<Void, Void, Void>
 	{
 		private ArrayList<String> storeList=null;
 		private ProgressDialog dialog=null;

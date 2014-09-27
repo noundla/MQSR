@@ -3,6 +3,7 @@ package com.tgs.mitra;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,45 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.tgs.qsr.support.HomeScreenInfo;
 
 public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 	private final Activity context;
  
 	ArrayList<HomeScreenInfo> list=null;
-	Integer images[]={R.drawable.openticket,R.drawable.openall,R.drawable.myticket,R.drawable.closeticket};
 
+	DisplayImageOptions options=null;
 	public CustomHomeList(Activity context, ArrayList<HomeScreenInfo> list) {
 		super(context, R.layout.department,list);
 		this.context = context;
 		 this.list=list;
+		 
+		 
+		 ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).build();
+			
+			
+			
+		 ImageLoader.getInstance().init(config);
+		 
+		   options = new DisplayImageOptions.Builder()
+	        .showImageOnLoading(R.drawable.loading) // resource or drawable
+	        .showImageForEmptyUri(R.drawable.hr) // resource or drawable
+	        .showImageOnFail(R.drawable.hr) // resource or drawable
+	        .resetViewBeforeLoading(false)  // default
+	        .delayBeforeLoading(1000)
+	        .cacheInMemory(true) // default
+	        .cacheOnDisk(true) // default
+	         
+	        
+	        .bitmapConfig(Bitmap.Config.ARGB_8888) // default
+	        
+	         
+	        
+	        .build();
+		   
 	}
 
 	@Override
@@ -54,30 +82,9 @@ public class CustomHomeList extends ArrayAdapter<HomeScreenInfo> {
 		{
 			if(!list.get(position).getImage().equals(""))
 			{
-				/*String url_val = list.get(position).getImage();
-				 URL url;
-		          Bitmap  bmImg;
-		        try {
-		            url = new URL(url_val);
-		            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		            conn.setDoInput(true);
-		            conn.connect();
-		            InputStream is = conn.getInputStream();
-		             bmImg = BitmapFactory.decodeStream(is);
-		             imageView.setImageBitmap(bmImg); //Here u will set image in imageview
-		        } catch (IOException e) {
-		            // TODO Auto-generated catch block
-		            e.printStackTrace();
-		        }*/
+				 
 				
-				
-				if(position<4)
-				{
-					imageView.setImageResource(images[position]);
-				}
-				else{
-				imageView.setImageResource(images[3]);
-				}
+				ImageLoader.getInstance().displayImage(list.get(position).getImage(), imageView,options);
 			}
 			else{
 				imageView.setImageResource(R.drawable.hr);

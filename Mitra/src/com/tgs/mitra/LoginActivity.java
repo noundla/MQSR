@@ -147,7 +147,7 @@ public class LoginActivity extends Activity {
 			boolean state=false;
 			try{
 
-				UtilMethod method=new UtilMethod();
+				UtilMethod method=new UtilMethod(_activity);
 
 
 				state=method.getLoginState(User.getInstance());

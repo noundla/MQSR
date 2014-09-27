@@ -22,11 +22,7 @@ public class CustomList extends ArrayAdapter<Department> {
 	private ArrayList<Department> departlist=null;
 	DisplayImageOptions options=null;
 
- 
-	Integer[] imageId = { R.drawable.payroll, R.drawable.hr, R.drawable.it,
-			R.drawable.fin, R.drawable.hr,R.drawable.payroll, R.drawable.hr, R.drawable.it,
-			R.drawable.fin, R.drawable.hr};
-	 
+  
 	public CustomList(Activity context, ArrayList<Department> departlist) {
 		super(context, R.layout.department, departlist);
 		this.context = context;
@@ -40,8 +36,8 @@ public class CustomList extends ArrayAdapter<Department> {
 		 
 		   options = new DisplayImageOptions.Builder()
 	        .showImageOnLoading(R.drawable.loading) // resource or drawable
-	        .showImageForEmptyUri(R.drawable.fin) // resource or drawable
-	        .showImageOnFail(R.drawable.fin) // resource or drawable
+	        .showImageForEmptyUri(R.drawable.hr) // resource or drawable
+	        .showImageOnFail(R.drawable.hr) // resource or drawable
 	        .resetViewBeforeLoading(false)  // default
 	        .delayBeforeLoading(1000)
 	        .cacheInMemory(true) // default

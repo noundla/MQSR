@@ -32,9 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.haarman.listviewanimations.swinginadapters.AnimationAdapter;
-import com.haarman.listviewanimations.swinginadapters.prepared.AlphaInAnimationAdapter;
 import com.haarman.listviewanimations.swinginadapters.prepared.ScaleInAnimationAdapter;
-import com.haarman.listviewanimations.swinginadapters.prepared.SwingBottomInAnimationAdapter;
 import com.tgs.mitra.R;
 import com.tgs.mitra.createTicket.CreateTicket;
 import com.tgs.mitra.util.ConnectionDetector;
@@ -80,10 +78,14 @@ public class ReplayTicket extends Activity   {
 		else{
 			ticketType=getIntent().getStringExtra("TicketType");
 			
-			System.out.println("yyyy---"+ticketType);
-			//getIntent().getb
+			if(ticketType.equalsIgnoreCase("Open"))
+			{
+				((TextView)findViewById(R.id.main_img)).setText("Open tickets");
+			}else{
+				
+				((TextView)findViewById(R.id.main_img)).setText(ticketType);
+			}
 
-			((TextView)findViewById(R.id.main_img)).setText(ticketType);
 
 			mConneDetect = new ConnectionDetector(getApplicationContext());
 
@@ -249,7 +251,7 @@ public class ReplayTicket extends Activity   {
 		protected Void doInBackground(Void... arg0) {
 
 			if (mConneDetect.isConnectingToInternet()) {
-				UtilMethod method = new UtilMethod();
+				UtilMethod method = new UtilMethod(_activity);
 				mMainTempList = method.getHomeTicketsInfo(User.getInstance(), ticketType);
 			}
 			return null;
@@ -311,7 +313,7 @@ public class ReplayTicket extends Activity   {
 
 			isRunning=true;
 			if (mConneDetect.isConnectingToInternet()) {
-				UtilMethod method = new UtilMethod();
+				UtilMethod method = new UtilMethod(_activity);
 				searchList = method.getSearchTicketsList(User.getInstance(), arg0[0], arg0[1]);
 
 				// "Open");
@@ -441,7 +443,7 @@ public class ReplayTicket extends Activity   {
 		protected Void doInBackground(Void... arg0) {
 
 			if (mConneDetect.isConnectingToInternet()) {
-				UtilMethod method = new UtilMethod();
+				UtilMethod method = new UtilMethod(_activity);
 				mMainTempList = method.getReplyTicketsList(User.getInstance());  
 
 			}

@@ -172,7 +172,7 @@ public class HomePage  extends Activity {
 		protected Void doInBackground(Void... params) {
 
 			  ArrayList<String> storeList=null;
-			UtilMethod method=new UtilMethod();
+			UtilMethod method=new UtilMethod(_activity);
 			storeList= method.getUserallowedstoresList(User.getInstance());
 			User.getInstance().setStoreList(storeList);
 			return null;
@@ -206,7 +206,7 @@ public class HomePage  extends Activity {
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			UtilMethod method=new UtilMethod();
+			UtilMethod method=new UtilMethod(_activity);
 			homeInfoList= method.getHomeScreenInfoList(User.getInstance());
 
 

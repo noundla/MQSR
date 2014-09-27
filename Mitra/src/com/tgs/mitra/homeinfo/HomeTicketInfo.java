@@ -201,7 +201,7 @@ String ticketType="";
 		protected Void doInBackground(Void... arg0) {
 
 			if (mConneDetect.isConnectingToInternet()) {
-				UtilMethod method = new UtilMethod();
+				UtilMethod method = new UtilMethod(_activity);
 				myTicketsList = method.getHomeTicketsInfo(User.getInstance(), ticketType);
 			}
 			return null;

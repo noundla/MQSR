@@ -182,7 +182,7 @@ public class Payroll extends Activity {
 
 			if(mConneDetect.isConnectingToInternet())
 			{
-				UtilMethod method=new UtilMethod();
+				UtilMethod method=new UtilMethod(_activity);
 				departQsnsList=method.getDeptQuestions(User.getInstance(), arg0[0].getGuidfield(), "");
 			}
 			return null;

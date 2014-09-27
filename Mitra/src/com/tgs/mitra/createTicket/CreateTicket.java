@@ -189,7 +189,7 @@ public class CreateTicket extends Activity {
 		protected Void doInBackground(Void... params) {
 
 			  ArrayList<String> storeList=null;
-			UtilMethod method=new UtilMethod();
+			UtilMethod method=new UtilMethod(_activity);
 			storeList= method.getUserallowedstoresList(User.getInstance());
 			User.getInstance().setStoreList(storeList);
 			return null;
@@ -256,7 +256,7 @@ public class CreateTicket extends Activity {
 			 
 			if(mConneDetect.isConnectingToInternet())
 			{
-				UtilMethod method=new UtilMethod();
+				UtilMethod method=new UtilMethod(_activity);
 				dpartmentList=method.getDepartmentList(User.getInstance());
 			}
 			return null;

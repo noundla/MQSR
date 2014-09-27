@@ -41,7 +41,6 @@ public class Fragment1 extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		System.out.println("TEST Fragment1 onCreate");
 
 		StoreListTaks storeListTaks=new StoreListTaks();
 		storeListTaks.execute();
@@ -175,7 +174,7 @@ public class Fragment1 extends Fragment{
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			UtilMethod method=new UtilMethod();
+			UtilMethod method=new UtilMethod(getActivity());
 			storeList= method.getUserallowedstoresList(User.getInstance());
 			return null;
 		}
@@ -207,7 +206,7 @@ public class Fragment1 extends Fragment{
 		@Override
 		protected Void doInBackground(Void... params) {
 
-			UtilMethod method=new UtilMethod();
+			UtilMethod method=new UtilMethod(getActivity());
 			homeInfoList= method.getHomeScreenInfoList(User.getInstance());
 
 
