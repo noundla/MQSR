@@ -52,7 +52,10 @@
 <string name="reply_title_display_text"> - Reply Title</string>
 <string name="reply_count_display_text">Count</string>
 <string name="date_display_text">Sep 23</string>
-<string name="user_name_display_text">Balaji</string>
+<string name="user_name_display_text">User</string>
 <string name="img_content_descirption_text">Content Description</string>
+
+<!-- URL for QSR  -->
+<string name="url">http://73.166.145.211:808/MitraQSRAPI/MitraQSRService.svc?wsdl</string>
 
 </resources>
