@@ -125,37 +125,37 @@
         <TextView
             android:id="@+id/depart_name"
             android:layout_width="@dimen/rep_wid"
-            android:layout_height="@dimen/rep_ht"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/rep_pad"
             android:layout_weight="1"
             android:singleLine="true"
             android:text="Description"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="normal" />
 
         <TextView
             android:id="@+id/depart_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/depart_name"
+            android:layout_below="@id/depart_name"
+             android:layout_marginLeft="@dimen/rep_pad"
             android:gravity="left"
+            android:layout_marginTop="2dp"
             android:text="This is test descrip "
             android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <EditText
             android:id="@+id/depart_desc_replay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/depart_name"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/round_edittext"
+            android:layout_below="@id/depart_desc"
             android:gravity="center_vertical"
             android:hint="Your reply"
-            android:padding="10dp"
             android:textColor="@android:color/black"
+            android:layout_margin="10dp"
             android:textSize="14sp" />
     </RelativeLayout>
 
@@ -322,7 +322,7 @@
             android:background="@color/reject_color"
             android:text="Submit"
             android:textColor="@color/white_text"
-            android:textSize="@dimen/text_size"
+            android:textSize="14dp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -344,6 +344,7 @@
             android:layout_alignParentBottom="true"
             android:content="@+id/contentLayout"
             android:handle="@+id/slideButton"
+            android:layout_marginTop="100dp"
             android:orientation="vertical" >
 
             <Button
@@ -353,7 +354,7 @@
                 android:background="@color/reject_color"
                 android:text="Recent Replies"
                 android:textColor="@color/white_text"
-                android:textSize="@dimen/text_size"
+                android:textSize="14dp"
                 android:textStyle="bold" >
             </Button>
 

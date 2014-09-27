@@ -10,7 +10,7 @@
         android:layout_centerVertical="true"
         android:padding="5dp"
         android:background="@drawable/ticket_bg_shape"
-        android:layout_marginTop="@dimen/margin" />
+          />
 
     <TextView
         android:id="@+id/txt"
